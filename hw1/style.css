@@ -1,0 +1,17 @@
+body {
+  margin-left: 15%;
+  width: 70%;
+}
+
+img {
+  width: 100%;
+  border: 1px solid gray;
+}
+
+h2, h3 {
+  text-align: center;
+}
+
+p {
+  text-align: justify;
+}
