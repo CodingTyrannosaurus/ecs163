@@ -1,8 +1,7 @@
 // manually set margins
-var margin = {top: 40, right: 20, bottom: 60, left: 110},
+var margin = {top: 40, right: 20, bottom: 80, left: 110},
     width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
-    padding = 100;
+    height = 680 - margin.top - margin.bottom;
 
 // setup x scale
 var x = d3.scaleLinear()
@@ -31,7 +30,7 @@ var svg = d3.select("body").append("svg")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 // load csv data
-d3.csv("ucdata.csv", function(error, data) {
+d3.csv("allschoolsfiltered.csv", function(error, data) {
   if (error) throw error;
 
   // convert strings in csv to integers
@@ -62,12 +61,12 @@ d3.csv("ucdata.csv", function(error, data) {
 
   // text label for x axis
   svg.append("text")
-    .attr("transform", "translate("+ (width/2) +","+(width/2)+")")
+    .attr("transform", "translate("+ (width/2) +","+ height +")")
     .attr("y", margin.bottom - 20)
-    .attr("dx", "1em")
+    // .attr("dx", "1em")
     .attr("class", "label")
     .style("text-anchor", "middle")
-    .text("Average Cost to Attend ($)");
+    .text("Acceptance Rate");
 
   // append y axis to svg group
   svg.append("g")
@@ -87,23 +86,23 @@ d3.csv("ucdata.csv", function(error, data) {
       .attr("cy", function(d) { return y(d.earnings); })
       .style("fill", function(d) { return color(d.name); });
 
-  var legend = svg.selectAll(".legend")
-      .data(color.domain())
-    .enter().append("g")
-      .attr("class", "legend")
-      .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
-
-  legend.append("rect")
-      .attr("x", width - 18)
-      .attr("width", 18)
-      .attr("height", 18)
-      .style("fill", color);
-
-  legend.append("text")
-      .attr("x", width - 24)
-      .attr("y", 9)
-      .attr("dy", ".35em")
-      .style("text-anchor", "end")
-      .text(function(d) { return d; });
+  // var legend = svg.selectAll(".legend")
+  //     .data(color.domain())
+  //   .enter().append("g")
+  //     .attr("class", "legend")
+  //     .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+  //
+  // legend.append("rect")
+  //     .attr("x", width - 18)
+  //     .attr("width", 18)
+  //     .attr("height", 18)
+  //     .style("fill", color);
+  //
+  // legend.append("text")
+  //     .attr("x", width - 24)
+  //     .attr("y", 9)
+  //     .attr("dy", ".35em")
+  //     .style("text-anchor", "end")
+  //     .text(function(d) { return d; });
 
 });
