@@ -1,5 +1,5 @@
 body {
-  font: 15px Roboto;
+  font: 10px sans-serif;
 }
 
 .axis path,
@@ -7,15 +7,6 @@ body {
   fill: none;
   stroke: #000;
   shape-rendering: crispEdges;
-  font-size: 15px;
-}
-
-.axis text {
-  font: 15px Roboto;
-}
-
-.label {
-  font: 18px Roboto;
 }
 
 .dot {
