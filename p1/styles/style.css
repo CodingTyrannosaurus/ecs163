@@ -1,15 +1,13 @@
 body {
   font: 15px;
   font-family: 'Roboto', sans-serif;
-  margin-left: 15%;
-  width: 70%;
 }
 
-.svg-container {
+/*.svg-container {
     display: inline-block;
     position: relative;
     width: 100%;
-    padding-bottom: 100%; /* aspect ratio */
+    padding-bottom: 100%;
     vertical-align: top;
     overflow: hidden;
 }
@@ -18,16 +16,22 @@ body {
     position: absolute;
     top: 10px;
     left: 0;
-}
+}*/
 
-/*.intro {
+.intro {
   margin-left: 15%;
   width: 70%;
-}*/
+}
 
-/*#scatter {
+.outro {
+  margin-left: 15%;
+  width: 70%;
+}
 
-}*/
+#scatter {
+  margin-left: 10%;
+  width: 80%;
+}
 
 /*#viz {
   width: 90%;

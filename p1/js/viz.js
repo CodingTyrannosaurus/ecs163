@@ -23,17 +23,11 @@ var yAxis = d3.axisLeft()
     .scale(y);
 
 // create sized svg to draw on
-var svg = d3.select("#chart")
-  .append("div")
-  .classed("svg-container", true)
-  .append("svg")
-  .attr("preserveAspectRatio", "xMinYMin meet")
-  .attr("viewBox", "0 0 800 400")
-  .classed("svg-content-responsive", true)
-  // .attr("width", width + margin.left + margin.right)
-  // .attr("height", height + margin.top + margin.bottom)
+var svg = d3.select("#scatter").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
   .append("g")
-  // .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 // load csv data
 d3.csv("allschoolsfiltered.csv", function(error, data) {
