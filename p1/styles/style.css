@@ -1,42 +1,20 @@
 body {
   font: 15px;
   font-family: 'Roboto', sans-serif;
-}
-
-/*.svg-container {
-    display: inline-block;
-    position: relative;
-    width: 100%;
-    padding-bottom: 100%;
-    vertical-align: top;
-    overflow: hidden;
-}
-.svg-content-responsive {
-    display: inline-block;
-    position: absolute;
-    top: 10px;
-    left: 0;
-}*/
-
-.intro {
-  margin-left: 15%;
-  width: 70%;
-}
-
-.outro {
   margin-left: 15%;
   width: 70%;
 }
 
 #scatter {
-  margin-left: 10%;
-  width: 80%;
+  width: 100%;
+  margin-bottom: 5%;
 }
 
-/*#viz {
-  width: 90%;
-  margin-left: 5%;
-}*/
+#pie {
+  width: 100%;
+  margin-bottom: 5%;
+}
+
 
 h2 {
   text-align: center;
@@ -67,19 +45,61 @@ p {
   fill: none;
   stroke: #000;
   shape-rendering: crispEdges;
-  font-size: 15px;
 }
 
 .axis text {
-  font: 15px;
+  font-size: 12px;
   font-family: 'Roboto', sans-serif;
 }
 
 .label {
-  font: 18px;
+  font-size: 15px;
   font-family: 'Roboto', sans-serif;
 }
 
 .dot {
   stroke: #000;
 }
+
+/* TOOLTIPS */
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+.filterButton {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+/*.svg-container {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    vertical-align: top;
+    overflow: hidden;
+}
+.svg-content-responsive {
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    left: 0;
+}*/
