@@ -47,15 +47,14 @@
         var arc = d3.arc()
             .outerRadius(chartHeight/2)
             .innerRadius(chartHeight/4)
-            // .padAngle(0.0)
+            .padAngle(0.008)
             .cornerRadius(10)
 
         // create tooltip
         var tooltip = d3.tip()
           .attr("class", "d3-tip")
-        //   .offset([0, 0])
           .html(function(d) {
-            return "hi"
+            "Major: <span style='color:#3498db'>"+ d.name + "</span>"
           })
 
         scatterPlot.call(tooltip);
@@ -76,7 +75,8 @@
             .attr("d", arc)
             .attr("id", function(d, i) { return "arc-" + i })
             .attr("stroke", "gray")
-            .attr("fill", function(d,i){ return d3.interpolateRainbow(Math.random()); })
+            .attr("fill", function(d, i) { return colorScale(d.value); })
+            // .attr("fill", function(d,i){ return d3.interpolateRainbow(Math.random()); })
             .on('mouseover', tooltip.show)
             .on('mouseout', tooltip.hide);
 

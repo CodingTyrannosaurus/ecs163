@@ -13,7 +13,7 @@ var y = d3.scaleLinear()
     .range([height, 0]);
 
 // choose color scheme
-var colorScale = d3.scaleOrdinal(d3.schemeCategory20)// .domain([1,2,3,6,7,8,9,10]);
+var colorScale = d3.scaleOrdinal(d3.schemeCategory10)// .domain([1,2,3,6,7,8,9,10]);
 
 // create x axis
 var xAxis = d3.axisBottom()

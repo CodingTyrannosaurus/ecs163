@@ -40,12 +40,15 @@ function loadScatterPlot(dfilter) {
     // create tooltip
     var tooltip = d3.tip()
       .attr("class", "d3-tip")
-      .offset([-10, 0])
+      .direction('ne')
+      .offset([0, -3])
       .html(function(d) {
         return "School Name: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span style='color:#3498db'>"+ d.name + "</span><br>Acceptance Rate: <span style='color:#e74c3c'>" + d.adm_rate + "</span><br>Median Earnings:  <span style='color:#2ecc71'>" + d.earnings + "</span>"
       })
 
     scatterPlot.call(tooltip);
+
+    // var colors = [0.524, 0.046, 0.249, 0.753, 0.659, 0.123]
 
     // create points
     scatterPlot.selectAll(".dot")
@@ -59,8 +62,9 @@ function loadScatterPlot(dfilter) {
       // x and y axis coords of the center of the element
       .attr("cx", function(d) { return x(d.adm_rate); })
       .attr("cy", function(d) { return y(d.earnings); })
-      .attr("fill", function(d,i){ return d3.interpolateRainbow(Math.random()) })
-      // .style("fill", function(d) { return colorScale(d.state); })
+      // .attr("fill", function(d,i){ return d3.interpolateRainbow(Math.random()) })
+      // .attr("fill", function(d,i){ return d3.interpolateRainbow(colors[]); })
+      .style("fill", function(d) { return colorScale(d.state); })
       .on('mouseover', tooltip.show)
       .on('mouseout', tooltip.hide);
 

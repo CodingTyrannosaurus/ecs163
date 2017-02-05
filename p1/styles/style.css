@@ -79,10 +79,22 @@ p {
 
 .pieTitle {
   font-size: 25px;
-font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
-/* Creates a small triangle extender for the tooltip
+.dot {
+  fill-opacity: 0.8;
+  stroke: black;
+  stroke-width: 0.5px;
+}
+
+.dot:hover {
+  fill-opacity: 1.0;
+  /*stroke: black;*/
+  /*stroke-width: 1px;*/
+}
+
+/* Creates a small triangle extender for the tooltip */
 .d3-tip:after {
   box-sizing: border-box;
   display: inline;
@@ -90,11 +102,11 @@ font-family: 'Roboto', sans-serif;
   width: 100%;
   line-height: 1;
   color: rgba(0, 0, 0, 0.8);
-  content: "\25BC";
+  /*content: "\25BC";*/
   position: absolute;
-  text-align: center;
+  /*text-align: center;*/
 }
-*/
+
 
 /*.filterButton {
   margin-left: 10px;
