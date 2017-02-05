@@ -10,9 +10,15 @@ body {
   margin-bottom: 5%;
 }
 
+<<<<<<< HEAD
 #pie {
   width: 100%;
   margin-bottom: 5%;
+=======
+#scatter {
+  margin-left: 5%;
+  width: 90%;
+>>>>>>> 7bd9e409a9a08d99b2428d268361f5ee75c74f9a
 }
 
 
