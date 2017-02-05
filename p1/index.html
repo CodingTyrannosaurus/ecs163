@@ -32,7 +32,7 @@
     </div>
 
     <div id="scatter" align="center">
-      <button class="filterButton" onclick="filterData('US')">
+      <!-- <button class="filterButton" onclick="filterData('US')">
           All Schools
       </button>
       <button class="filterButton" onclick="loadData('CA')">
@@ -40,7 +40,7 @@
       </button>
       <button class="filterButton" onclick="select('top5')">
           Top 5 Most Populated States
-      </button>
+      </button> -->
     </div>
 
     <div class="description">
@@ -57,7 +57,7 @@
       <h4><b>Question 2: </b> <br><br>How do the most valuable schools compare with student debt</h4>
     </div>
 
-    <div class="chart2"></div>
+    <div id="pie" align="center"></div>
 
     <div class="description">
       <p>
@@ -89,8 +89,11 @@
     </p>
 
     <!-- Scripts -->
-    <script src="js/viz.js"></script>
     <script src="lib/d3-tip.js"></script>
     <script src="lib/d3-scale-chromatic.min.js"></script>
+    <script src="js/scatterplot.js"></script>
+    <!-- <script src="js/piechart.js"></script> -->
+    <script src="js/piechart.js"></script>
+    <script src="js/viz.js"></script>
   </body>
 </html>
