@@ -16,7 +16,7 @@ function buildPieChart(csvFile, title, category, selector) {
 
   function setSize(data) {
     // margin = {top: 30, right: 20, bottom: 30, left: 50},
-    margin = {top: 0, right: 0, bottom: 0, left: 0},
+    margin = {top: 0, right: 20, bottom: 0, left: 20},
     width = 300,
     height = 300;
 

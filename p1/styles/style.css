@@ -115,6 +115,11 @@ p {
   margin-bottom: 15px;
 }
 
+.pie {
+  min-width: 300px;
+  min-height: 300px;
+}
+
 /*.pieCharts {
   width: 100%;
   height: 800px;
