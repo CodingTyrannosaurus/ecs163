@@ -1,3 +1,33 @@
+// manually set margins
+var margin = {top: 40, right: 20, bottom: 80, left: 110},
+    width = 960 - margin.left - margin.right,
+    height = 680 - margin.top - margin.bottom,
+    radius = Math.min(width, height) / 2;
+
+// setup x scale
+var x = d3.scaleLinear()
+    .range([0, width]);
+
+// setup y scale
+var y = d3.scaleLinear()
+    .range([height, 0]);
+
+// create x axis
+var xAxis = d3.axisBottom()
+    .scale(x);
+
+// create y axis
+var yAxis = d3.axisLeft()
+    .scale(y);
+
+// Adds the svg canvas to draw on
+var scatterPlot = d3.select("#scatter")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
 function loadScatterPlot(dfilter) {
   // load data from csv
   d3.csv("data/filteredSchools.csv", function(error, data) {
@@ -43,7 +73,7 @@ function loadScatterPlot(dfilter) {
       .direction('ne')
       .offset([0, -3])
       .html(function(d) {
-        return "School Name: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span style='color:#3498db'>"+ d.name + "</span><br>Acceptance Rate: <span style='color:#e74c3c'>" + d.adm_rate + "</span><br>Median Earnings:  <span style='color:#2ecc71'>" + d.earnings + "</span>"
+        return "School Name: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span style='color:#1F77B4'>"+ d.name + "</span><br>Acceptance Rate: &nbsp&nbsp<span style='color:#D62728'>" + d.adm_rate + "</span><br>Median Earnings:&nbsp&nbsp  <span style='color:#2CA02C'>" + d.earnings + "</span><br>Population: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span style='color:#FF7F0E'>" + d.pop + "</span>"
       })
 
     scatterPlot.call(tooltip);
@@ -54,7 +84,7 @@ function loadScatterPlot(dfilter) {
     scatterPlot.selectAll(".dot")
       .data(data)
       .enter().append("circle")
-      .filter(function(d) { return d.state == "CA" || d.state == "TX" || d.state == "FL" || d.state == "NY" || d.state == "IL"})
+      // .filter(function(d) { return d.state == "CA" || d.state == "TX" || d.state == "FL" || d.state == "NY" || d.state == "IL"})
       .attr("class", "dot")
       // radius
       .attr("r", 10)
@@ -64,28 +94,51 @@ function loadScatterPlot(dfilter) {
       .attr("cy", function(d) { return y(d.earnings); })
       // .attr("fill", function(d,i){ return d3.interpolateRainbow(Math.random()) })
       // .attr("fill", function(d,i){ return d3.interpolateRainbow(colors[]); })
-      .style("fill", function(d) { return colorScale(d.state); })
+      .style("fill", function(d) { return colorScale20(d.state); })
       .on('mouseover', tooltip.show)
       .on('mouseout', tooltip.hide);
 
-    var legend = scatterPlot.selectAll(".legend")
-      .data(colorScale.domain())
-      .enter().append("g")
-        .attr("class", "legend")
-        .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+      // add legend
+      var linearSize = d3.scaleLinear().domain([0,10]).range([10, 30]);
 
-    legend.append("rect")
-      .attr("x", width - 18)
-      .attr("width", 18)
-      .attr("height", 18)
-      .style("fill", colorScale);
+      scatterPlot.append("g")
+        .attr("class", "legendSize")
+        .attr("transform", "translate(20, 40)");
 
-    legend.append("text")
-      .attr("x", width - 24)
-      .attr("y", 9)
-      .attr("dy", ".35em")
-      .style("text-anchor", "end")
-      .text(function(d) { return d; });
+      // var legendSize = d3.legendSize()
+      //   .scale(linearSize)
+      //   .shape('square')
+      //   .shapePadding(15)
+      //   .labelOffset(20)
+      //   .orient('horizontal');
+      //
+      // scatterPlot.select(".legendSize")
+      //   .call(legendSize);
+
+      // setTimeout(function() {
+      //   legend
+      //     .style("font-size","20px")
+      //     .attr("data-style-padding",10)
+      //     .call(d3.legend)
+      // },1000)
+    // var legend = scatterPlot.selectAll(".legend")
+    //   .data(colorScale.domain())
+    //   .enter().append("g")
+    //     .attr("class", "legend")
+    //     .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+    //
+    // legend.append("rect")
+    //   .attr("x", width - 18)
+    //   .attr("width", 18)
+    //   .attr("height", 18)
+    //   .style("fill", colorScale);
+    //
+    // legend.append("text")
+    //   .attr("x", width - 24)
+    //   .attr("y", 9)
+    //   .attr("dy", ".35em")
+    //   .style("text-anchor", "end")
+    //   .text(function(d) { return d; });
 
   });
 }

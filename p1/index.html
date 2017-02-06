@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
+    <!--  Responsive Viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Project 1 - Matthew Gabor</title>
 
     <link href="http://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css" />
@@ -11,12 +13,13 @@
     <link rel="stylesheet" type="text/css" href="styles/style.css">
 
     <!-- Libraries -->
-    <script type="text/javascript" src="lib/d3.v4.min.js"></script>
+    <script src="lib/d3.v4.min.js"></script>
     <script src="lib/jquery-3.1.1.min.js"></script>
+    <!-- <script src="lib/bootstrap.min.js"></script> -->
 
   </head>
-  <body>
 
+  <body>
     <!-- Header -->
 
     <div class="intro">
@@ -54,10 +57,23 @@
     <!-- Chart 2 -->
 
     <div class="question">
-      <h4><b>Question 2: </b> <br><br>How do the most valuable schools compare with student debt</h4>
+      <h4><b>Question 2: </b> <br><br>Which majors do each of the UCs specialize in?</h4>
     </div>
 
-    <div id="pie" align="center"></div>
+    <div class="allpies">
+      <div class="row">
+        <div class="col-md-3" id="UCBpie"></div>
+        <div class="col-md-3" id="UCDpie"></div>
+        <div class="col-md-3" id="UCIpie"></div>
+        <div class="col-md-3" id="UCLApie"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-3" id="UCRpie"></div>
+        <div class="col-md-3" id="UCSDpie"></div>
+        <div class="col-md-3" id="UCSBpie"></div>
+        <div class="col-md-3" id="UCSCpie"></div>
+      </div>
+    </div>
 
     <div class="description">
       <p>
@@ -88,11 +104,13 @@
       <a href="https://collegescorecard.ed.gov/data/">https://collegescorecard.ed.gov/data/</a>
     </p>
 
-    <!-- Scripts -->
+    <!-- External Libraries -->
     <script src="lib/d3-tip.js"></script>
     <script src="lib/d3-scale-chromatic.min.js"></script>
+    <script src="lib/d3-legend.min.js"></script>
+
+    <!-- My Code -->
     <script src="js/scatterplot.js"></script>
-    <!-- <script src="js/piechart.js"></script> -->
     <script src="js/piechart.js"></script>
     <script src="js/viz.js"></script>
   </body>
