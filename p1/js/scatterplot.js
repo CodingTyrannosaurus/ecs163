@@ -12,7 +12,6 @@ var x = d3.scaleLinear()
 var y = d3.scaleLinear()
     .range([height, 0]);
 
-
 // create x axis
 var xAxis = d3.axisBottom()
     .scale(x);
@@ -58,7 +57,6 @@ function loadScatterPlot(dfilter) {
     scatterPlot.append("text")
       .attr("transform", "translate("+ (width/2) +","+ height +")")
       .attr("y", margin.bottom - 20)
-      // .attr("dx", "1em")
       .attr("class", "label")
       .style("text-anchor", "middle")
       .text("Acceptance Rate");
@@ -87,6 +85,7 @@ function loadScatterPlot(dfilter) {
       .enter().append("circle")
       // .filter(function(d) { return d.state == "CA" || d.state == "TX" || d.state == "FL" || d.state == "NY" || d.state == "IL"})
       // .attr("class", "dot")
+      .attr("fill", function(d) { return colorScale20(d.state); })
       .attr("class", function(d) { return (d.ucflag == 1)?'ucdot':'dot'; })
       // radius
       .attr("r", 10)
@@ -94,34 +93,16 @@ function loadScatterPlot(dfilter) {
       // x and y axis coords of the center of the element
       .attr("cx", function(d) { return x(d.adm_rate); })
       .attr("cy", function(d) { return y(d.earnings); })
-      // .attr("fill", function(d,i){ return d3.interpolateRainbow(Math.random()) })
-      // .attr("fill", function(d,i){ return d3.interpolateRainbow(colors[]); })
-      .style("fill", function(d) { return colorScale20(d.state); })
       .on('mouseover', tooltip.show)
       .on('mouseout', tooltip.hide);
-      // .each(function(d) {
-      //   if (d.ucflag == 1) {
-      //
-      //   }
-      //   return d;
-      // }
-            // var header = d3.select(this);
-            // // loop through the keys - this assumes no extra data
-            // d3.keys(d).forEach(function(key) {
-            //     if (key != "data-name")
-            //         header.attr(key, d[key]);
-            // });
-
-
-
-
 
       // add legend
-      var linearSize = d3.scaleLinear().domain([0,10]).range([10, 30]);
-
-      scatterPlot.append("g")
-        .attr("class", "legendSize")
-        .attr("transform", "translate(20, 40)");
+      // var linearSize = d3.scaleLinear().domain([0,10]).range([10, 30]);
+      //
+      // scatterPlot.append("g")
+      //   .attr("class", "legendSize")
+      //   .attr("transform", "translate(20, 40)");
+      //
 
       // var legendSize = d3.legendSize()
       //   .scale(linearSize)

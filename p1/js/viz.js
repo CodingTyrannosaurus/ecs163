@@ -1,6 +1,11 @@
 // choose color scheme
-var colorScale = d3.scaleOrdinal(d3.schemeCategory10);
+// var colorScale = d3.scaleOrdinal(d3.schemeCategory10);
 var colorScale20 = d3.scaleOrdinal(d3.schemeCategory20);
+
+for (var i = 0; i < 20; i++) {
+  console.log(colorScale20(i));
+}
+// console.log(colorScale20(0));
 
 loadScatterPlot("US");
 

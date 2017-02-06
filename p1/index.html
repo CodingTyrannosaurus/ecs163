@@ -34,8 +34,14 @@
       <h4><b>Question 1: </b> <br><br>How do the UC Schools compare with other universities? Is there a correlation between median earnings and acceptance rates?</h4>
     </div>
 
-    <button class="filterButton" style="text-align:center;">UC Schools Only</button>
-    <div id="scatter" align="center"></div>
+    <div class="buttonBox" align="center">
+      <button class="filterUS filterButton btn btn-success" data-toggle="button" aria-pressed="true">All US Schools</button>
+      <button class="filterUC filterButton btn btn-primary" role="button" aria-pressed="false" checked>UC Schools Only</button>
+    </div>
+
+    <div class="row">
+      <div id="scatter" align="center"></div>
+    </div>
 
     <div class="description">
   		<p>
@@ -105,8 +111,13 @@
     <script src="js/piechart.js"></script>
     <script src="js/viz.js"></script>
     <script>
-      $(".filterButton").click(function() {
-        $(".dot").css('fill-opacity', '0.2');
+      $(".filterUC").click(function() {
+        $(".dot").css('fill-opacity', '0.15');
+        $(".ucdot").css('fill', 'rgb(31, 119, 180)');
+      });
+
+      $(".filterUS").click(function() {
+        $(".dot").css('fill-opacity', '0.8');
       });
     </script>
   </body>

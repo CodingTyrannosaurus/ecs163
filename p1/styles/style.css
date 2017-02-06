@@ -13,12 +13,14 @@ h2 {
 h3 {
   font-weight: 400;
   text-align: center;
+  font-size: 25px;
 }
 
 h4 {
   margin-top: 30px;
   text-align: left;
   font-weight: 400;
+  font-size: 20px;
 }
 
 hr {
@@ -30,10 +32,21 @@ p {
   text-align: justify;
 }
 
+.question {
+  margin-bottom: 20px;
+}
+
+.description {
+  margin-top: 20px;
+}
+
+.intro {
+  margin-top: 20px;
+}
+
 /***** scatter plot styling *****/
 #scatter {
   width: 100%;
-  margin-bottom: 5%;
 }
 
 .axis path,
@@ -60,7 +73,7 @@ p {
 }
 
 .ucdot {
-  fill-opacity: 1;
+  fill-opacity: 0.8;
   stroke: black;
   stroke-width: 0.8px;
 }
@@ -78,10 +91,16 @@ p {
   stroke-width: 2.5px;
 }
 
-/*.filterButton {
+.buttonBox {
+  /*border: 2px black solid;*/
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: center;
+}
 
-  margin: 0 auto;
-}*/
+.filterButton {
+  margin-left: 10px;
+}
 
 /*.legend rect {
   fill:white;

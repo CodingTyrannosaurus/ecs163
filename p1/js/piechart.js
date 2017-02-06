@@ -81,10 +81,10 @@ function buildPieChart(csvFile, title, category, selector) {
 
       // var colorDomain = [0.1, 0.9, 0.11, 0.42]
       newSlice.append("path")
+        .attr("fill", function(d, i) { return colorScale20(i); })
         .attr("d", arc)
         .attr("id", function(d, i) { return "arc-" + i })
         .attr("stroke", "gray")
-        .attr("fill", function(d, i) { return colorScale20(i); })
         // .attr("fill", function(d,i){ return d3.interpolateRainbow(Math.random()); })
         .on('mouseover', tooltip.show)
         .on('mouseout', tooltip.hide);
