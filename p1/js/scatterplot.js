@@ -12,6 +12,7 @@ var x = d3.scaleLinear()
 var y = d3.scaleLinear()
     .range([height, 0]);
 
+
 // create x axis
 var xAxis = d3.axisBottom()
     .scale(x);
@@ -30,7 +31,7 @@ var scatterPlot = d3.select("#scatter")
 
 function loadScatterPlot(dfilter) {
   // load data from csv
-  d3.csv("data/filteredSchools.csv", function(error, data) {
+  d3.csv("data/filteredschoolsucflag.csv", function(error, data) {
     if (error) throw error;
 
     // use maximum and minimum values of data for x and y domain
@@ -85,7 +86,8 @@ function loadScatterPlot(dfilter) {
       .data(data)
       .enter().append("circle")
       // .filter(function(d) { return d.state == "CA" || d.state == "TX" || d.state == "FL" || d.state == "NY" || d.state == "IL"})
-      .attr("class", "dot")
+      // .attr("class", "dot")
+      .attr("class", function(d) { return (d.ucflag == 1)?'ucdot':'dot'; })
       // radius
       .attr("r", 10)
       .attr("r", function(d) { return  d.pop/2000; })
@@ -97,6 +99,22 @@ function loadScatterPlot(dfilter) {
       .style("fill", function(d) { return colorScale20(d.state); })
       .on('mouseover', tooltip.show)
       .on('mouseout', tooltip.hide);
+      // .each(function(d) {
+      //   if (d.ucflag == 1) {
+      //
+      //   }
+      //   return d;
+      // }
+            // var header = d3.select(this);
+            // // loop through the keys - this assumes no extra data
+            // d3.keys(d).forEach(function(key) {
+            //     if (key != "data-name")
+            //         header.attr(key, d[key]);
+            // });
+
+
+
+
 
       // add legend
       var linearSize = d3.scaleLinear().domain([0,10]).range([10, 30]);

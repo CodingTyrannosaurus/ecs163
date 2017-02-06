@@ -23,7 +23,7 @@
     <!-- Header -->
 
     <div class="intro">
-      <h2 style>Hacking the college selection process</h1>
+      <h2 style>University of California Scorecard</h1>
   		<h3>Matthew Gabor - 01/29/17</h3>
       <hr>
     </div>
@@ -31,20 +31,11 @@
     <!-- Chart 1 -->
 
     <div class="question">
-      <h4><b>Question 1: </b> <br><br>How much do admission rates and class size effect earning potential? Do smaller, more selective colleges churn out higher earning graduates?</h4>
+      <h4><b>Question 1: </b> <br><br>How do the UC Schools compare with other universities? Is there a correlation between median earnings and acceptance rates?</h4>
     </div>
 
-    <div id="scatter" align="center">
-      <!-- <button class="filterButton" onclick="filterData('US')">
-          All Schools
-      </button>
-      <button class="filterButton" onclick="loadData('CA')">
-          California Schools
-      </button>
-      <button class="filterButton" onclick="select('top5')">
-          Top 5 Most Populated States
-      </button> -->
-    </div>
+    <button class="filterButton" style="text-align:center;">UC Schools Only</button>
+    <div id="scatter" align="center"></div>
 
     <div class="description">
   		<p>
@@ -113,5 +104,10 @@
     <script src="js/scatterplot.js"></script>
     <script src="js/piechart.js"></script>
     <script src="js/viz.js"></script>
+    <script>
+      $(".filterButton").click(function() {
+        $(".dot").css('fill-opacity', '0.2');
+      });
+    </script>
   </body>
 </html>
