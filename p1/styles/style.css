@@ -185,3 +185,9 @@ p {
     font-weight: bold;
     text-anchor: middle;
 }
+
+.circle {
+  fill: white;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}

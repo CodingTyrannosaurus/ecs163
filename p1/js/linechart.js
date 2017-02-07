@@ -70,15 +70,6 @@ function buildLineChart(csvFile) {
       d3.max(schools, function(c) { return d3.max(c.values, function(v) { return v.debt; }); })
     ]);
 
-    // line charts
-    var tooltip = d3.tip()
-      .attr("class", "d3-tip")
-      .offset([-10, 0])
-      .html(function(d, i) {
-        return "School: <span style='color:" + color(d.name) + "'>" + d.name + "</span>"
-      })
-      lineChart.call(tooltip);
-
 
     lineChart.append("g")
         .attr("class", "x axis")
@@ -168,15 +159,45 @@ function buildLineChart(csvFile) {
           // Update whether or not the elements are active
 
           d.active = active;
-        })
+        }) // end onclick
+        .text(d.name)
+      }) // end first foreach
+
         // .html(function() {
         //   return te;
         // })
 
-      // add tooltip
-      // lineChart.selectAll('line')
-      // .on('mouseover', tooltip.show)
-      // .on('mouseout', tooltip.hide);
-    })
+      // add tooltip to circles on line chart
+      var tooltip = d3.tip()
+        .attr("class", "d3-tip")
+        .offset([-10, 0])
+        .html(function(d, i) {
+          return "School: <span style='color:" + color(d.name) + "'>" + d.name + "</span>"
+        })
+
+      lineChart.call(tooltip);
+
+      schools.forEach(function(d, i) {
+        console.log(d.values[i].debt)
+
+        lineChart.selectAll(".circle")
+         .data(data)
+         .enter()
+         .append("svg:circle")
+         .attr("class", "circle")
+         .attr("cx", function (d) {
+            return x(d.date);
+         })
+         .attr("cy", function (d) {
+          //  console.log(d)
+          //  console.log(d.UCB)
+           return y(d.UCD);
+         })
+         .attr("r", 5)
+         .on('mouseover', tooltip.show)
+         .on('mouseout', tooltip.hide);
+
+     })// end 2nd foreach
+    // })
   });
 }
