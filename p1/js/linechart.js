@@ -79,7 +79,7 @@ function buildLineChart(csvFile) {
         .attr("class", "y axis")
         .call(yAxis);
 
-
+    // not sure what this is doing
     // lineChart.append("line")
     //       .attr(
     //       {
@@ -101,43 +101,61 @@ function buildLineChart(csvFile) {
       .enter().append("g")
         .attr("class", "school");
 
-    var path = lineChart.selectAll(".school").append("path")
-        .attr("class", "line")
-        .attr("d", function(d) { return line(d.values); })
-        .style("stroke", function(d, i) {
-          if (d.name == "UCB") {
-            return colorScale10(d.name);
-          } else if (d.name == "UCD") {
-            return colorScale10(d.name);
-          } else if (d.name == "UCI") {
-            return colorScale10(d.name);
-          } else if (d.name == "UCLA") {
-            return colorScale10(d.name);
-          } else if (d.name == "UCR") {
-            return colorScale10(d.name);
-          } else if (d.name == "UCSD") {
-            return colorScale10(d.name);
-          } else if (d.name == "UCSB") {
-            return colorScale10(d.name);
-          } else if (d.name == "UCSC") {
-            return colorScale10(d.name);
-          } else {
-            console.log("ERROR: data not found");
-          }
-        });
-
     // Calculate size for legend
     legendSpace = width/schools.length;
 
     // Add legend for each school
     schools.forEach(function(d, i) {
+
+    lineChart.selectAll(".school").append("path")
+      .attr("class", "line")
+      .style("stroke", function(d, i) {
+        if (d.name == "UCB") {
+          return color(d.name);
+        } else if (d.name == "UCD") {
+          return color(d.name);
+        } else if (d.name == "UCI") {
+          return color(d.name);
+        } else if (d.name == "UCLA") {
+          return color(d.name);
+        } else if (d.name == "UCR") {
+          return color(d.name);
+        } else if (d.name == "UCSD") {
+          return color(d.name);
+        } else if (d.name == "UCSB") {
+          return color(d.name);
+        } else if (d.name == "UCSC") {
+          return color(d.name);
+        } else {
+          console.log("ERROR: data not found");
+        }
+      })
+      .attr("id", d.name)
+      .attr("d", function(d) { return line(d.values); });
+
       lineChart.append("text")
-          .attr("x", (legendSpace/2)+i*legendSpace)
-          .attr("y", -15) // height* -1 - (margin.bottom/2)+ 5)
-          .attr("class", "legend")
-          .style("fill", function() {
-              return d.color = colorScale10(d.name); })
-          .text(d.name);
+        .attr("x", (legendSpace/2)+i*legendSpace)
+        .attr("y", -15) // height* -1 - (margin.bottom/2)+ 5)
+        .attr("class", "legend")
+        .style("fill", function() {
+            return d.color = color(d.name); })
+        .on("click", function() {
+          // d3.selectAll(".line").style("opacity", 0);
+          // Determine if current line is visible
+          var active = d.active ? false : true,
+          newOpacity = active ? 0 : 1;
+          // Hide or show the elements based on the ID
+
+          d3.select("#" + d.name)
+            // .transition().duration(100)
+            // .style("opacity", newOpacity);
+            .transition().duration(500)
+            .style("stroke-width", "10px");
+          // Update whether or not the elements are active
+
+          d.active = active;
+        })
+        .text(d.name);
     })
 
   });
