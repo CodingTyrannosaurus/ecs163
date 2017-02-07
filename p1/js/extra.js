@@ -43,3 +43,62 @@
 //     } else if (dfilter == "top5") {
 //       data.filter(function(d) { return d.state == "CA" || d.state == "TX" || d.state == "FL" || d.state == "NY" || d.state == "IL"});
 //     }
+
+
+
+        // var colors = [0.524, 0.046, 0.249, 0.753, 0.659, 0.123]
+        // .filter(function(d) { return d.state == "CA" || d.state == "TX" || d.state == "FL" || d.state == "NY" || d.state == "IL"})
+        // .attr("class", "dot")
+
+        // add legend
+        // var linearSize = d3.scaleLinear().domain([0,10]).range([10, 30]);
+        //
+        // scatterPlot.append("g")
+        //   .attr("class", "legendSize")
+        //   .attr("transform", "translate(20, 40)");
+        //
+
+        // var legendSize = d3.legendSize()
+        //   .scale(linearSize)
+        //   .shape('square')
+        //   .shapePadding(15)
+        //   .labelOffset(20)
+        //   .orient('horizontal');
+        //
+        // scatterPlot.select(".legendSize")
+        //   .call(legendSize);
+
+        // setTimeout(function() {
+        //   legend
+        //     .style("font-size","20px")
+        //     .attr("data-style-padding",10)
+        //     .call(d3.legend)
+        // },1000)
+      // var legend = scatterPlot.selectAll(".legend")
+      //   .data(colorScale.domain())
+      //   .enter().append("g")
+      //     .attr("class", "legend")
+      //     .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+      //
+      // legend.append("rect")
+      //   .attr("x", width - 18)
+      //   .attr("width", 18)
+      //   .attr("height", 18)
+      //   .style("fill", colorScale);
+      //
+      // legend.append("text")
+      //   .attr("x", width - 24)
+      //   .attr("y", 9)
+      //   .attr("dy", ".35em")
+      //   .style("text-anchor", "end")
+      //   .text(function(d) { return d; });
+
+
+
+
+              // newBlock.append("text")
+              //     .attr("dx", 55)
+              //     .attr("dy", -5)
+              //     .append("textPath")
+              //     .attr("xlink:href", function(d, i) { return "#arc-" + i; })
+              //     .text(function(d) { console.log(d); return d.data.name })

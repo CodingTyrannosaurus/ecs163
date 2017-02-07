@@ -1,21 +1,19 @@
+// modification of https://bl.ocks.org/shimizu/f90651541575f348a129444003a73467
+
 function buildPieChart(csvFile, title, category, selector) {
   var	margin, width, height, chartWidth, chartHeight;
 
-  var svg = d3.select(selector).append("svg")
-  var chartLayer = svg.append("g").classed("chartLayer", true)
+  var pieChart = d3.select(selector).append("svg")
+  var chartLayer = pieChart.append("g").classed("chartLayer", true)
 
   d3.csv("data/uc_pd_tr.csv", main)
 
   function main(data) {
-    // if (category == "UCD") {
-    //   data = data.filter(function(d) { return d.UCD > 0.03; })
-    // }
     setSize(data);
     drawChart(data, category);
   }
 
   function setSize(data) {
-    // margin = {top: 30, right: 20, bottom: 30, left: 50},
     margin = {top: 0, right: 20, bottom: 0, left: 20},
     width = 300,
     height = 300;
@@ -23,7 +21,7 @@ function buildPieChart(csvFile, title, category, selector) {
     chartWidth = width - (margin.left + margin.right)
     chartHeight = height - (margin.top + margin.bottom)
 
-    svg.attr("width", width).attr("height", height)
+    pieChart.attr("width", width).attr("height", height)
 
     chartLayer
       .attr("width", chartWidth)
@@ -69,7 +67,7 @@ function buildPieChart(csvFile, title, category, selector) {
           return "Major: <span style='color:" + colorScale20(i) + "'>" + data[i].major + "</span>"
         })
 
-      scatterPlot.call(tooltip);
+      pieChart.call(tooltip);
       var pieG = chartLayer.selectAll("g")
         .data([data])
         .enter()
@@ -79,13 +77,11 @@ function buildPieChart(csvFile, title, category, selector) {
         .data(arcs)
         var newSlice = slice.enter().append("g").classed("arc", true)
 
-      // var colorDomain = [0.1, 0.9, 0.11, 0.42]
       newSlice.append("path")
         .attr("fill", function(d, i) { return colorScale20(i); })
         .attr("d", arc)
         .attr("id", function(d, i) { return "arc-" + i })
         .attr("stroke", "gray")
-        // .attr("fill", function(d,i){ return d3.interpolateRainbow(Math.random()); })
         .on('mouseover', tooltip.show)
         .on('mouseout', tooltip.hide);
 
@@ -96,13 +92,6 @@ function buildPieChart(csvFile, title, category, selector) {
         .attr("text-anchor", "middle")
         .text(title);
 
-
-
-        // newBlock.append("text")
-        //     .attr("dx", 55)
-        //     .attr("dy", -5)
-        //     .append("textPath")
-        //     .attr("xlink:href", function(d, i) { return "#arc-" + i; })
-        //     .text(function(d) { console.log(d); return d.data.name })
+      // TODO: Highlight top 3 majors on button click
     }
 }

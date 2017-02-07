@@ -170,3 +170,11 @@ p {
   font-size: 22px;
   font-family: 'Roboto', sans-serif;
 }
+
+
+/***** line chart styling *****/
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2px;
+}
