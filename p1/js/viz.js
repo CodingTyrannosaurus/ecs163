@@ -3,6 +3,7 @@
 
 // FIXME: Why does color scale switch on refresh?
 var colorScale20 = d3.scaleOrdinal(d3.schemeCategory20);
+var colorScale10 = d3.scaleOrdinal(d3.schemeCategory10);
 //
 // for (var i = 0; i < 20; i++) {
 //   console.log(colorScale20(i));
