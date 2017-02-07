@@ -102,7 +102,7 @@ function buildLineChart(csvFile) {
         .attr("class", "school");
 
     // Calculate size for legend
-    legendSpace = width/schools.length;
+    legendSpace = height/schools.length;
 
     // Add legend for each school
     schools.forEach(function(d, i) {
@@ -134,8 +134,8 @@ function buildLineChart(csvFile) {
       .attr("d", function(d) { return line(d.values); });
 
       lineChart.append("text")
-        .attr("x", (legendSpace/2)+i*legendSpace)
-        .attr("y", -15) // height* -1 - (margin.bottom/2)+ 5)
+        .attr("x", 10 + (legendSpace/2))
+        .attr("y", 20 + 40 * i) // height* -1 - (margin.bottom/2)+ 5)
         .attr("class", "legend")
         .style("fill", function() {
             return d.color = color(d.name); })
@@ -155,7 +155,9 @@ function buildLineChart(csvFile) {
 
           d.active = active;
         })
-        .text(d.name);
+        .html(function() {
+          return d.name;
+        })
     })
 
   });
