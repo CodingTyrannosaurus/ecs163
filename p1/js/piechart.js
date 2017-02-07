@@ -3,8 +3,8 @@
 function buildPieChart(csvFile, title, category, selector) {
   var	margin, width, height, chartWidth, chartHeight;
 
-  var pieChart = d3.select(selector).append("svg")
-  var chartLayer = pieChart.append("g").classed("chartLayer", true)
+  var svg = d3.select(selector).append("svg")
+  var chartLayer = svg.append("g").classed("chartLayer", true)
 
   d3.csv("data/uc_pd_tr.csv", main)
 

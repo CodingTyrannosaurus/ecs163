@@ -31,7 +31,6 @@ function buildScatterPlot(csvFile) {
     .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-  loadScatterPlot();
 
   function loadScatterPlot() {
     // load data from csv

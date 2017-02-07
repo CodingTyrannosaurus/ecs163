@@ -70,6 +70,16 @@ function buildLineChart(csvFile) {
       d3.max(schools, function(c) { return d3.max(c.values, function(v) { return v.debt; }); })
     ]);
 
+    // line charts
+    var tooltip = d3.tip()
+      .attr("class", "d3-tip")
+      .offset([-10, 0])
+      .html(function(d, i) {
+        return "School: <span style='color:" + color(d.name) + "'>" + d.name + "</span>"
+      })
+      lineChart.call(tooltip);
+
+
     lineChart.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + height + ")")
@@ -78,6 +88,8 @@ function buildLineChart(csvFile) {
     lineChart.append("g")
         .attr("class", "y axis")
         .call(yAxis);
+
+
 
     // not sure what this is doing
     // lineChart.append("line")
@@ -94,6 +106,8 @@ function buildLineChart(csvFile) {
     //           "stroke-width" : "3px",
     //           "stroke-dasharray": ("3, 3")
     //       });
+
+    // create tooltip
 
 
     var school = lineChart.selectAll(".school")
@@ -155,10 +169,14 @@ function buildLineChart(csvFile) {
 
           d.active = active;
         })
-        .html(function() {
-          return d.name;
-        })
-    })
+        // .html(function() {
+        //   return te;
+        // })
 
+      // add tooltip
+      // lineChart.selectAll('line')
+      // .on('mouseover', tooltip.show)
+      // .on('mouseout', tooltip.hide);
+    })
   });
 }
