@@ -117,12 +117,12 @@
     <script src="js/viz.js"></script>
     <script>
       $(".filterUC").click(function() {
-        $(".dot").css('fill-opacity', '0.15');
-        $(".ucdot").css('fill', 'rgb(31, 119, 180)');
+        $(".dot").animate({'fill-opacity': '0.15'}, 500);
+        $(".ucdot").animate({'fill': 'rgb(31, 119, 180)'}, 500);
       });
 
       $(".filterUS").click(function() {
-        $(".dot").css('fill-opacity', '0.8');
+        $(".dot").animate({'fill-opacity': '0.8'}, 500);
       });
     </script>
   </body>
