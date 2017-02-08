@@ -1,24 +1,18 @@
 // choose color scheme
-// var colorScale = d3.scaleOrdinal(d3.schemeCategory10);
-
-// FIXME: Why does color scale switch on refresh?
 var colorScale20 = d3.scaleOrdinal(d3.schemeCategory20);
 var colorScale10 = d3.scaleOrdinal(d3.schemeCategory10);
-//
-// for (var i = 0; i < 20; i++) {
-//   console.log(colorScale20(i));
-// }
-// console.log(colorScale20(0));
+
+// object to hold school names
+var schoolData = {
+  fullName: ["UC Berkeley", "UC Davis", "UC Irvine", "UCLA", "UC Riverside", "UC San Diego", "UCSB", "UC Santa Cruz"],
+  shorthand: ["UCB", "UCD", "UCI", "UCLA", "UCR", "UCSD", "UCSB", "UCSC"]
+}
 
 buildScatterPlot("data/filteredschoolsucflag.csv");
 
-buildPieChart("data/uc_pd_tr.csv", "UC Berkeley", "UCB", "#UCBpie");
-buildPieChart("data/uc_pd_tr.csv", "UC Davis", "UCD", "#UCDpie");
-buildPieChart("data/uc_pd_tr.csv", "UC Irvine", "UCI", "#UCIpie");
-buildPieChart("data/uc_pd_tr.csv", "UCLA", "UCLA", "#UCLApie");
-buildPieChart("data/uc_pd_tr.csv", "UC Riverside", "UCR", "#UCRpie");
-buildPieChart("data/uc_pd_tr.csv", "UC San Diego", "UCSD", "#UCSDpie");
-buildPieChart("data/uc_pd_tr.csv", "UCSB", "UCSB", "#UCSBpie");
-buildPieChart("data/uc_pd_tr.csv", "UC Santa Cruz", "UCSC", "#UCSCpie");
+for (var i = 0; i < schoolData.fullName.length; i++) {
+  var id = "#" + schoolData.shorthand[i] + "pie";
+  buildPieChart("data/uc_pd_tr.csv", schoolData.fullName[i], schoolData.shorthand[i], id);
+}
 
 buildLineChart("data/uc_debt_over_time.csv");

@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+
     <!--  Responsive Viewport -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Project 1 - Matthew Gabor</title>
@@ -11,12 +12,6 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" type="text/css" href="lib/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="styles/style.css">
-
-    <!-- Libraries -->
-    <script src="lib/d3.v4.min.js"></script>
-    <script src="lib/jquery-3.1.1.min.js"></script>
-    <!-- <script src="lib/bootstrap.min.js"></script> -->
-
   </head>
 
   <body>
@@ -97,46 +92,22 @@
         A short explanation of your analysis process for this step in the data story, such as your rationale for asking this question, why you chose this chart, if it gave you any insight into the dataset, and why you were prompted to ask your ensuing question (about 1-2 paragraphs).
     </div>
 
-
     <!-- Footer -->
     <hr>
+
     Source: <a href="https://collegescorecard.ed.gov/data/">https://collegescorecard.ed.gov/data/</a>
     <br>
     <br>
 
     <!-- External Libraries -->
+    <script src="lib/d3.v4.min.js"></script>
+    <script src="lib/jquery-3.1.1.min.js"></script>
     <script src="lib/d3-tip.js"></script>
-    <script src="lib/d3-scale-chromatic.min.js"></script>
-    <script src="lib/d3-legend.min.js"></script>
 
     <!-- My Code -->
     <script src="js/scatterplot.js"></script>
     <script src="js/piechart.js"></script>
     <script src="js/linechart.js"></script>
     <script src="js/viz.js"></script>
-    <script>
-      $(".filterUC").click(function() {
-        $(".dot").animate({'fill-opacity': '0.15'}, 800);
-      });
-
-      $(".filterUS").click(function() {
-        $(".dot").animate({'fill-opacity': '0.8'}, 800);
-      });
-
-      $("#filterUCB").click(function() {
-        console.log("clicked1")
-        // $(".line").animate({'opacity': '0'}, 1);
-        // $("#lineUCB").toggle();
-        var s = $('#lineUCB').css('stroke-width')
-        console.log(s);
-        d3.select('#lineUCB')
-          .transition().style('stroke-width',function() {
-            if(s == '0px')
-              return '10px';
-            return '0px';
-          }
-          );
-      });
-    </script>
   </body>
 </html>

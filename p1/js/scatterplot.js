@@ -1,6 +1,5 @@
 // modification of http://bl.ocks.org/weiglemc/6185069
 
-// TODO: Make more dynamic by adding additional parameters
 function buildScatterPlot(csvFile) {
   var margin = {top: 40, right: 20, bottom: 60, left: 110},
       width = 960 - margin.left - margin.right,
@@ -32,7 +31,6 @@ function buildScatterPlot(csvFile) {
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
   loadScatterPlot();
-
 
   function loadScatterPlot() {
     // load data from csv
@@ -101,4 +99,11 @@ function buildScatterPlot(csvFile) {
         .on('mouseout', tooltip.hide);
     });
   }
+  $(".filterUC").click(function() {
+    $(".dot").animate({'fill-opacity': '0.15'}, 800);
+  });
+
+  $(".filterUS").click(function() {
+    $(".dot").animate({'fill-opacity': '0.8'}, 800);
+  });
 }
