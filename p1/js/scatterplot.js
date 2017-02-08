@@ -2,7 +2,7 @@
 
 // TODO: Make more dynamic by adding additional parameters
 function buildScatterPlot(csvFile) {
-  var margin = {top: 40, right: 20, bottom: 80, left: 110},
+  var margin = {top: 40, right: 20, bottom: 60, left: 110},
       width = 960 - margin.left - margin.right,
       height = 680 - margin.top - margin.bottom,
       radius = Math.min(width, height) / 2;
@@ -62,7 +62,7 @@ function buildScatterPlot(csvFile) {
       // text label for x axis
       scatterPlot.append("text")
         .attr("transform", "translate("+ (width/2) +","+ height +")")
-        .attr("y", margin.bottom - 20)
+        .attr("y", margin.bottom - 10)
         .attr("class", "label")
         .style("text-anchor", "middle")
         .text("Acceptance Rate");

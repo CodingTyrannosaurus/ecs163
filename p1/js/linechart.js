@@ -18,7 +18,7 @@ function toggleLine(schoolID) {
 
 function buildLineChart(csvFile) {
 
-  var margin = {top: 5, right: 50, bottom: 20, left: 50},
+  var margin = {top: 5, right: 50, bottom: 50, left: 80},
       width = 1000 - margin.left - margin.right,
       height = 600 - margin.top - margin.bottom;
 
@@ -82,7 +82,6 @@ function buildLineChart(csvFile) {
 
     y.domain([
       d3.min(schools, function(c) { return d3.min(c.values, function(v) { return v.debt; }); }),
-      // makes space for button
       d3.max(schools, function(c) { return d3.max(c.values, function(v) { return v.debt + 1000; }); })
     ]);
 
@@ -115,6 +114,24 @@ function buildLineChart(csvFile) {
         .attr("class", "legend")
         .style("font", "14px 'Helvetica Neue'")
         .html("<button class='filterButton btn' id='filterUCB' role='button' aria-pressed='true' onclick='toggleLine(\"lineUCB\")'>UCB</button><button class='filterButton btn' id='filterUCD' role='button' aria-pressed='false' onclick='toggleLine(\"lineUCD\")'>UCD</button><button class='filterButton btn' id='filterUCI' role='button' aria-pressed='false' onclick='toggleLine(\"lineUCI\")'>UCI</button><button class='filterButton btn' id='filterUCLA' role='button' aria-pressed='false' onclick='toggleLine(\"lineUCLA\")'>UCLA</button><button class='filterButton btn' id='filterUCR' role='button' aria-pressed='false'  onclick='toggleLine(\"lineUCR\")'>UCR</button><button class='filterButton btn' id='filterUCSD' role='button' aria-pressed='false' onclick='toggleLine(\"lineUCSD\")'>UCSD</button><button class='filterButton btn' id='filterUCSB' role='button' aria-pressed='false' onclick='toggleLine(\"lineUCSB\")'>UCSB</button><button class='filterButton btn' id='filterUCSC' role='button' aria-pressed='false' onclick='toggleLine(\"lineUCSC\")'>UCSC</button>");
+
+
+      // text label for y axis
+      lineChart.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("x", 0 - (height/2))
+        .attr("y", 0 - margin.left)
+        .attr("dy", "1em")
+        .attr("class", "label")
+        .style("text-anchor", "middle")
+        .text("Median Debt After Graduating ($)")
+      // text label for x axis
+      lineChart.append("text")
+        .attr("transform", "translate("+ (width/2) +","+ height +")")
+        .attr("y", margin.bottom)
+        .attr("class", "label")
+        .style("text-anchor", "middle")
+        .text("Year");
     }); // end csv load
   }
   //

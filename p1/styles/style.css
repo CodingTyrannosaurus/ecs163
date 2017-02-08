@@ -49,6 +49,19 @@ p {
   font-size: 18px;
 }
 
+/* bootstrap */
+
+.btn.raised {
+	box-shadow: 0 3px 0 0 #007299;
+}
+
+.btn.raised:active, .btn.raised.active {
+	background: #33a6cc;
+	box-shadow: none;
+	margin-bottom: -3px;
+	margin-top: 3px;
+}
+
 /***** scatter plot styling *****/
 #scatter {
   width: 100%;
@@ -58,6 +71,7 @@ p {
 .axis line {
   fill: none;
   stroke: #000;
+  stroke-width: 1.5px;
   shape-rendering: crispEdges;
 }
 
@@ -67,7 +81,7 @@ p {
 }
 
 .label {
-  font-size: 15px;
+  font-size: 18px;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -106,6 +120,7 @@ p {
 
 .filterButton {
   margin-left: 10px;
+  	/*box-shadow: 0 3px 0 0 #007299;*/
 }
 
 #filterUCB {
