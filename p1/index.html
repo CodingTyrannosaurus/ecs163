@@ -22,14 +22,14 @@
   		<h3>Matthew Gabor - 01/29/17</h3>
       <hr>
       <h4><b>Introduction</b></h4>
-      Include a short introduction about your data story before the first visualization and a summary or conclusion after the last chart (be sure to note where your data set comes from here). At the top of the page, include a title. Remember that you are telling a narrative about your discovery process; you want to inform and explain your thought process, and hopefully tell something interesting about the dataset.
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;With over 4000 degree granting universities in the United States, it can be difficult for students to determine which college is the best fit. Fortunately, there is a vast amount of data available that can help make the choice a little less daunting. In the following data story, I examine what I believe to be the most important factors in the college decision making process. As a student of the University of California, Davis, I decided to focus on the UC system for this analysis, although these techniques could be applied to any set of institutions.
       <hr>
     </div>
 
     <!-- Chart 1 -->
 
     <div class="question">
-      <h4><b>Question 1: </b> <br><br>How do the UC Schools compare with other universities? Is there a correlation between median earnings and acceptance rates?</h4>
+      <h4><b>Question 1: </b> <br><br>How do the UC Schools compare with other universities in the US? Is there a correlation between median earnings after graduation and college acceptance rates?</h4>
     </div>
 
     <div class="buttonBox" align="center">
@@ -40,10 +40,12 @@
     <div id="scatter" align="center"></div>
 
     <div class="caption">
-      A caption describing what the chart shows.
+      Scatter plot of college acceptance rates vs. median earnings of students working 10 years after graduating throughout US universities.
     </div>
     <div class="description">
-        A short explanation of your analysis process for this step in the data story, such as your rationale for asking this question, why you chose this chart, if it gave you any insight into the dataset, and why you were prompted to ask your ensuing question (about 1-2 paragraphs).
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Upon initial inspection, the college scorecard dataset seemed overwhelming and confusing. It contains thousands of attributes with minimal explanations, so I wanted to keep my first graph simple, using data I knew was important in college selection processes. I also knew that studying the University of California data would be intriguing, since I am attending one of the UC schools and I am familiar with most of the other institutions. I chose to look at the correlation between acceptance rates and median earnings because these were important factors that influenced my college application process, and many students attend college for expansion of employment opportunities.
+      <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;It turns out that there is a very strong correlation between these two metrics, evidenced by the trend in the plot. Once I realized I could compare the UC schools with other US colleges based on these metrics, I had to decide which chart would display this data most effectively. I chose a scatter plot because it allowed me to clearly express the given relationship. After constructing the chart, I realized that the UC schools tend to have low acceptance rates and high post-college earnings. However, there are three clusters that the UCs fall into on this scale, so I wanted to dive deeper into the differences between the campuses.
     </div>
 
     <hr>
@@ -70,10 +72,12 @@
     </div>
 
     <div class="caption">
-      A caption describing what the chart shows.
+      Pie charts showing percentage of degrees awarded by major at each UC campus
     </div>
     <div class="description">
-        A short explanation of your analysis process for this step in the data story, such as your rationale for asking this question, why you chose this chart, if it gave you any insight into the dataset, and why you were prompted to ask your ensuing question (about 1-2 paragraphs).
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; In addition to acceptance rate and earnings, major distribution is an important factor in the college selection process. College majors with a large percentage of degrees awarded generally correlate to a strong program in that particular field. A student deciding which campus to attend could use this visualization to determine where their interests are most represented.
+      <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I chose pie charts to represent this data because they are an effective way to show proportions and compare categories. For example, if a student was considering a career in Business/Marketing they may want to look at UC Riverside. Similarly, if a student wanted to compare the size of UC Davis and UC Santa Barbara's Biological Sciences departments, they could quickly examine the amount of purple in the respected college's pie chart. After constructing this visualization, I decided to look into another differentiator between the UC campuses, student debt.
     </div>
 
     <hr>
@@ -88,20 +92,28 @@
     </div>
 
     <div class="caption">
-      A caption describing what the chart shows.
+      Line chart comparing Median Debt after Graduation amongst the UC Campuses over the past 20 years
     </div>
     <div class="description">
-        A short explanation of your analysis process for this step in the data story, such as your rationale for asking this question, why you chose this chart, if it gave you any insight into the dataset, and why you were prompted to ask your ensuing question (about 1-2 paragraphs).
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Since the college scorecard dataset also contains historical data from the past two decades, I started to look for trends to draw insight. One of the data points that was consistently recorded for the UC campuses was median debt after graduation. One of the most interesting insights I gained from this chart was the drastic changes in relative debt for each campus.
+      <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UC Berkeley, for example, had the highest median debt at $11,000 when the data was first collected in 1996. In 2015, the median debt has only risen slightly to $13,597, with a sharp increase between 2008-2010 (most likely due to the recession). UC Santa Cruz, on the other hand had the lowest median debt amongst the campuses in 1996 at $9,055, but was at an astonishing $16,500 median in 2015.
+      The line chart is an effective tool for showing how these values change over time, with each line representing one of the UC campuses.
     </div>
 
     <!-- Footer -->
     <hr>
     <h4><b>Conclusion</b></h4>
 
-    summary or conclusion after the last chart (be sure to note where your data set comes from here)
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Through this exploration, I learned some interesting information about the UC campuses. Firstly, on the whole, the UC schools foster high quality education and produce some of the highest earning graduates in the US. While they all share the same prefix, the 9 campuses differ drastically in their major offerings, class size, acceptance rates, student debt, and more. Although limited, these visualizations highlight some of these differences and show how unique each campus really is.
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Examining and charting the college scorecard data was both frustrating and inspiring. Due to my limited experience in data manipulation and web development, I struggled to find meaning in the data, and more importantly figure out how to show that meaning in an effective way. However, I found it helpful to narrow in on a subset of the data and perform my analysis in a concentrated space. As a side note, readers may notice that some colleges are missing from the dataset, including one of the UC campuses. This is due to privacy restrictions on university data at certain campuses, and more information can be found on the college scorecard's website linked below.
 
     <br>
+    <br>
     Source: <a href="https://collegescorecard.ed.gov/data/">https://collegescorecard.ed.gov/data/</a>
+    <br>
+    <br>
     <br>
 
     <!-- External Libraries -->
