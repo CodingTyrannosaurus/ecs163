@@ -44,6 +44,11 @@ p {
   margin-top: 20px;
 }
 
+.caption {
+  font-style: italic;
+  font-size: 18px;
+}
+
 /***** scatter plot styling *****/
 #scatter {
   width: 100%;
@@ -103,6 +108,50 @@ p {
   margin-left: 10px;
 }
 
+#filterUCB {
+  background: rgb(31, 119, 180);
+  color: white;
+}
+
+#filterUCD {
+  background: rgb(255, 127, 14);
+  color: white;
+}
+
+#filterUCI {
+  background: rgb(44, 160, 44);
+  color: white;
+}
+
+#filterUCLA {
+  background: rgb(214, 39, 40);
+  color: white;
+}
+
+#filterUCR {
+  background: rgb(148, 103, 189);
+  color: white;
+}
+
+#filterUCSD {
+  background: rgb(140, 86, 75);
+  color: white;
+}
+
+#filterUCSB {
+  background: rgb(227, 119, 194);
+  color: white;
+}
+
+#filterUCSC {
+  background: rgb(127, 127, 127);
+  color: white;
+}
+
+/*#lineUCB {
+  opacity: 0;
+}*/
+
 /*.legend rect {
   fill:white;
   stroke:black;
@@ -159,8 +208,6 @@ p {
   line-height: 1;
   font-weight: bold;
   padding: 12px;
-  /*background: #C7C9C9;*/
-  /*background: black;*/
   background: rgba(0, 0, 0, 0.8);
   color: white;
   border-radius: 10px;
@@ -176,18 +223,11 @@ p {
 /***** line chart styling *****/
 .line {
   fill: none;
-  stroke: steelblue;
-  stroke-width: 5px;
+  stroke-width: 1.5px;
 }
 
 .legend {
     font-size: 20px;
     font-weight: bold;
     text-anchor: middle;
-}
-
-.circle {
-  fill: white;
-  stroke: steelblue;
-  stroke-width: 1.5px;
 }

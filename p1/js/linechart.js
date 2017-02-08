@@ -1,10 +1,26 @@
 // modification of http://bl.ocks.org/atmccann/8966400
 
+function toggleLine(schoolID) {
+  var school = "#" + schoolID,
+  stroke = $(school).css('stroke-width');
+
+  console.log(stroke)
+
+  d3.select(school)
+    .transition().style("stroke-width", function() {
+      if (stroke == '1.5px') {
+        return '8px';
+      } else {
+        return '1.5px';
+      }
+    });
+}
+
 function buildLineChart(csvFile) {
 
-  var margin = {top: 40, right: 50, bottom: 20, left: 50},
-      width = 1200 - margin.left - margin.right,
-      height = 700 - margin.top - margin.bottom;
+  var margin = {top: 5, right: 50, bottom: 20, left: 50},
+      width = 1000 - margin.left - margin.right,
+      height = 600 - margin.top - margin.bottom;
 
   var parseDate = d3.timeParse("%Y");
 
@@ -62,14 +78,13 @@ function buildLineChart(csvFile) {
       };
     });
 
-
     x.domain(d3.extent(data, function(d) { return d.date; }));
 
     y.domain([
       d3.min(schools, function(c) { return d3.min(c.values, function(v) { return v.debt; }); }),
-      d3.max(schools, function(c) { return d3.max(c.values, function(v) { return v.debt; }); })
+      // makes space for button
+      d3.max(schools, function(c) { return d3.max(c.values, function(v) { return v.debt + 1000; }); })
     ]);
-
 
     lineChart.append("g")
         .attr("class", "x axis")
@@ -80,93 +95,65 @@ function buildLineChart(csvFile) {
         .attr("class", "y axis")
         .call(yAxis);
 
-
-
-    // not sure what this is doing
-    // lineChart.append("line")
-    //       .attr(
-    //       {
-    //           "class":"horizontalGrid",
-    //           "x1" : 0,
-    //           "x2" : width,
-    //           "y1" : y(0),
-    //           "y2" : y(0),
-    //           "fill" : "none",
-    //           "shape-rendering" : "crispEdges",
-    //           "stroke" : "black",
-    //           "stroke-width" : "3px",
-    //           "stroke-dasharray": ("3, 3")
-    //       });
-
     // create tooltip
-
-
-    var school = lineChart.selectAll(".school")
-        .data(schools)
-      .enter().append("g")
-        .attr("class", "school");
-
-    // Calculate size for legend
     legendSpace = height/schools.length;
-
-    // Add legend for each school
-    schools.forEach(function(d, i) {
-
-    lineChart.selectAll(".school").append("path")
+    var school = lineChart.selectAll(".line")
+      .data(schools)
+      .enter()
+      .append("path")
       .attr("class", "line")
+      .attr("id", function(d) {return "line" + d.name})
       .style("stroke", function(d, i) {
-        if (d.name == "UCB") {
-          return color(d.name);
-        } else if (d.name == "UCD") {
-          return color(d.name);
-        } else if (d.name == "UCI") {
-          return color(d.name);
-        } else if (d.name == "UCLA") {
-          return color(d.name);
-        } else if (d.name == "UCR") {
-          return color(d.name);
-        } else if (d.name == "UCSD") {
-          return color(d.name);
-        } else if (d.name == "UCSB") {
-          return color(d.name);
-        } else if (d.name == "UCSC") {
-          return color(d.name);
-        } else {
-          console.log("ERROR: data not found");
-        }
+        return color(d.name);
       })
-      .attr("id", d.name)
       .attr("d", function(d) { return line(d.values); });
 
-      lineChart.append("text")
-        .attr("x", 10 + (legendSpace/2))
-        .attr("y", 20 + 40 * i) // height* -1 - (margin.bottom/2)+ 5)
+      lineChart.append("foreignObject")
+        .attr("width", 900)
+        .attr("height", 500)
+        .append("xhtml:div")
         .attr("class", "legend")
-        .style("fill", function() {
-            return d.color = color(d.name); })
-        .on("click", function() {
-          // d3.selectAll(".line").style("opacity", 0);
-          // Determine if current line is visible
-          var active = d.active ? false : true,
-          newOpacity = active ? 0 : 1;
-          // Hide or show the elements based on the ID
+        .style("font", "14px 'Helvetica Neue'")
+        .html("<button class='filterButton btn' id='filterUCB' role='button' aria-pressed='true' onclick='toggleLine(\"lineUCB\")'>UCB</button><button class='filterButton btn' id='filterUCD' role='button' aria-pressed='false' onclick='toggleLine(\"lineUCD\")'>UCD</button><button class='filterButton btn' id='filterUCI' role='button' aria-pressed='false' onclick='toggleLine(\"lineUCI\")'>UCI</button><button class='filterButton btn' id='filterUCLA' role='button' aria-pressed='false' onclick='toggleLine(\"lineUCLA\")'>UCLA</button><button class='filterButton btn' id='filterUCR' role='button' aria-pressed='false'  onclick='toggleLine(\"lineUCR\")'>UCR</button><button class='filterButton btn' id='filterUCSD' role='button' aria-pressed='false' onclick='toggleLine(\"lineUCSD\")'>UCSD</button><button class='filterButton btn' id='filterUCSB' role='button' aria-pressed='false' onclick='toggleLine(\"lineUCSB\")'>UCSB</button><button class='filterButton btn' id='filterUCSC' role='button' aria-pressed='false' onclick='toggleLine(\"lineUCSC\")'>UCSC</button>");
+    }); // end csv load
+  }
+  //
+  // lineChart.append("text")
+  //   .attr("x", 10 + (legendSpace/2))
+  //   .attr("y", 20 + 40 * i) // height* -1 - (margin.bottom/2)+ 5)
+  //   .attr("class", "legend")
+  //   .style("fill", function() {
+  //       return d.color = color(d.name);
+  //     })
+  //     .on("click", function() {
+  //       // Determine if current line is visible
+  //       var active = d.active ? false : true,
+  //       newOpacity = active ? 0 : 1;
+  //       // Hide or show the elements based on the ID
+  //
+  //       d3.select("#line" + d.name)
+  //         // .style("stroke-width", "20px");
+  //         d.active = active;
+  //
+  //       console.log("#line" + d.name)
+  //     }) // end onclick
+  // .text(d.name)
+  // }) // end foreach loop
 
-          d3.select("#" + d.name)
-            // .transition().duration(100)
-            // .style("opacity", newOpacity);
-            .transition().duration(500)
-            .style("stroke-width", "10px");
-          // Update whether or not the elements are active
-
-          d.active = active;
-        }) // end onclick
-        .text(d.name)
-      }) // end first foreach
+  // d3.select('#testLine').style("stroke-width", "10px");
+  // d3.select('#testLine').attr("opacity", 0);
+  // .style("color", "black")
+  // .transition().duration(100)
+  // .transition().duration(1000)
+  // .style("stroke", "red")
+  // Update whether or not the elements are active
 
         // .html(function() {
         //   return te;
         // })
 
+      // TOOLTIP CODE
+      /*
       // add tooltip to circles on line chart
       var tooltip = d3.tip()
         .attr("class", "d3-tip")
@@ -198,6 +185,18 @@ function buildLineChart(csvFile) {
          .on('mouseout', tooltip.hide);
 
      })// end 2nd foreach
-    // })
-  });
-}
+
+     */
+
+
+// .transition()
+// .duration(2500)
+// .delay(function(d) { return d * 40; })
+// .on("start", function repeat() {
+//     d3.active(this)
+//         .attr("cx", width)
+//       .transition()
+//         .attr("cx", 0)
+//       .transition()
+//         .on("start", repeat);
+// });

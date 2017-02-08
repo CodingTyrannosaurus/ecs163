@@ -26,6 +26,7 @@
       <h2 style>University of California Scorecard</h1>
   		<h3>Matthew Gabor - 01/29/17</h3>
       <hr>
+      Include a short introduction about your data story before the first visualization and a summary or conclusion after the last chart (be sure to note where your data set comes from here). At the top of the page, include a title. Remember that you are telling a narrative about your discovery process; you want to inform and explain your thought process, and hopefully tell something interesting about the dataset.
     </div>
 
     <!-- Chart 1 -->
@@ -35,18 +36,17 @@
     </div>
 
     <div class="buttonBox" align="center">
-      <button class="filterUS filterButton btn btn-success" data-toggle="button" aria-pressed="true">All US Schools</button>
+      <button class="filterUS filterButton btn btn-success" role="button" aria-pressed="true">All US Schools</button>
       <button class="filterUC filterButton btn btn-primary" role="button" aria-pressed="false" checked>UC Schools Only</button>
     </div>
 
-    <div class="row">
-      <div id="scatter" align="center"></div>
-    </div>
+    <div id="scatter" align="center"></div>
 
+    <div class="caption">
+      A caption describing what the chart shows.
+    </div>
     <div class="description">
-  		<p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mattis sem a ante fermentum gravida. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla semper orci odio, quis finibus lacus mollis ut. Proin placerat purus hendrerit elementum hendrerit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel laoreet nisl. Fusce vitae massa non velit mollis sodales in eu libero.
-  		</p>
+        A short explanation of your analysis process for this step in the data story, such as your rationale for asking this question, why you chose this chart, if it gave you any insight into the dataset, and why you were prompted to ask your ensuing question (about 1-2 paragraphs).
     </div>
 
     <hr>
@@ -72,10 +72,11 @@
       </div>
     </div>
 
+    <div class="caption">
+      A caption describing what the chart shows.
+    </div>
     <div class="description">
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mattis sem a ante fermentum gravida. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla semper orci odio, quis finibus lacus mollis ut. Proin placerat purus hendrerit elementum hendrerit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel laoreet nisl. Fusce vitae massa non velit mollis sodales in eu libero.
-      </p>
+        A short explanation of your analysis process for this step in the data story, such as your rationale for asking this question, why you chose this chart, if it gave you any insight into the dataset, and why you were prompted to ask your ensuing question (about 1-2 paragraphs).
     </div>
 
     <hr>
@@ -85,25 +86,23 @@
     <div class="question">
       <h4><b>Question 3: </b>How has student debt changed over time at each UC campus?<br><br></h4>
     </div>
-
-
-    <div class="row">
-
-      <div class="col" id="lineChart" align="center"></div>
+    <div align="center">
+      <div id="lineChart"></div>
     </div>
 
+    <div class="caption">
+      A caption describing what the chart shows.
+    </div>
     <div class="description">
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mattis sem a ante fermentum gravida. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla semper orci odio, quis finibus lacus mollis ut. Proin placerat purus hendrerit elementum hendrerit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel laoreet nisl. Fusce vitae massa non velit mollis sodales in eu libero.
-      </p>
+        A short explanation of your analysis process for this step in the data story, such as your rationale for asking this question, why you chose this chart, if it gave you any insight into the dataset, and why you were prompted to ask your ensuing question (about 1-2 paragraphs).
     </div>
 
 
     <!-- Footer -->
-    <p>
-      Source:
-      <a href="https://collegescorecard.ed.gov/data/">https://collegescorecard.ed.gov/data/</a>
-    </p>
+    <hr>
+    Source: <a href="https://collegescorecard.ed.gov/data/">https://collegescorecard.ed.gov/data/</a>
+    <br>
+    <br>
 
     <!-- External Libraries -->
     <script src="lib/d3-tip.js"></script>
@@ -122,6 +121,21 @@
 
       $(".filterUS").click(function() {
         $(".dot").animate({'fill-opacity': '0.8'}, 800);
+      });
+
+      $("#filterUCB").click(function() {
+        console.log("clicked1")
+        // $(".line").animate({'opacity': '0'}, 1);
+        // $("#lineUCB").toggle();
+        var s = $('#lineUCB').css('stroke-width')
+        console.log(s);
+        d3.select('#lineUCB')
+          .transition().style('stroke-width',function() {
+            if(s == '0px')
+              return '10px';
+            return '0px';
+          }
+          );
       });
     </script>
   </body>
