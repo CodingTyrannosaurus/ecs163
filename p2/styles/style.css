@@ -1,0 +1,197 @@
+/* general page styling */
+body {
+  font: 15px;
+  font-family: 'Roboto', sans-serif;
+  margin-left: 7.5%;
+  width: 85%;
+}
+
+h2 {
+  text-align: center;
+}
+
+h3 {
+  font-weight: 400;
+  text-align: center;
+  font-size: 22px;
+}
+
+h4 {
+  text-align: left;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+hr {
+  border-width: 2px 0;
+  border-color: #c4c3c2;
+}
+
+p {
+  text-align: justify;
+}
+
+p.indent {
+  padding-left: 1.8em
+}
+
+.question {
+  margin-bottom: 20px;
+}
+
+.description {
+  margin-top: 20px;
+}
+
+.intro {
+  margin-top: 20px;
+}
+
+.caption {
+  font-style: italic;
+  font-size: 18px;
+}
+
+/***** scatter plot styling *****/
+.dot {
+  fill-opacity: 0.8;
+  stroke: #5C5C5C;
+  stroke-width: 0.8px;
+}
+
+.ucdot {
+  fill-opacity: 0.8;
+  stroke: black;
+  stroke-width: 0.8px;
+  fill: rgb(31, 119, 180);
+}
+
+.ucdot:hover {
+  fill-opacity: 1.0;
+  stroke: black;
+  stroke-width: 2.5px;
+}
+
+.dot:hover {
+  fill-opacity: 1.0;
+  stroke: black;
+  stroke-width: 2.5px;
+}
+
+/***** pie chart styling *****/
+
+.allpies {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.pie {
+  min-width: 250px;
+  min-height: 250px;
+}
+
+.arc path {
+  stroke: #fff
+}
+
+.arc path:hover {
+  fill-opacity: 1.0;
+  stroke-width: 2.5px;
+  stroke: black;
+}
+
+.arc {
+  fill-opacity: 0.8;
+}
+
+.arc:hover {
+  stroke-width: 2px;
+}
+
+/***** line chart styling *****/
+.line {
+  fill: none;
+  stroke-width: 1.5px;
+}
+
+.legend {
+    font-size: 20px;
+    font-weight: bold;
+    text-anchor: middle;
+}
+
+/***** axes styling *****/
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  stroke-width: 1.5px;
+  shape-rendering: crispEdges;
+}
+
+.axis text {
+  font-size: 12px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.label {
+  font-size: 18px;
+  font-family: 'Roboto', sans-serif;
+}
+
+/***** tooltip styling *****/
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+/***** button styling *****/
+#filterUCB {
+  background: rgb(31, 119, 180);
+  color: white;
+}
+
+#filterUCD {
+  background: rgb(255, 127, 14);
+  color: white;
+}
+
+#filterUCI {
+  background: rgb(44, 160, 44);
+  color: white;
+}
+
+#filterUCLA {
+  background: rgb(214, 39, 40);
+  color: white;
+}
+
+#filterUCR {
+  background: rgb(148, 103, 189);
+  color: white;
+}
+
+#filterUCSD {
+  background: rgb(140, 86, 75);
+  color: white;
+}
+
+#filterUCSB {
+  background: rgb(227, 119, 194);
+  color: white;
+}
+
+#filterUCSC {
+  background: rgb(127, 127, 127);
+  color: white;
+}
+
+.filterButton {
+  margin-left: 10px;
+}
