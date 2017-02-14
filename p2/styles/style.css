@@ -151,47 +151,15 @@ p.indent {
   font-weight: 600;
 }
 
-/***** button styling *****/
-#filterUCB {
-  background: rgb(31, 119, 180);
-  color: white;
+/***** map styling *****/
+#mapView {
+  width: 800px;
+  height: 600px;
+  margin: 0 auto;
 }
 
-#filterUCD {
-  background: rgb(255, 127, 14);
-  color: white;
-}
-
-#filterUCI {
-  background: rgb(44, 160, 44);
-  color: white;
-}
-
-#filterUCLA {
-  background: rgb(214, 39, 40);
-  color: white;
-}
-
-#filterUCR {
-  background: rgb(148, 103, 189);
-  color: white;
-}
-
-#filterUCSD {
-  background: rgb(140, 86, 75);
-  color: white;
-}
-
-#filterUCSB {
-  background: rgb(227, 119, 194);
-  color: white;
-}
-
-#filterUCSC {
-  background: rgb(127, 127, 127);
-  color: white;
-}
-
-.filterButton {
-  margin-left: 10px;
+.marker {
+  stroke: black;
+  fill: red;
+  radius: 10;
 }

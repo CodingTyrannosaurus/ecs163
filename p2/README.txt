@@ -1,0 +1,1 @@
+overview and detail views of the data, allowing for analysis at different levels of granularity. 
