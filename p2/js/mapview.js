@@ -1,10 +1,11 @@
 function buildMap(csvFile, jsonFile) {
-  var map = L.map('mapView').setView([37.783,	-122.41], 14);
+  var map = L.map('mapView').setView([37.788975, -122.403452], 15);
   var mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
 
   L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; ' + mapLink + ' Contributors',
     maxZoom: 18,
+    // layers: new L.StamenTileLayer('toner-hybrid')
   }).addTo(map);
 
   map._initPathRoot();
@@ -12,22 +13,21 @@ function buildMap(csvFile, jsonFile) {
   // append the svg to the overlay pane, not the div
   // var svg = d3.select(map.getPanes().overlayPane).append("svg");
 
-  var svg = d3.select("#mapView").select("svg");
+  var svg = d3.select("#mapView").select("svg")
   var g = svg.append("g")
     .attr("class", "leaflet-zoom-hide")
+    // d3.select("#overlay")
+    //   .transition()
+    //   .style("display", "inline")
 
   d3.json(jsonFile, function(error, mapData) {
     if (error) throw error;
 
-    var count = 0;
-
     // coordinates are backwards
     mapData.features.forEach(function(d) {
       d.LatLng = new L.LatLng(d.geometry.coordinates[1], d.geometry.coordinates[0])
-      count += 1;
     })
 
-    console.log(count)
 
     // create circles for each feature
     var feature = g.selectAll(".marker")
@@ -35,12 +35,20 @@ function buildMap(csvFile, jsonFile) {
       .enter().append("circle")
       .style("stroke", "black")
       .style("fill", "#0070CB")
-      .attr("r", 8)
+      .attr("r", 12)
       .attr("class", "marker")
       .on("click", function (d) {
-        console.log(d.properties.start_station)
+        showOverlay(d);
       })
-      .on("mouseover", function(d) {d3.select(this).style("cursor", "pointer")})
+      .on("mouseover", function(d) {
+        d3.select(this)
+          .style("cursor", "pointer")
+          .style("fill", "red");
+      })
+      .on("mouseout", function(d) {
+        d3.select(this)
+          .style("fill", "#0070CB");
+      })
 
 
     map.on("viewreset", updateMap);
@@ -55,6 +63,24 @@ function buildMap(csvFile, jsonFile) {
    			}
  		)
  	}
+
+  function showOverlay(selectedPoint) {
+    // slide pane onto screen
+    d3.select("#overlay")
+      .transition()
+      .style("display", "inline")
+      .style("right", "0px")
+
+    d3.selectAll(".cityLabel")
+      .text(function(d) {
+        return selectedPoint.properties.start_station;
+      })
+
+
+
+
+    console.log(selectedPoint)
+  }
 
     // update position of data on map when resized
     // function updateMap() {

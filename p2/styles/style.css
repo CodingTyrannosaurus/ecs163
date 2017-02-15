@@ -2,8 +2,9 @@
 body {
   font: 15px;
   font-family: 'Roboto', sans-serif;
-  margin-left: 7.5%;
-  width: 85%;
+  /*margin-left: 7.5%;*/
+  width: 100%;
+  height: 100%;
 }
 
 h2 {
@@ -153,10 +154,29 @@ p.indent {
 
 /***** map styling *****/
 #mapView {
-  width: 800px;
-  height: 600px;
+  width: 100%;
+  height: 100vh;
   margin: 0 auto;
+  position: relative;
 }
 
 .marker {
+}
+
+#overlay {
+  position: absolute;
+  width: 400px;
+  top: 0;
+  right: -400px;
+  height: 100vh;
+  display: none;
+  background-color: rgba(0,0,0,0.6);
+}
+
+.cityLabel {
+  font-size: 24px;
+  font-family: 'Roboto', sans-serif;
+  color: white;
+  text-align: center;
+  margin: 10% 0 5% 5%;
 }
