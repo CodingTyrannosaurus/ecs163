@@ -1,5 +1,5 @@
 function buildMap(csvFile, jsonFile) {
-  var map = L.map('mapView').setView([37.788975, -122.403452], 15);
+  var map = L.map('mapView').setView([37.78975, -122.393452], 15);
   var mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
 
   L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -13,7 +13,9 @@ function buildMap(csvFile, jsonFile) {
   // append the svg to the overlay pane, not the div
   // var svg = d3.select(map.getPanes().overlayPane).append("svg");
 
-  var svg = d3.select("#mapView").select("svg")
+  var svg = d3.select("#mapView")
+    .select("svg")
+
   var g = svg.append("g")
     .attr("class", "leaflet-zoom-hide")
     // d3.select("#overlay")
@@ -69,44 +71,49 @@ function buildMap(csvFile, jsonFile) {
     d3.select("#overlay")
       .transition()
       .style("display", "inline")
-      .style("right", "0px")
+      .style("top", "0px");
 
     d3.selectAll(".cityLabel")
       .text(function(d) {
         return selectedPoint.properties.start_station;
       })
-
-
-
-
-    console.log(selectedPoint)
   }
 
-    // update position of data on map when resized
-    // function updateMap() {
-    //   var bounds = path.bounds(mapData);
-    //
-    //   var topLeft = bounds[0],
-    //     bottomRight = bounds[1];
-    //
-    //   svg.attr("width", bottomRight[0] - topLeft[0])
-    //     .attr("height", bottomRight[1] - topLeft[1])
-    //     .style("left", topLeft[0] + "px")
-    //     .style("top", topLeft[1] + "px");
-    //
-    //   g.attr("transform", "translate(" + -topLeft[0] + ","
-    //                                   + -topLeft[1] + ")");
-    //
-    //   // initialize the path data
-    //   feature.attr("d", path)
-    //     .style("fill-opacity", 0.7)
-    //     .attr('fill','blue');
-		// }
-    // transform coordinates from leaflet's coords to d3's
-    function projectPoint(x, y) {
-      var point = map.latLngToLayerPoint(new L.LatLng(y, x))
-      this.stream.point(point.x, point.y);
-    }
+  function drawHistogram() {
+
+    var data = d3.range(1000).map(d3.randomBates(10));
+
+    var histSvg = d3.select("#histogram")
+        margin = {top: 10, right: 10, bottom: 10, left: 10},
+        width = histSvg.attr("width")
+        height = histSvg.attr("height")
+        g = histSvg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    var xScale = d3.scaleLinear()
+      .range([0, width])
+
+    var yScale = d3.scaleLinear()
+      .domain([0, d3.max(bins, function(d) { return d.length; })])
+      .range([height, 0])
+
+    var bar = g.selectAll(".bar")
+      .data(bins)
+      .enter().append("g")
+        .attr("class", "bar")
+        .attr("transform", function(d) { return "translate(" + x(d.x0) + "," + y(d.length) + ")"; });
+
+    bar.append("rect")
+      .attr("x", 1)
+      .attr("width", x(bins[0].x1) - x(bins[0].x0) - 1)
+      .attr("height", function(d) { return height - y(d.length); });
+
+
+    // x axis
+    g.append("g")
+        .attr("class", "axis axis--x")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x));
+  }
 
   })
 }
