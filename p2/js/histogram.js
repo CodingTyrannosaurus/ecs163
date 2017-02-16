@@ -3,16 +3,21 @@ function drawHistogram(stationData) {
 
   var formatCount = d3.format(",.0f");
 
-  var margin = {top: 10, right: 30, bottom: 30, left: 30},
+  // parse the date / time
+  var parseDate = d3.timeParse("%d-%m-%Y");
+
+  var margin = {top: 10, right: 30, bottom: 20, left: 30},
       width = 900 - margin.left - margin.right,
       height = 250 - margin.top - margin.bottom;
 
-  var x = d3.scaleLinear()
-      .rangeRound([0, width]);
+  var x = d3.scaleTime()
+    .domain([new Date(2017, 1, 1), new Date(2017, 1, 2)])
+    .nice(d3.timeHour)
+    .rangeRound([0, width]);
 
   var bins = d3.histogram()
       .domain(x.domain())
-      .thresholds(x.ticks(20))
+      .thresholds(x.ticks(10))
       (data);
 
   var y = d3.scaleLinear()
@@ -48,7 +53,10 @@ function drawHistogram(stationData) {
 
   // x axis
   g.append("g")
-      .attr("class", "axis axis--x")
+      .attr("class", "axis")
       .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(x));
+      .call(d3.axisBottom()
+        .scale(x)
+        .ticks(12).tickFormat(d3.timeFormat("%_I %p")));
+      // .call(d3.axisBottom(x));
 } // end drawHistogram
