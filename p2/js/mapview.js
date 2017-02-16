@@ -17,7 +17,7 @@ function buildMap(csvFile, jsonFile) {
     .select("svg")
 
   var g = svg.append("g")
-    .attr("class", "leaflet-zoom-hide")
+    .attr("class", "leaflet-zoom-hide");
     // d3.select("#overlay")
     //   .transition()
     //   .style("display", "inline")
@@ -53,8 +53,11 @@ function buildMap(csvFile, jsonFile) {
       })
 
 
+
     map.on("viewreset", updateMap);
     updateMap();
+
+    drawHistogram();
 
     function updateMap() {
  		   feature.attr("transform",
@@ -63,57 +66,61 @@ function buildMap(csvFile, jsonFile) {
    		    map.latLngToLayerPoint(d.LatLng).x +","+
    				map.latLngToLayerPoint(d.LatLng).y +")";
    			}
- 		)
- 	}
+ 		)}
 
-  function showOverlay(selectedPoint) {
-    // slide pane onto screen
-    d3.select("#overlay")
-      .transition()
-      .style("display", "inline")
-      .style("top", "0px");
+    function showOverlay(selectedPoint) {
+      // slide pane onto screen
+      d3.select("#overlay")
+        .transition()
+        .style("display", "inline")
+        .style("top", "0px");
 
-    d3.selectAll(".cityLabel")
-      .text(function(d) {
-        return selectedPoint.properties.start_station;
-      })
-  }
+      d3.selectAll(".cityLabel")
+        .text(function(d) {
+          return selectedPoint.properties.start_station;
+        })
+    }
 
-  function drawHistogram() {
+    function drawHistogram() {
 
-    var data = d3.range(1000).map(d3.randomBates(10));
+      var data = d3.range(1000).map(d3.randomBates(10));
 
-    var histSvg = d3.select("#histogram")
-        margin = {top: 10, right: 10, bottom: 10, left: 10},
-        width = histSvg.attr("width")
-        height = histSvg.attr("height")
-        g = histSvg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+      var histSvg = d3.select("#histogram")
+          margin = {top: 10, right: 10, bottom: 10, left: 10},
+          width = +histSvg.attr("width") - margin.left - margin.right,
+          height = +histSvg.attr("height") - margin.top - margin.bottom,
+          g = histSvg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    var xScale = d3.scaleLinear()
-      .range([0, width])
+      var xScale = d3.scaleLinear()
+        .rangeRound([0, width])
 
-    var yScale = d3.scaleLinear()
-      .domain([0, d3.max(bins, function(d) { return d.length; })])
-      .range([height, 0])
+      // create bins for times of day
+      var bins = d3.histogram()
+        .domain(xScale.domain())
+        .thresholds(xScale.ticks(20))
+        (data);
 
-    var bar = g.selectAll(".bar")
-      .data(bins)
-      .enter().append("g")
-        .attr("class", "bar")
-        .attr("transform", function(d) { return "translate(" + x(d.x0) + "," + y(d.length) + ")"; });
+      // use bins to set y scale
+      var yScale = d3.scaleLinear()
+        .domain([0, d3.max(bins, function(d) { return d.length; })])
+        .range([height, 0])
 
-    bar.append("rect")
-      .attr("x", 1)
-      .attr("width", x(bins[0].x1) - x(bins[0].x0) - 1)
-      .attr("height", function(d) { return height - y(d.length); });
+      var bar = g.selectAll(".bar")
+        .data(bins)
+        .enter().append("g")
+          .attr("class", "bar")
+          .attr("transform", function(d) { return "translate(" + xScale(d.x0) + "," + yScale(d.length) + ")"; });
 
+      bar.append("rect")
+        .attr("x", 1)
+        .attr("width", xScale(bins[0].x1) - xScale(bins[0].x0) - 1)
+        .attr("height", function(d) { return height - yScale(d.length); });
 
-    // x axis
-    g.append("g")
-        .attr("class", "axis axis--x")
-        .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(x));
-  }
-
-  })
-}
+      // x axis
+      g.append("g")
+          .attr("class", "axis axis--x")
+          .attr("transform", "translate(0," + height + ")")
+          .call(d3.axisBottom(xScale));
+    } // end drawHistogram
+  }) // end d3.json
+} // end buildMap

@@ -155,14 +155,14 @@ p.indent {
 /***** map styling *****/
 #mapView {
   width: 100%;
-  height: 100vh;
+  height: 90vh;
   margin: 0 auto;
   position: relative;
 }
 
 #histogram {
   width: 60%;
-  height: 250px;
+  height: 500px;
 }
 
 .marker {
@@ -184,4 +184,13 @@ p.indent {
   color: white;
   text-align: center;
   margin: 1% 0 5% 5%;
+}
+
+.bar rect {
+  fill: steelblue;
+}
+
+.bar text {
+  fill: #fff;
+  font: 10px sans-serif;
 }
