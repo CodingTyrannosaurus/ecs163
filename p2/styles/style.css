@@ -160,12 +160,15 @@ p.indent {
   position: relative;
 }
 
-#histogram {
+/*#histogram {
   width: 60%;
   height: 500px;
-}
+}*/
 
 .marker {
+  stroke: black;
+  stroke-width: 1px;
+  fill: #31a354;
 }
 
 #overlay {
@@ -183,14 +186,15 @@ p.indent {
   font-family: 'Roboto', sans-serif;
   color: white;
   text-align: center;
-  margin: 1% 0 5% 5%;
+  margin: 10px 0 10px 0;
 }
 
+/**** histogram styles ****/
 .bar rect {
-  fill: steelblue;
+  fill: #7BC8BD;
 }
 
 .bar text {
   fill: #fff;
-  font: 10px sans-serif;
+  font: 12px 'Roboto', sans-serif;
 }
