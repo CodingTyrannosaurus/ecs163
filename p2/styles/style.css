@@ -220,7 +220,7 @@ p.indent {
 }
 
 /**** histogram styles ****/
-.bar rect {
+.bar {
   fill: #7BC8BD;
 }
 

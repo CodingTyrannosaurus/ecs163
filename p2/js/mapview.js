@@ -5,7 +5,6 @@ function buildMap(csvFile, jsonFile) {
   L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; ' + mapLink + ' Contributors',
     maxZoom: 18,
-    // layers: new L.StamenTileLayer('toner-hybrid')
   }).addTo(map);
 
   map._initPathRoot();
@@ -15,11 +14,6 @@ function buildMap(csvFile, jsonFile) {
 
   var g = mapSvg.append("g")
     .attr("class", "leaflet-zoom-hide");
-    // d3.select("#overlay")
-    //   .transition()
-    //   .style("display", "inline")
-
-
 
   d3.json(jsonFile, function(error, mapData) {
     if (error) throw error;
@@ -73,11 +67,6 @@ function buildMap(csvFile, jsonFile) {
         }
       })
 
-    map.on("viewreset", updateMap);
-    updateMap();
-
-    drawHistogram(mapData.features);
-
     function updateMap() {
  		   feature.attr("transform",
  		   function(d) {
@@ -98,6 +87,12 @@ function buildMap(csvFile, jsonFile) {
         .text(function(d) {
           return selectedPoint.properties.start_station;
         })
-    }
-  }) // end d3.json
-} // end buildMap
+    } // end showOverlay()
+
+    map.on("viewreset", updateMap);
+    updateMap();
+
+    // FIXME: Draw using data from each station clicked
+    drawHistogram("data/hourlyRides.csv");
+  }) // end d3.json()
+} // end buildMap()
