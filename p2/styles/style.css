@@ -197,18 +197,16 @@ p.indent {
   position: absolute;
   width: 100%;
   top: 0;
-  top: -350px;
-  height: 350px;
+  top: -330px;
+  height: 330px;
   display: none;
   background-color: rgba(0,0,0,0.6);
 }
 
 .histTitle {
-  font-size: 18px;
+  font-size: 20px;
   font-family: 'Roboto', sans-serif;
-  color: white;
-  text-align: center;
-  margin: 5px 0 0 0;
+  fill: white;
 }
 
 .cityLabel {

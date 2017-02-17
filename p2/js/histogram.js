@@ -6,9 +6,9 @@ function drawHistogram(filePath) {
   // // parse the date / time
   // var parseDate = d3.timeParse("%d-%m-%Y");
 
-  var margin = {top: 10, right: 30, bottom: 20, left: 30},
+  var margin = {top: 10, right: 30, bottom: 60, left: 30},
       width = 900 - margin.left - margin.right,
-      height = 250 - margin.top - margin.bottom;
+      height = 260 - margin.top - margin.bottom;
 
   var x = d3.scaleBand()
     .rangeRound([0, width])
@@ -35,7 +35,7 @@ function drawHistogram(filePath) {
     .attr("class", "histTitle")
     .style("text-anchor", "middle")
     .attr("x", width/2)
-    .attr("y", 290);
+    .attr("y", 245);
 
   d3.csv(filePath, function(error, data) {
     // filter data by total users
@@ -45,6 +45,15 @@ function drawHistogram(filePath) {
     data.forEach(function(d) {
       d.totalRides = totalUsers.map(function(name) { return {name: name, value: +d[name]}; });
     });
+
+    // create tooltip
+    // var tooltip = d3.tip()
+    //   .attr("class", "d3-tip")
+    //   .direction('n')
+    //   .offset([-10, 0])
+    //   .html(function(d) {
+    //     return d.properties.start_station
+    //   })
 
     // map hours in data to x axis
     x.domain(data.map(function(d) { return d.hour; }));
