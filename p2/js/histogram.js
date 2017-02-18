@@ -1,14 +1,7 @@
-function drawHistogram(filePath) {
-  var data = d3.range(1000).map(d3.randomBates(10));
-  //
-  // var formatCount = d3.format(",.0f");
-  //
-  // // parse the date / time
-  // var parseDate = d3.timeParse("%d-%m-%Y");
-
+function drawHistogram(filePath, currentStation) {
   var margin = {top: 10, right: 30, bottom: 60, left: 30},
       width = 900 - margin.left - margin.right,
-      height = 250 - margin.top - margin.bottom;
+      height = 260 - margin.top - margin.bottom;
 
   var x = d3.scaleBand()
     .rangeRound([0, width])
@@ -35,17 +28,24 @@ function drawHistogram(filePath) {
     .attr("class", "histTitle")
     .style("text-anchor", "middle")
     .attr("x", width/2)
-    .attr("y", 230);
+    .attr("y", 245);
 
   d3.csv(filePath, function(error, data) {
-    // filter data by total users
-    var totalUsers = d3.keys(data[0]).filter(function(key) { return (key=="total"); });
 
+    // console.log(data[0])
+    // console.log(data[0])
+    // filter data by total users
+    var totalUsers = d3.keys(data[0]).filter(function(key) { return (key == "rides"); });
     // create new datapoint using map
     data.forEach(function(d) {
-      d.totalRides = totalUsers.map(function(name) { return {name: name, value: +d[name]}; });
+      // defines a new data field called totalRides that.....
+      // d.totalRides = totalUsers.map(function(name) { return {name: name, value: +d[name]}; });
+      d.totalRides = +d.rides
+      d.hour = +d.hour
+      // console.log(d.totalRides)
     });
 
+    console.log(data[0])
     // create tooltip
     // var tooltip = d3.tip()
     //   .attr("class", "d3-tip")
@@ -58,13 +58,17 @@ function drawHistogram(filePath) {
     // map hours in data to x axis
     x.domain(data.map(function(d) { return d.hour; }));
     // compute upper bound of y domain
-    y.domain([0, d3.max(data, function(d) { return d3.max(d.totalRides, function(d) { return d.value; }); })]);
+    y.domain([0, 100])//d3.max(data, function(d) { return d3.max(d.totalRides, function(d) { return d.totalRides; }); })]);
 
     // add x axis
     hist.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
       .call(xAxis);
+
+    // data = newData;
+
+    console.log(data)
 
     var allRides = hist.selectAll(".rideData")
       .data(data)
@@ -78,9 +82,9 @@ function drawHistogram(filePath) {
     .enter().append("rect")
       .attr("class", "bar")
       .attr("width", x.bandwidth())
-      .attr("x", function(d) { return x(d.name); })
-      .attr("y", function(d) { return y(d.value); })
-      .attr("height", function(d) { return height - y(d.value); })
+      .attr("x", function(d) { return x("rides"); })
+      .attr("y", function(d) { return y(d.totalRides); })
+      .attr("height", function(d) { return height - y(d.totalRides); })
 
     // text on each bar
     // rideBar.append("text")
