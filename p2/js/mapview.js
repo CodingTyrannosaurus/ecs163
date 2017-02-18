@@ -9,7 +9,10 @@ function buildMap(csvFile, jsonFile) {
     maxZoom: 18,
   }).addTo(map);
 
+  // FIXME: still not sure why this is needed
   map._initPathRoot();
+
+  map.doubleClickZoom.disable();
 
   var mapSvg = d3.select("#mapView")
     .select("svg")
@@ -37,6 +40,7 @@ function buildMap(csvFile, jsonFile) {
     mapSvg.call(tooltip);
 
     var selectedStation = 0;
+    var currentStationOverlayShown = 0;
 
     // create circles for each feature
     var feature = g.selectAll(".marker")
@@ -46,6 +50,24 @@ function buildMap(csvFile, jsonFile) {
       .attr("r", 12)
       .attr("class", "marker")
       .on("click", function (d) {
+        // hide overlay when clicking on selected station
+        console.log("term: " + d.properties.start_term + " selected: " + selectedStation)
+        // if the station user selects is already selected AND overlay IS SHOWING
+        if (d.properties.start_term == selectedStation && currentStationOverlayShown) {
+          // hide overlay
+          toggleOverlay(d, false);
+          currentStationOverlayShown = 0;
+          // if the station user selects is not selected OR overlay not showing
+        } else {
+          // show overlay
+          toggleOverlay(d, true);
+          currentStationOverlayShown = 1;
+
+          // FIXME: probably in the wrong place
+          // FIXME: Draw using data from each station clicked
+          console.log("load new hist Data")
+          // drawHistogram("data/stationshours.csv", "test");
+        }
         selectedStation = d.properties.start_term;
         g.selectAll(".marker")
           .style("fill", "#31a354")
@@ -53,16 +75,21 @@ function buildMap(csvFile, jsonFile) {
         d3.select(this)
           .style("fill", "#f03b20")
           .style("stroke-width", "2px");
-        showOverlay(d);
       })
       .on("mouseover", function(d) {
+        // console.log("over: " + selectedStation)
         tooltip.show(d)
-        d3.select(this)
-          .style("cursor", "pointer")
-          .style("fill", "#3BC566");
+        // only change color when selecting other station
+        if (d.properties.start_term != selectedStation) {
+          d3.select(this)
+            .style("cursor", "pointer")
+            .style("fill", "#3BC566");
+        }
       })
       .on("mouseout", function(d) {
+        // console.log("out: " + selectedStation)
         tooltip.hide(d)
+        // only change color when selecting other station
         if (d.properties.start_term != selectedStation) {
           d3.select(this)
             .style("fill", "#31a354");
@@ -78,24 +105,34 @@ function buildMap(csvFile, jsonFile) {
    			}
  		)}
 
-    function showOverlay(selectedPoint) {
-      // slide pane onto screen
-      d3.select("#overlay")
+    function toggleOverlay(selectedPoint, show) {
+      if (show) {
+        console.log("showing")
+        // slide pane onto screen
+        d3.select("#overlay")
         .transition()
         .style("display", "inline")
         .style("top", "0px");
 
-      d3.selectAll(".cityLabel")
-        .text(function(d) {
-          return selectedPoint.properties.start_station;
-        })
-    } // end showOverlay()
+        d3.selectAll(".cityLabel")
+          .text(function(d) {
+            return selectedPoint.properties.start_station;
+          })
+      } else {
+        console.log("hiding")
+        // slide pane onto screen
+        d3.select("#overlay")
+          .transition()
+          .style("top", "-330px")
+      }
+    } // end toggleOverlay()
 
     map.on("viewreset", updateMap);
     updateMap();
+    drawHistogram("data/hourlyRides.csv", "test");
 
-    // FIXME: Draw using data from each station clicked
-    drawHistogram("data/stationshours.csv", "test");
+    // // FIXME: Draw using data from each station clicked
+    // drawHistogram("data/stationshours.csv", "test");
 
 
   }) // end d3.json()

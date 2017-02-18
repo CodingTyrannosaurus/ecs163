@@ -1,4 +1,4 @@
-function drawHistogram(filePath, currentStation) {
+function drawHistogram(filePath) {
   var data = d3.range(1000).map(d3.randomBates(10));
   //
   // var formatCount = d3.format(",.0f");
@@ -8,7 +8,7 @@ function drawHistogram(filePath, currentStation) {
 
   var margin = {top: 10, right: 30, bottom: 60, left: 30},
       width = 900 - margin.left - margin.right,
-      height = 260 - margin.top - margin.bottom;
+      height = 250 - margin.top - margin.bottom;
 
   var x = d3.scaleBand()
     .rangeRound([0, width])
@@ -35,18 +35,16 @@ function drawHistogram(filePath, currentStation) {
     .attr("class", "histTitle")
     .style("text-anchor", "middle")
     .attr("x", width/2)
-    .attr("y", 245);
+    .attr("y", 230);
 
   d3.csv(filePath, function(error, data) {
     // filter data by total users
-    var totalUsers = d3.keys(data[0]).filter(function(key) { return (key=="rides"); });
+    var totalUsers = d3.keys(data[0]).filter(function(key) { return (key=="total"); });
 
     // create new datapoint using map
     data.forEach(function(d) {
       d.totalRides = totalUsers.map(function(name) { return {name: name, value: +d[name]}; });
     });
-
-    console.log(currentStation)
 
     // create tooltip
     // var tooltip = d3.tip()
