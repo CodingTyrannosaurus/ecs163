@@ -1,19 +1,5 @@
 // TODO: Remove overlay pane on map click
 
-// var allData;
-
-//
-// d3.csv("data/hourlyRides.csv", function(error, data) {
-//   data.forEach(function(d) {
-//     d.totalRides = +d.rides
-//     d.hour = +d.hour
-//   });
-//   allData = data;
-//   filterHistogramData()
-// })
-
-console.table(allData)
-
 function buildMap(csvFile, jsonFile) {
   var map = L.map('mapView').setView([37.78975, -122.393452], 15);
   var mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
@@ -77,16 +63,7 @@ function buildMap(csvFile, jsonFile) {
           toggleOverlay(d, true);
           currentStationOverlayShown = 1;
 
-          // FIXME: probably in the wrong place
-          // FIXME: Draw using data from each station clicked
-          console.log("create new hist data")
-
-          var filteredData = filterHistogramData(d.properties.start_station)
-          // updateHistogram(filteredData);
-          updateHistogram("data/stationshours.csv", "2nd at Folsom");
-
-          // var stationData = filterData(d.properties.)
-          // drawHistogram("data/stations.csv", "test");
+          updateHistogram("data/hourlyStations.csv", d.properties.start_station)
         }
         selectedStation = d.properties.start_term;
         g.selectAll(".marker")
