@@ -61,13 +61,7 @@ function drawHistogram(filePath, currentStation) {
     // map hours in data to x axis
     x.domain(data.map(function(d) { return d.hour; }));
     // compute upper bound of y domain
-    // y.domain([0, 100])//d3.max(data, function(d) { return d3.max(d.totalRides, function(d) { return d.totalRides; }); })]);
     y.domain([0, d3.max(data, function(d) { return d.totalRides })]);
-    // y.domain([0, 15670]);
-      //
-      // console.log(d3.max(data, function(d) { return d.totalRides; }))
-      //
-      //  return d3.max(data, function(d) { return d.totalRides; }); })]);
 
     // add x axis
     hist.append("g")
