@@ -1,3 +1,9 @@
+function updateHistogramData(stationData) {
+  var updateFunction = drawHistogram()
+  hist.datum(stationData).call(updateFunction)
+}
+
+
 function drawHistogram(filePath, currentStation) {
   var margin = {top: 10, right: 30, bottom: 60, left: 30},
       width = 900 - margin.left - margin.right,
@@ -32,7 +38,7 @@ function drawHistogram(filePath, currentStation) {
 
   d3.csv(filePath, function(error, data) {
     // filter data by total users
-    var totalUsers = d3.keys(data[0]).filter(function(key) { return (key == "rides"); });
+    // var totalUsers = d3.keys(data[0]).filter(function(key) { return (key == "rides"); });
     // create new datapoint using map
     data.forEach(function(d) {
       // defines a new data field called totalRides that.....
@@ -56,8 +62,8 @@ function drawHistogram(filePath, currentStation) {
     x.domain(data.map(function(d) { return d.hour; }));
     // compute upper bound of y domain
     // y.domain([0, 100])//d3.max(data, function(d) { return d3.max(d.totalRides, function(d) { return d.totalRides; }); })]);
-    // y.domain([0, d3.max(data, function(d) { return d.totalRides })]);
-    y.domain([0, 15670]);
+    y.domain([0, d3.max(data, function(d) { return d.totalRides })]);
+    // y.domain([0, 15670]);
       //
       // console.log(d3.max(data, function(d) { return d.totalRides; }))
       //
@@ -84,13 +90,31 @@ function drawHistogram(filePath, currentStation) {
         count++;
         return height - y(d.totalRides); })
 
+    hist.selectAll("text")
+      .data(data)
+      .enter().append("text")
+        .text(function(d) {
+          // console.log(d.totalRides);
+          return d.totalRides;
+        })
+        .attr("x", function(d, i) {
+          return 280;
+          //  return i * (width / data.length) + 5;
+        })
+        .attr("y", function(d) {
+          return 9;
+          //  return height - (d.totalRides * 4) + 15;
+        })
+        .attr("font-family", "sans-serif")
+        .attr("font-size", "11px")
+        .attr("fill", "white");
+
     // text on each bar
     // rideBar.append("text")
     //   .attr("dy", ".75em")
     //   .attr("y", 6)
-    //   .attr("x", (x(bins[0].x1) - x(bins[0].x0)) / 2)
+    //   .attr("x", 20)
     //   .attr("text-anchor", "middle")
-    //   .text(function(d) { return formatCount(d.length); });
 
     console.log(count)
   }) // end d3.csv()

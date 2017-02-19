@@ -197,10 +197,12 @@ p.indent {
   position: absolute;
   width: 100%;
   top: 0;
-  top: -330px;
   height: 330px;
-  display: none;
   background-color: rgba(0,0,0,0.6);
+  /*display: none;*/
+  /*top: -330px;*/
+  /*temp*/
+  top:0;
 }
 
 .histTitle {

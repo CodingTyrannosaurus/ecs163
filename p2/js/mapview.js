@@ -51,7 +51,7 @@ function buildMap(csvFile, jsonFile) {
       .attr("class", "marker")
       .on("click", function (d) {
         // hide overlay when clicking on selected station
-        console.log("term: " + d.properties.start_term + " selected: " + selectedStation)
+        // console.log("term: " + d.properties.start_term + " selected: " + selectedStation)
         // if the station user selects is already selected AND overlay IS SHOWING
         if (d.properties.start_term == selectedStation && currentStationOverlayShown) {
           // hide overlay
@@ -66,7 +66,8 @@ function buildMap(csvFile, jsonFile) {
           // FIXME: probably in the wrong place
           // FIXME: Draw using data from each station clicked
           // console.log("load new hist Data")
-          // drawHistogram("data/stationshours.csv", "test");
+          // drawHistogram("data/stations.csv", "test");
+          // drawHistogram("data/stationshours.csv", "2nd at Folsom");
         }
         selectedStation = d.properties.start_term;
         g.selectAll(".marker")
@@ -129,11 +130,11 @@ function buildMap(csvFile, jsonFile) {
 
     map.on("viewreset", updateMap);
     updateMap();
-    drawHistogramAll("data/hourlyRides.csv", "test");
+    // drawHistogram("data/hourlyRides.csv", "test");
     // drawHistogram("data/hourlyRides.csv", "test");
 
     // // FIXME: Draw using data from each station clicked
-    // drawHistogram("data/stationshours.csv", "test");
+    drawHistogram("data/testrides.csv", "test");
 
 
   }) // end d3.json()
