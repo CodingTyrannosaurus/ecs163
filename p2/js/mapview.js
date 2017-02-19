@@ -74,7 +74,6 @@ function buildMap(csvFile, jsonFile) {
           .style("stroke-width", "2px");
       })
       .on("mouseover", function(d) {
-        // console.log("over: " + selectedStation)
         tooltip.show(d)
         // only change color when selecting other station
         if (d.properties.start_term != selectedStation) {
@@ -84,7 +83,6 @@ function buildMap(csvFile, jsonFile) {
         }
       })
       .on("mouseout", function(d) {
-        // console.log("out: " + selectedStation)
         tooltip.hide(d)
         // only change color when selecting other station
         if (d.properties.start_term != selectedStation) {

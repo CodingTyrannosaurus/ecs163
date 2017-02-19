@@ -1,17 +1,3 @@
-// function filterHistogramData(filePath, startStation) {
-//   // filter data by station name
-//   d3.csv(filePath, function(error, data) {
-//
-//     data.forEach(function(d) {
-//       d.rides = +d.rides
-//       d.hour = +d.hour
-//
-//       // my counter
-//       allRides = allRides + d.rides;
-//     });
-//
-// }
-
 // initial histogram container setup
 
 var margin = {top: 10, right: 30, bottom: 60, left: 30},
@@ -43,7 +29,6 @@ var xAxisLabel = histSVGContainer.append("text")
   .attr("x", width/2)
   .attr("y", 245);
 
-
 function updateHistogram(filePath, currentStation) {
   var allRides = 0;
 
@@ -54,17 +39,12 @@ function updateHistogram(filePath, currentStation) {
     var data = data.filter(function(d) { return d.station == currentStation; })
 
     data.forEach(function(d) {
-
       d.rides = +d.rides
       d.hour = +d.hour
 
       // count total # of rides for percentage calculation
       allRides = allRides + d.rides;
     });
-
-    // console.log(currentStation)
-    // console.log(allRides)
-
 
     // create tooltip
     // var tooltip = d3.tip()
@@ -86,40 +66,28 @@ function updateHistogram(filePath, currentStation) {
       .attr("transform", "translate(0," + height + ")")
       .call(xAxis);
 
-    // console.table(data)
     histSVGContainer.selectAll("rect")
       .data(data)
     .enter().append("rect")
       .attr("class", "bar")
       .attr("width", x.bandwidth())
-      .attr("x", function(d) { return x(d.hour);  })
+      .attr("x", function(d) { return x(d.hour); })
       .attr("y", function(d) { return y(d.rides); })
-      .attr("height", function(d) {return height - y(d.rides); })
-
-
-
-    // GENERAL UPDATE PATTERN START
-    // console.table(data)
-    // histSVGContainer.selectAll("rect")
-    //   .data(data);
-    //
-    // // update old elements as needed
-    // histSVGContainer.attr("class", "update");
-    //
-    // // After merging the entered elements with the update selection, apply operations to both.
-    // histSVGContainer.enter().append("rect")
-    //     .attr("class", "enter")
-    //     .attr("class", "bar")
-    //     .attr("width", x.bandwidth())
-    //     .attr("x", function(d) { return x(d.hour);  })
-    //     .attr("y", function(d) { return y(d.rides); })
-    //     .attr("height", function(d) {return height - y(d.rides); })
-    //     .merge(histSVGContainer)
-    // GENERAL UPDATE PATTERN END
+      .attr("height", function(d) { return height - y(d.rides); })
+      .on("mouseover", function(d) {
+        console.log("mouse")
+        // console.log("over: " + selectedStation)
+        d3.select(this)
+          .style("fill", "red");
+      })
 
     var formatPercent = d3.format(",.0%");
     // CRAZY BUG
-    histSVGContainer.selectAll("text.labels")
+    var percentLabels = histSVGContainer.selectAll("text.labels")
+    // should it be exit, remove or remove, exit?
+      // .remove()
+      // .exit()
+      // .data(data)
         .data(data)
       .enter().append("text")
       .attr("class", "label")
@@ -135,9 +103,6 @@ function updateHistogram(filePath, currentStation) {
           return formatPercent(percentRides);
         }
       });
-
-    histSVGContainer.exit().remove();
-
-
+    // histSVGContainer.exit().remove();
   }) // end d3.csv()
 } // end drawhistSVGContainerogram()

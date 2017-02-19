@@ -25,6 +25,7 @@ station,hour,rides
 2nd at Folsom,23,15
 2nd at South Park,00,7
 2nd at South Park,01,9
+2nd at South Park,02,0
 2nd at South Park,03,2
 2nd at South Park,04,1
 2nd at South Park,05,11
@@ -49,6 +50,7 @@ station,hour,rides
 2nd at Townsend,00,10
 2nd at Townsend,01,5
 2nd at Townsend,02,5
+2nd at Townsend,03,0
 2nd at Townsend,04,4
 2nd at Townsend,05,9
 2nd at Townsend,06,133
@@ -73,6 +75,7 @@ station,hour,rides
 5th at Howard,01,12
 5th at Howard,02,3
 5th at Howard,03,7
+5th at Howard,04,0
 5th at Howard,05,4
 5th at Howard,06,80
 5th at Howard,07,138
@@ -166,7 +169,13 @@ Broadway at Main,17,1
 Broadway at Main,18,1
 Broadway at Main,20,1
 Broadway at Main,23,1
-Broadway St at Battery St,05,7
+Broadway St at Battery St,00,0
+Broadway St at Battery St,01,0
+Broadway St at Battery St,02,0
+Broadway St at Battery St,03,0
+Broadway St at Battery St,04,0
+Broadway St at Battery St,05,0
+Broadway St at Battery St,06,0
 Broadway St at Battery St,07,7
 Broadway St at Battery St,08,27
 Broadway St at Battery St,09,24
@@ -312,6 +321,7 @@ Cowper at University,22,1
 Davis at Jackson,00,8
 Davis at Jackson,01,5
 Davis at Jackson,02,5
+Davis at Jackson,03,0
 Davis at Jackson,04,3
 Davis at Jackson,05,37
 Davis at Jackson,06,111
@@ -333,6 +343,7 @@ Davis at Jackson,21,24
 Davis at Jackson,22,21
 Davis at Jackson,23,12
 Embarcadero at Bryant,00,17
+Embarcadero at Bryant,01,1
 Embarcadero at Bryant,02,2
 Embarcadero at Bryant,03,1
 Embarcadero at Bryant,04,14
@@ -358,7 +369,9 @@ Embarcadero at Bryant,23,23
 Embarcadero at Folsom,00,7
 Embarcadero at Folsom,01,3
 Embarcadero at Folsom,02,5
+Embarcadero at Folsom,03,0
 Embarcadero at Folsom,04,1
+Embarcadero at Folsom,05,0
 Embarcadero at Folsom,06,13
 Embarcadero at Folsom,07,35
 Embarcadero at Folsom,08,143
@@ -405,6 +418,7 @@ Embarcadero at Vallejo,00,9
 Embarcadero at Vallejo,01,7
 Embarcadero at Vallejo,02,9
 Embarcadero at Vallejo,03,4
+Embarcadero at Vallejo,04,0
 Embarcadero at Vallejo,05,2
 Embarcadero at Vallejo,06,3
 Embarcadero at Vallejo,07,11
@@ -629,6 +643,8 @@ Market at 4th,23,50
 Market at Sansome,00,34
 Market at Sansome,01,22
 Market at Sansome,02,5
+Market at Sansome,03,0
+Market at Sansome,04,0
 Market at Sansome,05,6
 Market at Sansome,06,29
 Market at Sansome,07,141
@@ -799,30 +815,30 @@ Paseo de San Antonio,20,33
 Paseo de San Antonio,21,20
 Paseo de San Antonio,22,3
 Paseo de San Antonio,23,8
-Post at Kearney,00,13
-Post at Kearney,01,16
-Post at Kearney,02,5
-Post at Kearney,03,2
-Post at Kearney,04,10
-Post at Kearney,05,3
-Post at Kearney,06,13
-Post at Kearney,07,25
-Post at Kearney,08,83
-Post at Kearney,09,150
-Post at Kearney,10,122
-Post at Kearney,11,145
-Post at Kearney,12,264
-Post at Kearney,13,201
-Post at Kearney,14,155
-Post at Kearney,15,183
-Post at Kearney,16,225
-Post at Kearney,17,306
-Post at Kearney,18,225
-Post at Kearney,19,159
-Post at Kearney,20,84
-Post at Kearney,21,51
-Post at Kearney,22,37
-Post at Kearney,23,26
+Post at Kearny,00,13
+Post at Kearny,01,16
+Post at Kearny,02,5
+Post at Kearny,03,2
+Post at Kearny,04,10
+Post at Kearny,05,3
+Post at Kearny,06,13
+Post at Kearny,07,25
+Post at Kearny,08,83
+Post at Kearny,09,150
+Post at Kearny,10,122
+Post at Kearny,11,145
+Post at Kearny,12,264
+Post at Kearny,13,201
+Post at Kearny,14,155
+Post at Kearny,15,183
+Post at Kearny,16,225
+Post at Kearny,17,306
+Post at Kearny,18,225
+Post at Kearny,19,159
+Post at Kearny,20,84
+Post at Kearny,21,51
+Post at Kearny,22,37
+Post at Kearny,23,26
 Powell at Post (Union Square),00,29
 Powell at Post (Union Square),01,17
 Powell at Post (Union Square),02,18
@@ -993,6 +1009,7 @@ San Francisco Caltrain 2 (330 Townsend),00,14
 San Francisco Caltrain 2 (330 Townsend),01,1
 San Francisco Caltrain 2 (330 Townsend),02,3
 San Francisco Caltrain 2 (330 Townsend),03,2
+San Francisco Caltrain 2 (330 Townsend),04,0
 San Francisco Caltrain 2 (330 Townsend),05,3
 San Francisco Caltrain 2 (330 Townsend),06,52
 San Francisco Caltrain 2 (330 Townsend),07,229
@@ -1264,6 +1281,7 @@ South Van Ness at Market,23,18
 Spear at Folsom,00,8
 Spear at Folsom,01,5
 Spear at Folsom,02,3
+Spear at Folsom,03,0
 Spear at Folsom,04,2
 Spear at Folsom,05,50
 Spear at Folsom,06,129
@@ -1307,7 +1325,9 @@ St James Park,23,2
 Steuart at Market,00,22
 Steuart at Market,01,8
 Steuart at Market,02,2
+Steuart at Market,03,0
 Steuart at Market,04,2
+Steuart at Market,05,0
 Steuart at Market,06,106
 Steuart at Market,07,273
 Steuart at Market,08,598
@@ -1330,6 +1350,7 @@ Temporary Transbay Terminal (Howard at Beale),00,5
 Temporary Transbay Terminal (Howard at Beale),01,3
 Temporary Transbay Terminal (Howard at Beale),02,1
 Temporary Transbay Terminal (Howard at Beale),03,2
+Temporary Transbay Terminal (Howard at Beale),04,0
 Temporary Transbay Terminal (Howard at Beale),05,10
 Temporary Transbay Terminal (Howard at Beale),06,120
 Temporary Transbay Terminal (Howard at Beale),07,599
@@ -1396,33 +1417,35 @@ University and Emerson,20,8
 University and Emerson,21,12
 University and Emerson,22,16
 University and Emerson,23,3
-Washington at Kearney,00,16
-Washington at Kearney,01,1
-Washington at Kearney,02,2
-Washington at Kearney,04,1
-Washington at Kearney,05,2
-Washington at Kearney,06,12
-Washington at Kearney,07,32
-Washington at Kearney,08,162
-Washington at Kearney,09,129
-Washington at Kearney,10,67
-Washington at Kearney,11,80
-Washington at Kearney,12,85
-Washington at Kearney,13,105
-Washington at Kearney,14,123
-Washington at Kearney,15,124
-Washington at Kearney,16,145
-Washington at Kearney,17,148
-Washington at Kearney,18,82
-Washington at Kearney,19,43
-Washington at Kearney,20,40
-Washington at Kearney,21,38
-Washington at Kearney,22,21
-Washington at Kearney,23,14
+Washington at Kearny,00,16
+Washington at Kearny,01,1
+Washington at Kearny,02,2
+Washington at Kearny,03,0
+Washington at Kearny,04,1
+Washington at Kearny,05,2
+Washington at Kearny,06,12
+Washington at Kearny,07,32
+Washington at Kearny,08,162
+Washington at Kearny,09,129
+Washington at Kearny,10,67
+Washington at Kearny,11,80
+Washington at Kearny,12,85
+Washington at Kearny,13,105
+Washington at Kearny,14,123
+Washington at Kearny,15,124
+Washington at Kearny,16,145
+Washington at Kearny,17,148
+Washington at Kearny,18,82
+Washington at Kearny,19,43
+Washington at Kearny,20,40
+Washington at Kearny,21,38
+Washington at Kearny,22,21
+Washington at Kearny,23,14
 Yerba Buena Center of the Arts (3rd @ Howard),00,12
 Yerba Buena Center of the Arts (3rd @ Howard),01,9
 Yerba Buena Center of the Arts (3rd @ Howard),02,6
 Yerba Buena Center of the Arts (3rd @ Howard),03,1
+Yerba Buena Center of the Arts (3rd @ Howard),04,0
 Yerba Buena Center of the Arts (3rd @ Howard),05,9
 Yerba Buena Center of the Arts (3rd @ Howard),06,46
 Yerba Buena Center of the Arts (3rd @ Howard),07,42
