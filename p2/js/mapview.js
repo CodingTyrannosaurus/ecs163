@@ -1,5 +1,19 @@
 // TODO: Remove overlay pane on map click
 
+// var allData;
+
+//
+// d3.csv("data/hourlyRides.csv", function(error, data) {
+//   data.forEach(function(d) {
+//     d.totalRides = +d.rides
+//     d.hour = +d.hour
+//   });
+//   allData = data;
+//   filterHistogramData()
+// })
+
+console.table(allData)
+
 function buildMap(csvFile, jsonFile) {
   var map = L.map('mapView').setView([37.78975, -122.393452], 15);
   var mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
@@ -65,9 +79,14 @@ function buildMap(csvFile, jsonFile) {
 
           // FIXME: probably in the wrong place
           // FIXME: Draw using data from each station clicked
-          // console.log("load new hist Data")
+          console.log("create new hist data")
+
+          var filteredData = filterHistogramData(d.properties.start_station)
+          // updateHistogram(filteredData);
+          updateHistogram("data/stationshours.csv", "2nd at Folsom");
+
+          // var stationData = filterData(d.properties.)
           // drawHistogram("data/stations.csv", "test");
-          // drawHistogram("data/stationshours.csv", "2nd at Folsom");
         }
         selectedStation = d.properties.start_term;
         g.selectAll(".marker")
@@ -134,7 +153,18 @@ function buildMap(csvFile, jsonFile) {
     // drawHistogram("data/hourlyRides.csv", "test");
 
     // // FIXME: Draw using data from each station clicked
-    drawHistogram("data/hourlyRides.csv", "test");
+
+    // d3.csv("data/stationshours.csv", filterData(data))
+    //
+    // function filterData(stationName) {
+    //   console.log("returning data from " + stationNumber)
+    //
+    //   var filteredData = 0;
+    //
+      // drawHistogram(filteredData)
+
+    // initial csv load
+    // updateHistogram("data/hourlyRides.csv", "test");
 
 
   }) // end d3.json()

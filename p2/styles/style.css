@@ -199,14 +199,14 @@ p.indent {
   top: 0;
   height: 330px;
   background-color: rgba(0,0,0,0.6);
-  /*display: none;*/
-  /*top: -330px;*/
+  display: none;
+  top: -330px;
   /*temp*/
-  top:0;
+  /*top:0;*/
 }
 
 .histTitle {
-  font-size: 20px;
+  font-size: 18px;
   font-family: 'Roboto', sans-serif;
   fill: white;
 }
@@ -231,7 +231,7 @@ p.indent {
 
 svg text.label {
   fill:	black;
-  font: 14px 'Roboto', sans-serif;
+  font: 15px 'Roboto', sans-serif;
   font-weight: 400;
   text-anchor: middle;
 }
