@@ -1,12 +1,11 @@
-function updateHistogramData(stationData) {
-  var updateFunction = drawHistogram()
-  hist.datum(stationData).call(updateFunction)
+function updateHistogram(stationData) {
+  var updateFunction = drawhistSVGContainerogram()
+  histSVGContainer.datum(stationData).call(updateFunction)
 }
-
 
 function drawHistogram(filePath, currentStation) {
   var margin = {top: 10, right: 30, bottom: 60, left: 30},
-      width = 900 - margin.left - margin.right,
+      width = 1000 - margin.left - margin.right,
       height = 260 - margin.top - margin.bottom;
 
   var x = d3.scaleBand()
@@ -22,19 +21,21 @@ function drawHistogram(filePath, currentStation) {
   var yAxis = d3.axisLeft()
     .scale(y)
 
-  var hist = d3.select("#histogram")
+  var histSVGContainer = d3.select("#histogram")
     .append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
     .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-  var xAxisLabel = hist.append("text")
+  var xAxisLabel = histSVGContainer.append("text")
     .text("Rides by Hour")
     .attr("class", "histTitle")
     .style("text-anchor", "middle")
     .attr("x", width/2)
     .attr("y", 245);
+
+  var allRides = 0;
 
   d3.csv(filePath, function(error, data) {
     // filter data by total users
@@ -45,9 +46,13 @@ function drawHistogram(filePath, currentStation) {
       // d.totalRides = totalUsers.map(function(name) { return {name: name, value: +d[name]}; });
       d.totalRides = +d.rides
       d.hour = +d.hour
-      // console.log(d.totalRides)
+
+      // my counter
+      allRides = allRides + d.totalRides;
     });
 
+    console.log(allRides)
+    // console.table(data);
     // console.log(data[0])
     // create tooltip
     // var tooltip = d3.tip()
@@ -64,52 +69,41 @@ function drawHistogram(filePath, currentStation) {
     y.domain([0, d3.max(data, function(d) { return d.totalRides })]);
 
     // add x axis
-    hist.append("g")
+    histSVGContainer.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
       .call(xAxis);
 
     var count = 0;
     // FIXME: replace with my data
-    var rideBar = hist.selectAll("rect")
+    // var rideBar = histSVGContainer.selectAll("rect")
+    // console.table(data)
+    histSVGContainer.selectAll("rect")
       .data(data)
-      // .data(function(d) { console.log(d); })
     .enter().append("rect")
       .attr("class", "bar")
       .attr("width", x.bandwidth())
       .attr("x", function(d) { return x(d.hour);  })
       .attr("y", function(d) { return y(d.totalRides); })
-      .attr("height", function(d) {
-        // console.log("bad height" + d.totalRides)
-        count++;
-        return height - y(d.totalRides); })
+      .attr("height", function(d) {return height - y(d.totalRides); })
 
-    hist.selectAll("text")
-      .data(data)
+    var formatPercent = d3.format(",.1%");
+    // CRAZY BUG
+    histSVGContainer.selectAll("text.labels")
+        .data(data)
       .enter().append("text")
-        .text(function(d) {
-          // console.log(d.totalRides);
-          return d.totalRides;
-        })
-        .attr("x", function(d, i) {
-          return 280;
-          //  return i * (width / data.length) + 5;
-        })
-        .attr("y", function(d) {
-          return 9;
-          //  return height - (d.totalRides * 4) + 15;
-        })
-        .attr("font-family", "sans-serif")
-        .attr("font-size", "11px")
-        .attr("fill", "white");
-
-    // text on each bar
-    // rideBar.append("text")
-    //   .attr("dy", ".75em")
-    //   .attr("y", 6)
-    //   .attr("x", 20)
-    //   .attr("text-anchor", "middle")
-
-    console.log(count)
+      .attr("class", "label")
+      .attr("x", function(d, i) {
+        return x(d.hour) + x.bandwidth() / 2;
+      })
+      .attr("y", function(d) {
+          return y(d.totalRides) + 18;
+      })
+      .text(function(d) {
+        percentRides = d.totalRides/allRides;
+        if (percentRides > 0.012) {
+          return formatPercent(percentRides);
+        }
+      });
   }) // end d3.csv()
-} // end drawHistogram()
+} // end drawhistSVGContainerogram()

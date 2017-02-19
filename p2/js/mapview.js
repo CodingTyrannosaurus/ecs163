@@ -134,7 +134,7 @@ function buildMap(csvFile, jsonFile) {
     // drawHistogram("data/hourlyRides.csv", "test");
 
     // // FIXME: Draw using data from each station clicked
-    drawHistogram("data/testrides.csv", "test");
+    drawHistogram("data/hourlyRides.csv", "test");
 
 
   }) // end d3.json()
