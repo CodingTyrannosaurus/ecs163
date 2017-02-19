@@ -65,7 +65,7 @@ function buildMap(csvFile, jsonFile) {
 
           // FIXME: probably in the wrong place
           // FIXME: Draw using data from each station clicked
-          console.log("load new hist Data")
+          // console.log("load new hist Data")
           // drawHistogram("data/stationshours.csv", "test");
         }
         selectedStation = d.properties.start_term;
@@ -107,7 +107,7 @@ function buildMap(csvFile, jsonFile) {
 
     function toggleOverlay(selectedPoint, show) {
       if (show) {
-        console.log("showing")
+        // console.log("showing")
         // slide pane onto screen
         d3.select("#overlay")
         .transition()
@@ -119,7 +119,7 @@ function buildMap(csvFile, jsonFile) {
             return selectedPoint.properties.start_station;
           })
       } else {
-        console.log("hiding")
+        // console.log("hiding")
         // slide pane onto screen
         d3.select("#overlay")
           .transition()
@@ -129,7 +129,8 @@ function buildMap(csvFile, jsonFile) {
 
     map.on("viewreset", updateMap);
     updateMap();
-    drawHistogram("data/hourlyRides.csv", "test");
+    drawHistogramAll("data/hourlyRides.csv", "test");
+    // drawHistogram("data/hourlyRides.csv", "test");
 
     // // FIXME: Draw using data from each station clicked
     // drawHistogram("data/stationshours.csv", "test");
