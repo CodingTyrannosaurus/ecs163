@@ -88,21 +88,34 @@ function updateHistogram(filePath, currentStation) {
 
     // console.table(data)
     histSVGContainer.selectAll("rect")
-      .data(data);
+      .data(data)
+    .enter().append("rect")
+      .attr("class", "bar")
+      .attr("width", x.bandwidth())
+      .attr("x", function(d) { return x(d.hour);  })
+      .attr("y", function(d) { return y(d.rides); })
+      .attr("height", function(d) {return height - y(d.rides); })
 
-    // update old elements as needed
-    histSVGContainer.attr("class", "update");
 
-    // After merging the entered elements with the update selection, apply operations to both.
-    histSVGContainer.enter().append("rect")
-        .attr("class", "enter")
-        .attr("class", "bar")
-        .attr("width", x.bandwidth())
-        .attr("x", function(d) { return x(d.hour);  })
-        .attr("y", function(d) { return y(d.rides); })
-        .attr("height", function(d) {return height - y(d.rides); })
-        .merge(histSVGContainer)
 
+    // GENERAL UPDATE PATTERN START
+    // console.table(data)
+    // histSVGContainer.selectAll("rect")
+    //   .data(data);
+    //
+    // // update old elements as needed
+    // histSVGContainer.attr("class", "update");
+    //
+    // // After merging the entered elements with the update selection, apply operations to both.
+    // histSVGContainer.enter().append("rect")
+    //     .attr("class", "enter")
+    //     .attr("class", "bar")
+    //     .attr("width", x.bandwidth())
+    //     .attr("x", function(d) { return x(d.hour);  })
+    //     .attr("y", function(d) { return y(d.rides); })
+    //     .attr("height", function(d) {return height - y(d.rides); })
+    //     .merge(histSVGContainer)
+    // GENERAL UPDATE PATTERN END
 
     var formatPercent = d3.format(",.0%");
     // CRAZY BUG
