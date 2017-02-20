@@ -45,6 +45,7 @@ function drawHistogram(filePath) {
 
       // use first station on initial load, user never sees this
       var data = data.filter(function(d) { return d.station == "2nd at Folsom"; })
+      var data = data.filter(function(d) { return d.hour > 5; })
 
       data.forEach(function(d) {
         d.rides = +d.rides
@@ -125,6 +126,9 @@ function updateHistogram(filePath, currentStation) {
   d3.csv(filePath, function(error, data) {
     // filter data based on station
     var data = data.filter(function(d) { return d.station == currentStation; })
+
+    // removes late night data
+    // var data = data.filter(function(d) { return d.hour > 5; })
 
     data.forEach(function(d) {
       d.rides = +d.rides
