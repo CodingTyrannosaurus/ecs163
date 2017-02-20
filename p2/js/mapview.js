@@ -74,7 +74,6 @@ function updateMap(jsonFile, selectedStations) {
           // show overlay
           toggleOverlay(d, true);
           currentStationOverlayShown = 1;
-          updateHistogram("data/hourlyStations.csv", d.properties.name)
         }
         selectedStation = d.properties.station_id;
         g.selectAll(".marker")
@@ -86,6 +85,7 @@ function updateMap(jsonFile, selectedStations) {
       })
       .on("mouseover", function(d) {
         tooltip.show(d)
+        updateHistogram("data/hourlyStations.csv", d.properties.name)
         // only change color when selecting other station
         if (d.properties.station_id != selectedStation) {
           d3.select(this)
@@ -117,12 +117,13 @@ function updateMap(jsonFile, selectedStations) {
         // slide pane onto screen
         d3.select("#overlay-top")
           .transition()
+          // .duration(300)
           .style("display", "inline")
           .style("top", "0px");
 
         d3.selectAll(".cityLabel")
           .text(function(d) {
-            return selectedPoint.properties.start_station;
+            return selectedPoint.properties.name;
           })
       } else {
         // console.log("hiding")

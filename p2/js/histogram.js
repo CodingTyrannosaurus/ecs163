@@ -22,24 +22,101 @@ var xAxis = d3.axisBottom()
 var yAxis = d3.axisLeft()
   .scale(y)
 
-function updateHistogram(filePath, currentStation) {
 
-  // FIXME: REMOVE WITH UPDATE PATTERN, ADD TRANSITIONS
-    d3.select("#histogram").selectAll("svg").remove()
-
-    var histSVGContainer = d3.select("#histogram")
+function drawHistogram(filePath) {
+  var histSVGContainer = d3.select("#histogram")
     .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
 
-    var xAxisLabel = histSVGContainer.append("text")
-      .text("Rides by Hour (% Total Rides)")
-      .attr("class", "histTitle")
-      .style("text-anchor", "middle")
-      .attr("x", width/2)
-      .attr("y", 245);
+  var xAxisLabel = histSVGContainer.append("text")
+    .text("Rides by Hour (% Total Rides)")
+    .attr("class", "histTitle")
+    .style("text-anchor", "middle")
+    .attr("x", width/2)
+    .attr("y", 245);
 
-  // END REMOVE & REDRAW
+    // count total # of rides for percentage calculation
+    var allRides = 0;
+
+    // all data usage must occur in async d3.csv call
+    d3.csv(filePath, function(error, data) {
+      // filter data based on station
+
+      // use first station on initial load, user never sees this
+      var data = data.filter(function(d) { return d.station == "2nd at Folsom"; })
+
+      data.forEach(function(d) {
+        d.rides = +d.rides
+        d.hour = +d.hour
+        allRides = allRides + d.rides;
+      });
+
+      // map hours in data to x axis
+      x.domain(data.map(function(d) { return d.hour; }));
+      // compute upper bound of y domain
+      y.domain([0, d3.max(data, function(d) { return d.rides })]);
+
+      // add x axis
+      histSVGContainer.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis);
+
+      // create tooltip
+      var tooltip = d3.tip()
+        .attr("class", "d3-tip")
+        .direction('n')
+        .offset([-10, 0])
+        .html(function(d) {
+          return d.rides + " rides"
+        })
+
+      histSVGContainer.call(tooltip)
+
+      histSVGContainer.selectAll("rect")
+        .data(data)
+      .enter().append("rect")
+        .attr("class", "bar")
+        .attr("width", x.bandwidth())
+        .attr("x", function(d) { return x(d.hour); })
+        .attr("y", function(d) { return y(d.rides); })
+        .attr("height", function(d) { return height - y(d.rides); })
+        .on("mouseover", function(d) {
+          tooltip.show(d)
+          selectPopularStations(d.hour, d.station)
+          d3.select(this)
+            .style("fill", "#43a2ca");
+        })
+        .on("mouseout", function(d) {
+          tooltip.hide(d)
+          d3.select(this)
+            .style("fill", "#7BC8BD");
+        })
+
+      var formatPercent = d3.format(",.0%");
+      var percentLabels = histSVGContainer.selectAll("text.label")
+          .data(data)
+        .enter().append("text")
+        .attr("class", "label")
+        .attr("x", function(d, i) {
+          return x(d.hour) + x.bandwidth() / 2;
+        })
+        .attr("y", function(d) {
+            return y(d.rides) + 18;
+        })
+        .text(function(d) {
+          percentRides = d.rides/allRides;
+          if (percentRides > 0.015) {
+            return formatPercent(percentRides);
+          }
+        });
+    }) // end d3.csv()
+}
+
+
+function updateHistogram(filePath, currentStation) {
+  var histSVGContainer = d3.select("#histogram")
 
   // count total # of rides for percentage calculation
   var allRides = 0;
@@ -55,57 +132,26 @@ function updateHistogram(filePath, currentStation) {
       allRides = allRides + d.rides;
     });
 
-    // var times = getPopularStationTimes(data);
-    // console.log(times)
-    console.table(getPopularStationTimes(data));
-
-    // create tooltip
-    // var tooltip = d3.tip()
-    //   .attr("class", "d3-tip")
-    //   .direction('n')
-    //   .offset([-10, 0])
-    //   .html(function(d) {
-    //     return d.hour
-    //   })
-    //
-
     // map hours in data to x axis
     x.domain(data.map(function(d) { return d.hour; }));
     // compute upper bound of y domain
     y.domain([0, d3.max(data, function(d) { return d.rides })]);
 
-    // add x axis
-    histSVGContainer.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis);
-
+    // NO NEED TO APPEND, already appended in initial load!
     histSVGContainer.selectAll("rect")
       .data(data)
-    .enter().append("rect")
+      .transition()
+      .duration(400)
       .attr("class", "bar")
       .attr("width", x.bandwidth())
       .attr("x", function(d) { return x(d.hour); })
       .attr("y", function(d) { return y(d.rides); })
       .attr("height", function(d) { return height - y(d.rides); })
-      .on("mouseover", function(d) {
-        selectPopularStations(d.hour, d.station)
-        d3.select(this)
-          .style("fill", "#43a2ca");
-      })
-      .on("mouseout", function(d) {
-        d3.select(this)
-          .style("fill", "#7BC8BD");
-      })
 
     var formatPercent = d3.format(",.0%");
-    var percentLabels = histSVGContainer.selectAll("text.labels")
-    // should it be exit, remove or remove, exit?
-      // .remove()
-      // .exit()
-      // .data(data)
+    histSVGContainer.selectAll("text.label")
         .data(data)
-      .enter().append("text")
+        .transition().duration(400)
       .attr("class", "label")
       .attr("x", function(d, i) {
         return x(d.hour) + x.bandwidth() / 2;
@@ -119,6 +165,9 @@ function updateHistogram(filePath, currentStation) {
           return formatPercent(percentRides);
         }
       });
-    // histSVGContainer.exit().remove();
   }) // end d3.csv()
-} // end drawhistSVGContainerogram()
+} // end updateHistogram()
+
+// var times = getPopularStationTimes(data);
+// console.log(times)
+// console.table(getPopularStationTimes(data));
