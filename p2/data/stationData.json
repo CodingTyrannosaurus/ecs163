@@ -1,0 +1,523 @@
+{
+   "type": "FeatureCollection",
+   "features": [
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -122.39997,37.795001 ]
+    },
+    "properties": {
+    "station_id":41,
+    "name":"Clay at Battery",
+    "dockcount":15,
+    "landmark":"San Francisco",
+    "installation":"8/19/13"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -122.398436,37.79728 ]
+    },
+    "properties": {
+    "station_id":42,
+    "name":"Davis at Jackson",
+    "dockcount":15,
+    "landmark":"San Francisco",
+    "installation":"8/19/13"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -122.402923,37.794231 ]
+    },
+    "properties": {
+    "station_id":45,
+    "name":"Commercial at Montgomery",
+    "dockcount":15,
+    "landmark":"San Francisco",
+    "installation":"8/19/13"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -122.404767,37.795425 ]
+    },
+    "properties": {
+    "station_id":46,
+    "name":"Washington at Kearney",
+    "dockcount":15,
+    "landmark":"San Francisco",
+    "installation":"8/19/13"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -122.403452,37.788975 ]
+    },
+    "properties": {
+    "station_id":47,
+    "name":"Post at Kearney",
+    "dockcount":19,
+    "landmark":"San Francisco",
+    "installation":"8/19/13"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -122.398525,37.799953 ]
+    },
+    "properties": {
+    "station_id":48,
+    "name":"Embarcadero at Vallejo",
+    "dockcount":15,
+    "landmark":"San Francisco",
+    "installation":"8/19/13"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -122.390637,37.790302 ]
+    },
+    "properties": {
+    "station_id":49,
+    "name":"Spear at Folsom",
+    "dockcount":19,
+    "landmark":"San Francisco",
+    "installation":"8/20/13"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -122.394203,37.795392 ]
+    },
+    "properties": {
+    "station_id":50,
+    "name":"Harry Bridges Plaza (Ferry Building)",
+    "dockcount":23,
+    "landmark":"San Francisco",
+    "installation":"8/20/13"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -122.391034,37.791464 ]
+    },
+    "properties": {
+    "station_id":51,
+    "name":"Embarcadero at Folsom",
+    "dockcount":19,
+    "landmark":"San Francisco",
+    "installation":"8/20/13"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -122.408433,37.783871 ]
+    },
+    "properties": {
+    "station_id":39,
+    "name":"Powell Street BART",
+    "dockcount":19,
+    "landmark":"San Francisco",
+    "installation":"8/25/13"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -122.388013,37.787152 ]
+    },
+    "properties": {
+    "station_id":54,
+    "name":"Embarcadero at Bryant",
+    "dockcount":15,
+    "landmark":"San Francisco",
+    "installation":"8/20/13"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -122.394643,37.789756 ]
+    },
+    "properties": {
+    "station_id":55,
+    "name":"Temporary Transbay Terminal (Howard at Beale)",
+    "dockcount":23,
+    "landmark":"San Francisco",
+    "installation":"8/20/13"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -122.397086,37.792251 ]
+    },
+    "properties": {
+    "station_id":56,
+    "name":"Beale at Market",
+    "dockcount":19,
+    "landmark":"San Francisco",
+    "installation":"8/20/13"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -122.405127,37.781752 ]
+    },
+    "properties": {
+    "station_id":57,
+    "name":"5th at Howard",
+    "dockcount":15,
+    "landmark":"San Francisco",
+    "installation":"8/21/13"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -122.418235,37.77865 ]
+    },
+    "properties": {
+    "station_id":58,
+    "name":"San Francisco City Hall",
+    "dockcount":19,
+    "landmark":"San Francisco",
+    "installation":"8/21/13"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -122.418603,37.781332 ]
+    },
+    "properties": {
+    "station_id":59,
+    "name":"Golden Gate at Polk",
+    "dockcount":23,
+    "landmark":"San Francisco",
+    "installation":"8/21/13"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -122.403234,37.80477 ]
+    },
+    "properties": {
+    "station_id":60,
+    "name":"Embarcadero at Sansome",
+    "dockcount":15,
+    "landmark":"San Francisco",
+    "installation":"8/21/13"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -122.390288,37.780526 ]
+    },
+    "properties": {
+    "station_id":61,
+    "name":"2nd at Townsend",
+    "dockcount":27,
+    "landmark":"San Francisco",
+    "installation":"8/22/13"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -122.396236,37.785299 ]
+    },
+    "properties": {
+    "station_id":62,
+    "name":"2nd at Folsom",
+    "dockcount":19,
+    "landmark":"San Francisco",
+    "installation":"8/22/13"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -122.398108,37.786978 ]
+    },
+    "properties": {
+    "station_id":63,
+    "name":"Howard at 2nd",
+    "dockcount":19,
+    "landmark":"San Francisco",
+    "installation":"8/22/13"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -122.392738,37.782259 ]
+    },
+    "properties": {
+    "station_id":64,
+    "name":"2nd at South Park",
+    "dockcount":15,
+    "landmark":"San Francisco",
+    "installation":"8/22/13"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -122.402717,37.771058 ]
+    },
+    "properties": {
+    "station_id":65,
+    "name":"Townsend at 7th",
+    "dockcount":15,
+    "landmark":"San Francisco",
+    "installation":"8/22/13"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -122.418954,37.774814 ]
+    },
+    "properties": {
+    "station_id":66,
+    "name":"South Van Ness at Market",
+    "dockcount":19,
+    "landmark":"San Francisco",
+    "installation":"8/23/13"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -122.417385,37.776619 ]
+    },
+    "properties": {
+    "station_id":67,
+    "name":"Market at 10th",
+    "dockcount":27,
+    "landmark":"San Francisco",
+    "installation":"8/23/13"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -122.401014,37.784878 ]
+    },
+    "properties": {
+    "station_id":68,
+    "name":"Yerba Buena Center of the Arts (3rd @ Howard)",
+    "dockcount":19,
+    "landmark":"San Francisco",
+    "installation":"8/23/13"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -122.39547,37.7766 ]
+    },
+    "properties": {
+    "station_id":69,
+    "name":"San Francisco Caltrain 2 (330 Townsend)",
+    "dockcount":23,
+    "landmark":"San Francisco",
+    "installation":"8/23/13"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -122.39526,37.776617 ]
+    },
+    "properties": {
+    "station_id":70,
+    "name":"San Francisco Caltrain (Townsend at 4th)",
+    "dockcount":19,
+    "landmark":"San Francisco",
+    "installation":"8/23/13"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -122.408499,37.788446 ]
+    },
+    "properties": {
+    "station_id":71,
+    "name":"Powell at Post (Union Square)",
+    "dockcount":19,
+    "landmark":"San Francisco",
+    "installation":"8/23/13"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -122.411748,37.781039 ]
+    },
+    "properties": {
+    "station_id":72,
+    "name":"Civic Center BART (7th at Market)",
+    "dockcount":23,
+    "landmark":"San Francisco",
+    "installation":"8/23/13"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -122.405942,37.7979 ]
+    },
+    "properties": {
+    "station_id":73,
+    "name":"Grant Avenue at Columbus Avenue",
+    "dockcount":19,
+    "landmark":"San Francisco",
+    "installation":"5/19/16"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -122.394434,37.794139 ]
+    },
+    "properties": {
+    "station_id":74,
+    "name":"Steuart at Market",
+    "dockcount":23,
+    "landmark":"San Francisco",
+    "installation":"8/25/13"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -122.399051,37.7913 ]
+    },
+    "properties": {
+    "station_id":75,
+    "name":"Mechanics Plaza (Market at Battery)",
+    "dockcount":19,
+    "landmark":"San Francisco",
+    "installation":"8/25/13"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -122.404966,37.786305 ]
+    },
+    "properties": {
+    "station_id":76,
+    "name":"Market at 4th",
+    "dockcount":19,
+    "landmark":"San Francisco",
+    "installation":"8/25/13"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -122.400811,37.789625 ]
+    },
+    "properties": {
+    "station_id":77,
+    "name":"Market at Sansome",
+    "dockcount":27,
+    "landmark":"San Francisco",
+    "installation":"8/25/13"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -122.400862,37.798541 ]
+    },
+    "properties": {
+    "station_id":82,
+    "name":"Broadway St at Battery St",
+    "dockcount":15,
+    "landmark":"San Francisco",
+    "installation":"1/22/14"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -122.403158,37.780148 ]
+    },
+    "properties": {
+    "station_id":90,
+    "name":"5th St at Folsom St",
+    "dockcount":31,
+    "landmark":"San Francisco",
+    "installation":"8/4/16"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -122.408891,37.785908 ]
+    },
+    "properties": {
+    "station_id":91,
+    "name":"Cyril Magnin St at Ellis St",
+    "dockcount":35,
+    "landmark":"San Francisco",
+    "installation":"8/4/16"
+    }
+  }
+]
+}
