@@ -182,10 +182,6 @@ p.indent {
   position: relative;
 }
 
-/*#histogram {
-  width: 60%;
-  height: 500px;
-}*/
 
 .marker {
   stroke: black;
@@ -193,16 +189,21 @@ p.indent {
   fill: #31a354;
 }
 
-#overlay {
+#overlay-top {
   position: absolute;
   width: 100%;
-  top: 0;
   height: 330px;
+  top: -330px;
   background-color: rgba(0,0,0,0.6);
   display: none;
-  top: -330px;
-  /*temp*/
-  /*top:0;*/
+}
+
+#overlay-left {
+  position: absolute;
+  width: 33%;
+  top: 0;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.6);
 }
 
 .histTitle {

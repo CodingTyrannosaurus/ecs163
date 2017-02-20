@@ -1,7 +1,7 @@
 // initial histogram container setup
 
 var margin = {top: 10, right: 30, bottom: 60, left: 30},
-    width = 1000 - margin.left - margin.right,
+    width = 1100 - margin.left - margin.right,
     height = 260 - margin.top - margin.bottom;
 
 var x = d3.scaleBand()
@@ -107,7 +107,7 @@ function updateHistogram(filePath, currentStation) {
       })
       .text(function(d) {
         percentRides = d.rides/allRides;
-        if (percentRides > 0.012) {
+        if (percentRides > 0.015) {
           return formatPercent(percentRides);
         }
       });

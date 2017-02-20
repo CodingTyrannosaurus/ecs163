@@ -1,7 +1,7 @@
 // TODO: Remove overlay pane on map click
 
 function buildMap(csvFile, jsonFile, highlightedStations) {
-  var map = L.map('mapView').setView([37.78975, -122.393452], 15);
+  var map = L.map('mapView').setView([37.78975, -122.393452], 14);
   var mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
 
   L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -62,7 +62,6 @@ function buildMap(csvFile, jsonFile, highlightedStations) {
           // show overlay
           toggleOverlay(d, true);
           currentStationOverlayShown = 1;
-
           updateHistogram("data/hourlyStations.csv", d.properties.start_station)
         }
         selectedStation = d.properties.start_term;
@@ -104,7 +103,7 @@ function buildMap(csvFile, jsonFile, highlightedStations) {
       if (show) {
         // console.log("showing")
         // slide pane onto screen
-        d3.select("#overlay")
+        d3.select("#overlay-top")
         .transition()
         .style("display", "inline")
         .style("top", "0px");
@@ -116,7 +115,7 @@ function buildMap(csvFile, jsonFile, highlightedStations) {
       } else {
         // console.log("hiding")
         // slide pane onto screen
-        d3.select("#overlay")
+        d3.select("#overlay-top")
           .transition()
           .style("top", "-330px")
       }
@@ -124,28 +123,10 @@ function buildMap(csvFile, jsonFile, highlightedStations) {
 
     map.on("viewreset", updateMap);
     updateMap();
-    // drawHistogram("data/hourlyRides.csv", "test");
-    // drawHistogram("data/hourlyRides.csv", "test");
-
-    // // FIXME: Draw using data from each station clicked
-
-    // d3.csv("data/stationshours.csv", filterData(data))
-    //
-    // function filterData(stationName) {
-    //   console.log("returning data from " + stationNumber)
-    //
-    //   var filteredData = 0;
-    //
-      // drawHistogram(filteredData)
-
-    // initial csv load
-    // updateHistogram("data/hourlyRides.csv", "test");
-
   }) // end d3.json()
 } // end buildMap()
 
 
 function selectPopularStations(hour, station) {
-  console.log(hour)
-  console.log(station)
+  buildMap("data/bikedata_subset.csv", "data/startTerm.json", [])
 }
