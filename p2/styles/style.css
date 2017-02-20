@@ -186,7 +186,7 @@ p.indent {
 .marker {
   stroke: black;
   stroke-width: 1px;
-  fill: #31a354;
+  /*fill: #31a354;*/
 }
 
 #overlay-top {

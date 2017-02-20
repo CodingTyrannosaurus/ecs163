@@ -51,7 +51,7 @@
     },
     "properties": {
     "station_id":46,
-    "name":"Washington at Kearney",
+    "name":"Washington at Kearny",
     "dockcount":15,
     "landmark":"San Francisco",
     "installation":"8/19/13"
@@ -65,7 +65,7 @@
     },
     "properties": {
     "station_id":47,
-    "name":"Post at Kearney",
+    "name":"Post at Kearny",
     "dockcount":19,
     "landmark":"San Francisco",
     "installation":"8/19/13"
@@ -489,34 +489,6 @@
     "dockcount":15,
     "landmark":"San Francisco",
     "installation":"1/22/14"
-    }
-  },
-  {
-    "type": "Feature",
-    "geometry": {
-       "type": "Point",
-       "coordinates":  [ -122.403158,37.780148 ]
-    },
-    "properties": {
-    "station_id":90,
-    "name":"5th St at Folsom St",
-    "dockcount":31,
-    "landmark":"San Francisco",
-    "installation":"8/4/16"
-    }
-  },
-  {
-    "type": "Feature",
-    "geometry": {
-       "type": "Point",
-       "coordinates":  [ -122.408891,37.785908 ]
-    },
-    "properties": {
-    "station_id":91,
-    "name":"Cyril Magnin St at Ellis St",
-    "dockcount":35,
-    "landmark":"San Francisco",
-    "installation":"8/4/16"
     }
   }
 ]

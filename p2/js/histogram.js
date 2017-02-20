@@ -1,3 +1,8 @@
+// TODO: Write function to choose each station's most popular timeslot
+function getPopularStationTimes(data) {
+  return data.filter(function(d) { return d.rides > 50; })
+}
+
 // initial histogram container setup
 
 var margin = {top: 10, right: 30, bottom: 60, left: 30},
@@ -50,6 +55,10 @@ function updateHistogram(filePath, currentStation) {
       allRides = allRides + d.rides;
     });
 
+    // var times = getPopularStationTimes(data);
+    // console.log(times)
+    console.table(getPopularStationTimes(data));
+
     // create tooltip
     // var tooltip = d3.tip()
     //   .attr("class", "d3-tip")
@@ -63,7 +72,7 @@ function updateHistogram(filePath, currentStation) {
     // map hours in data to x axis
     x.domain(data.map(function(d) { return d.hour; }));
     // compute upper bound of y domain
-    y.domain([0, d3.max(data, function(d) { console.log(d.rides); return d.rides })]);
+    y.domain([0, d3.max(data, function(d) { return d.rides })]);
 
     // add x axis
     histSVGContainer.append("g")
@@ -90,7 +99,6 @@ function updateHistogram(filePath, currentStation) {
       })
 
     var formatPercent = d3.format(",.0%");
-    // CRAZY BUG
     var percentLabels = histSVGContainer.selectAll("text.labels")
     // should it be exit, remove or remove, exit?
       // .remove()
