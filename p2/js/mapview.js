@@ -1,6 +1,6 @@
 // TODO: Remove overlay pane on map click
 
-function buildMap(csvFile, jsonFile) {
+function buildMap(csvFile, jsonFile, highlightedStations) {
   var map = L.map('mapView').setView([37.78975, -122.393452], 15);
   var mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
 
@@ -141,6 +141,11 @@ function buildMap(csvFile, jsonFile) {
     // initial csv load
     // updateHistogram("data/hourlyRides.csv", "test");
 
-
   }) // end d3.json()
 } // end buildMap()
+
+
+function selectPopularStations(hour, station) {
+  console.log(hour)
+  console.log(station)
+}

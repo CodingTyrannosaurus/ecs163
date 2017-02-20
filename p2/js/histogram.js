@@ -17,32 +17,36 @@ var xAxis = d3.axisBottom()
 var yAxis = d3.axisLeft()
   .scale(y)
 
-var histSVGContainer = d3.select("#histogram")
-  .append("svg")
+function updateHistogram(filePath, currentStation) {
+
+  // FIXME: REMOVE WITH UPDATE PATTERN, ADD TRANSITIONS
+    d3.select("#histogram").selectAll("svg").remove()
+
+    var histSVGContainer = d3.select("#histogram")
+    .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
 
-var xAxisLabel = histSVGContainer.append("text")
-  .text("Rides by Hour (% Total Rides)")
-  .attr("class", "histTitle")
-  .style("text-anchor", "middle")
-  .attr("x", width/2)
-  .attr("y", 245);
+    var xAxisLabel = histSVGContainer.append("text")
+      .text("Rides by Hour (% Total Rides)")
+      .attr("class", "histTitle")
+      .style("text-anchor", "middle")
+      .attr("x", width/2)
+      .attr("y", 245);
 
-function updateHistogram(filePath, currentStation) {
+  // END REMOVE & REDRAW
+
+  // count total # of rides for percentage calculation
   var allRides = 0;
 
   // all data usage must occur in async d3.csv call
   d3.csv(filePath, function(error, data) {
-
     // filter data based on station
     var data = data.filter(function(d) { return d.station == currentStation; })
 
     data.forEach(function(d) {
       d.rides = +d.rides
       d.hour = +d.hour
-
-      // count total # of rides for percentage calculation
       allRides = allRides + d.rides;
     });
 
@@ -52,8 +56,9 @@ function updateHistogram(filePath, currentStation) {
     //   .direction('n')
     //   .offset([-10, 0])
     //   .html(function(d) {
-    //     return d.properties.start_station
+    //     return d.hour
     //   })
+    //
 
     // map hours in data to x axis
     x.domain(data.map(function(d) { return d.hour; }));
@@ -75,10 +80,13 @@ function updateHistogram(filePath, currentStation) {
       .attr("y", function(d) { return y(d.rides); })
       .attr("height", function(d) { return height - y(d.rides); })
       .on("mouseover", function(d) {
-        console.log("mouse")
-        // console.log("over: " + selectedStation)
+        selectPopularStations(d.hour, d.station)
         d3.select(this)
-          .style("fill", "red");
+          .style("fill", "#43a2ca");
+      })
+      .on("mouseout", function(d) {
+        d3.select(this)
+          .style("fill", "#7BC8BD");
       })
 
     var formatPercent = d3.format(",.0%");
