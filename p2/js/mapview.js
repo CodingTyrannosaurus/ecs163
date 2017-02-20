@@ -1,19 +1,22 @@
 // TODO: Remove overlay pane on map click
 
-function buildMap(csvFile, jsonFile, highlightedStations) {
-  var map = L.map('mapView').setView([37.78975, -122.393452], 14);
-  var mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
+// initial map setup
 
-  L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; ' + mapLink + ' Contributors',
-    maxZoom: 18,
-  }).addTo(map);
+var map = L.map('mapView').setView([37.78975, -122.393452], 14);
+var mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
 
-  // FIXME: still not sure why this is needed
-  map._initPathRoot();
+L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; ' + mapLink + ' Contributors',
+  maxZoom: 18,
+}).addTo(map);
 
-  map.doubleClickZoom.disable();
+// FIXME: still not sure why this is needed
+map._initPathRoot();
 
+map.doubleClickZoom.disable();
+
+function updateMap(jsonFile, selectedStations) {
+  // REMOVAL PATTERN
   var mapSvg = d3.select("#mapView")
     .select("svg")
 
@@ -90,18 +93,17 @@ function buildMap(csvFile, jsonFile, highlightedStations) {
         }
       })
 
-    function updateMap() {
- 		   feature.attr("transform",
- 		   function(d) {
-   	     return "translate("+
-   		    map.latLngToLayerPoint(d.LatLng).x +","+
-   				map.latLngToLayerPoint(d.LatLng).y +")";
-   			}
- 		)}
+    function updateMarkerPositions() {
+       feature.attr("transform",
+       function(d) {
+         return "translate("+
+          map.latLngToLayerPoint(d.LatLng).x +","+
+          map.latLngToLayerPoint(d.LatLng).y +")";
+        }
+    )}
 
     function toggleOverlay(selectedPoint, show) {
       if (show) {
-        // console.log("showing")
         // slide pane onto screen
         d3.select("#overlay-top")
         .transition()
@@ -113,7 +115,6 @@ function buildMap(csvFile, jsonFile, highlightedStations) {
             return selectedPoint.properties.start_station;
           })
       } else {
-        // console.log("hiding")
         // slide pane onto screen
         d3.select("#overlay-top")
           .transition()
@@ -121,12 +122,12 @@ function buildMap(csvFile, jsonFile, highlightedStations) {
       }
     } // end toggleOverlay()
 
-    map.on("viewreset", updateMap);
-    updateMap();
+    map.on("viewreset", updateMarkerPositions);
+    updateMarkerPositions();
   }) // end d3.json()
-} // end buildMap()
+} // end updateMap()
 
 
 function selectPopularStations(hour, station) {
-  buildMap("data/bikedata_subset.csv", "data/startTerm.json", [])
+  updateMap("data/startTerm.json", [])
 }

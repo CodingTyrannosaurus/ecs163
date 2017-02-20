@@ -63,7 +63,7 @@ function updateHistogram(filePath, currentStation) {
     // map hours in data to x axis
     x.domain(data.map(function(d) { return d.hour; }));
     // compute upper bound of y domain
-    y.domain([0, d3.max(data, function(d) { return d.rides })]);
+    y.domain([0, d3.max(data, function(d) { console.log(d.rides); return d.rides })]);
 
     // add x axis
     histSVGContainer.append("g")
