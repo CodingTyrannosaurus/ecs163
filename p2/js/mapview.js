@@ -45,12 +45,11 @@ function drawMapMarkers(jsonFile) {
     var currentStationOverlayShown = 0;
 
     // create circles for each feature
-    var feature = g.selectAll(".marker")
+    var marker = g.selectAll(".marker")
       .data(mapData.features)
       .enter().append("circle")
       .attr("pointer-events","visible")
       .attr("r", 12)
-      // .attr("r", function(d) { return d.properties.dockcount * 0.5 } )
       .attr("class", "marker")
       .style("fill", "#31a354")
       .on("click", function (d) {
@@ -94,8 +93,13 @@ function drawMapMarkers(jsonFile) {
         }
       })
 
+    // marker.transition()
+    //   .duration(1500)
+    //   .delay(800)
+    //   .attr("r", function(d) { return d.properties.dockcount * 0.75 } )
+
     function updateMarkerPositions() {
-       feature.attr("transform",
+       marker.attr("transform",
        function(d) {
          return "translate("+
           map.latLngToLayerPoint(d.LatLng).x +","+
@@ -150,8 +154,6 @@ function updateMapMarkers(jsonFile, popularStations) {
       .attr("r", 12)
       .attr("r", function(d) { return d.properties.dockcount * 0.5 } )
       .attr("class", "marker")
-      .transition()
-      .duration(200)
       .style("fill", randomFill)
   }) // end d3.json()
 } // end drawMapMarkers

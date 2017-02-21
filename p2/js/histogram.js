@@ -18,10 +18,13 @@ var y = d3.scaleLinear()
 
 var xAxis = d3.axisBottom()
   .scale(x)
+  // .tickFormat(formatPercent);
 
 var yAxis = d3.axisLeft()
   .scale(y)
 
+var formatHours = d3.timeFormat("%I");
+// console.log(formatHours())
 
 function drawHistogram(filePath) {
   var histSVGContainer = d3.select("#histogram")
@@ -45,6 +48,7 @@ function drawHistogram(filePath) {
       var data = data.filter(function(d) { return (d.station == "2nd at Folsom" && d.hour > 5); })
 
       data.forEach(function(d) {
+        console.log(formatHours(d.hour))
         d.rides = +d.rides
         d.hour = +d.hour
         allRides = allRides + d.rides;
@@ -59,7 +63,8 @@ function drawHistogram(filePath) {
       histSVGContainer.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + height + ")")
-        .call(xAxis);
+        .call(xAxis)
+          // .tickFormat;
 
       // create tooltip
       var tooltip = d3.tip()
