@@ -6,7 +6,7 @@ function getPopularStationTimes(data) {
 // initial histogram container setup
 
 var margin = {top: 10, right: 30, bottom: 60, left: 30},
-    width = 1100 - margin.left - margin.right,
+    width = 800 - margin.left - margin.right,
     height = 260 - margin.top - margin.bottom;
 
 var x = d3.scaleBand()
@@ -41,11 +41,8 @@ function drawHistogram(filePath) {
 
     // all data usage must occur in async d3.csv call
     d3.csv(filePath, function(error, data) {
-      // filter data based on station
-
       // use first station on initial load, user never sees this
-      var data = data.filter(function(d) { return d.station == "2nd at Folsom"; })
-      // var data = data.filter(function(d) { return d.hour > 5; })
+      var data = data.filter(function(d) { return (d.station == "2nd at Folsom" && d.hour > 5); })
 
       data.forEach(function(d) {
         d.rides = +d.rides
@@ -75,14 +72,12 @@ function drawHistogram(filePath) {
 
       histSVGContainer.call(tooltip)
 
+      // I add all the visual calculations in update because first run isn't visible
+
       histSVGContainer.selectAll("rect")
         .data(data)
       .enter().append("rect")
         .attr("class", "bar")
-        .attr("width", x.bandwidth())
-        .attr("x", function(d) { return x(d.hour); })
-        .attr("y", function(d) { return y(d.rides); })
-        .attr("height", function(d) { return height - y(d.rides); })
         .on("mouseover", function(d) {
           tooltip.show(d)
           selectPopularStations(d.hour, d.station)
@@ -95,23 +90,11 @@ function drawHistogram(filePath) {
             .style("fill", "#7BC8BD");
         })
 
-      var formatPercent = d3.format(",.0%");
+      // var formatPercent = d3.format(",.0%");
       var percentLabels = histSVGContainer.selectAll("text.label")
           .data(data)
         .enter().append("text")
         .attr("class", "label")
-        .attr("x", function(d, i) {
-          return x(d.hour) + x.bandwidth() / 2;
-        })
-        .attr("y", function(d) {
-            return y(d.rides) + 18;
-        })
-        .text(function(d) {
-          percentRides = d.rides/allRides;
-          if (percentRides > 0.015) {
-            return formatPercent(percentRides);
-          }
-        });
     }) // end d3.csv()
 } // end drawHistogram()
 
@@ -125,8 +108,10 @@ function updateHistogram(filePath, currentStation) {
   // all data usage must occur in async d3.csv call
   d3.csv(filePath, function(error, data) {
     // filter data based on station
-    var data = data.filter(function(d) { return d.station == currentStation; })
-    
+    var data = data.filter(function(d) { return (d.station == currentStation && d.hour > 5); })
+    // var data = data.filter(function(d) { return d.hour > 5; })
+
+
     data.forEach(function(d) {
       d.rides = +d.rides
       d.hour = +d.hour
@@ -143,7 +128,6 @@ function updateHistogram(filePath, currentStation) {
       .data(data)
       .transition()
       .duration(400)
-      // .attr("class", "bar")
       .attr("width", x.bandwidth())
       .attr("x", function(d) { return x(d.hour); })
       .attr("y", function(d) { return y(d.rides); })

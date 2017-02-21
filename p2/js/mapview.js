@@ -16,22 +16,16 @@ map._initPathRoot();
 map.doubleClickZoom.disable();
 
 function drawMapMarkers(jsonFile) {
-  // FIXME: REMOVE WITH UPDATE PATTERN, ADD TRANSITIONS
-  // d3.select("#mapView").selectAll("g").remove()
-
   var mapSvg = d3.select("#mapView")
     .select("svg")
-    // .append("svg")
 
   var g = mapSvg.append("g")
     .attr("class", "leaflet-zoom-hide");
 
-  // END REMOVE & REDRAW
-
   d3.json(jsonFile, function(error, mapData) {
     if (error) throw error;
 
-    // coordinates are backwards
+    // gives leaflet ability to redraw using coordinates
     mapData.features.forEach(function(d) {
       d.LatLng = new L.LatLng(d.geometry.coordinates[1], d.geometry.coordinates[0])
     })
@@ -49,7 +43,6 @@ function drawMapMarkers(jsonFile) {
 
     var selectedStation = 0;
     var currentStationOverlayShown = 0;
-
 
     // create circles for each feature
     var feature = g.selectAll(".marker")
@@ -112,11 +105,9 @@ function drawMapMarkers(jsonFile) {
 
     function toggleOverlay(selectedPoint, show) {
       if (show) {
-        // console.log("showing")
         // slide pane onto screen
         d3.select("#overlay-top")
           .transition()
-          // .duration(300)
           .style("display", "inline")
           .style("top", "0px");
 
@@ -125,7 +116,6 @@ function drawMapMarkers(jsonFile) {
             return selectedPoint.properties.name;
           })
       } else {
-        // console.log("hiding")
         // slide pane onto screen
         d3.select("#overlay-top")
           .transition()
@@ -142,8 +132,14 @@ function updateMapMarkers(jsonFile, popularStations) {
   var mapSvg = d3.select("#mapView").select("svg")
   var g = d3.select("g")
 
+
   d3.json(jsonFile, function(error, mapData) {
     if (error) throw error;
+
+    // gives leaflet ability to redraw using coordinates
+    mapData.features.forEach(function(d) {
+      d.LatLng = new L.LatLng(d.geometry.coordinates[1], d.geometry.coordinates[0])
+    })
 
     var randomFill = d3.interpolateCool(Math.random());
 
@@ -154,12 +150,11 @@ function updateMapMarkers(jsonFile, popularStations) {
       .attr("r", 12)
       .attr("r", function(d) { return d.properties.dockcount * 0.5 } )
       .attr("class", "marker")
+      .transition()
+      .duration(200)
       .style("fill", randomFill)
   }) // end d3.json()
 } // end drawMapMarkers
-
-
-
 
 function selectPopularStations(hour, station) {
   // second param is stations to highlight at hour
