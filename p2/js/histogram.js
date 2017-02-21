@@ -45,7 +45,7 @@ function drawHistogram(filePath) {
 
       // use first station on initial load, user never sees this
       var data = data.filter(function(d) { return d.station == "2nd at Folsom"; })
-      var data = data.filter(function(d) { return d.hour > 5; })
+      // var data = data.filter(function(d) { return d.hour > 5; })
 
       data.forEach(function(d) {
         d.rides = +d.rides
@@ -113,7 +113,7 @@ function drawHistogram(filePath) {
           }
         });
     }) // end d3.csv()
-}
+} // end drawHistogram()
 
 
 function updateHistogram(filePath, currentStation) {
@@ -126,10 +126,7 @@ function updateHistogram(filePath, currentStation) {
   d3.csv(filePath, function(error, data) {
     // filter data based on station
     var data = data.filter(function(d) { return d.station == currentStation; })
-
-    // removes late night data
-    // var data = data.filter(function(d) { return d.hour > 5; })
-
+    
     data.forEach(function(d) {
       d.rides = +d.rides
       d.hour = +d.hour
@@ -146,7 +143,7 @@ function updateHistogram(filePath, currentStation) {
       .data(data)
       .transition()
       .duration(400)
-      .attr("class", "bar")
+      // .attr("class", "bar")
       .attr("width", x.bandwidth())
       .attr("x", function(d) { return x(d.hour); })
       .attr("y", function(d) { return y(d.rides); })

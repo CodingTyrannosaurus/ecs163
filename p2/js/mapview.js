@@ -15,9 +15,9 @@ map._initPathRoot();
 
 map.doubleClickZoom.disable();
 
-function updateMap(jsonFile, selectedStations) {
+function drawMapMarkers(jsonFile) {
   // FIXME: REMOVE WITH UPDATE PATTERN, ADD TRANSITIONS
-  d3.select("#mapView").selectAll("g").remove()
+  // d3.select("#mapView").selectAll("g").remove()
 
   var mapSvg = d3.select("#mapView")
     .select("svg")
@@ -50,7 +50,6 @@ function updateMap(jsonFile, selectedStations) {
     var selectedStation = 0;
     var currentStationOverlayShown = 0;
 
-    // var randomFill = d3.interpolateCool(Math.random());
 
     // create circles for each feature
     var feature = g.selectAll(".marker")
@@ -137,9 +136,32 @@ function updateMap(jsonFile, selectedStations) {
     map.on("viewreset", updateMarkerPositions);
     updateMarkerPositions();
   }) // end d3.json()
-} // end updateMap()
+} // end drawMapMarkers
+
+function updateMapMarkers(jsonFile, popularStations) {
+  var mapSvg = d3.select("#mapView").select("svg")
+  var g = d3.select("g")
+
+  d3.json(jsonFile, function(error, mapData) {
+    if (error) throw error;
+
+    var randomFill = d3.interpolateCool(Math.random());
+
+    // create circles for each feature
+    var feature = g.selectAll(".marker")
+      .data(mapData.features)
+      .attr("pointer-events","visible")
+      .attr("r", 12)
+      .attr("r", function(d) { return d.properties.dockcount * 0.5 } )
+      .attr("class", "marker")
+      .style("fill", randomFill)
+  }) // end d3.json()
+} // end drawMapMarkers
+
+
 
 
 function selectPopularStations(hour, station) {
-  updateMap("data/stationData.geojson", [])
+  // second param is stations to highlight at hour
+  updateMapMarkers("data/stationData.geojson", [])
 }
