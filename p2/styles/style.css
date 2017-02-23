@@ -53,62 +53,6 @@ p.indent {
   font-size: 18px;
 }
 
-/***** scatter plot styling *****/
-.dot {
-  fill-opacity: 0.8;
-  stroke: #5C5C5C;
-  stroke-width: 0.8px;
-}
-
-.ucdot {
-  fill-opacity: 0.8;
-  stroke: black;
-  stroke-width: 0.8px;
-  fill: rgb(31, 119, 180);
-}
-
-.ucdot:hover {
-  fill-opacity: 1.0;
-  stroke: black;
-  stroke-width: 2.5px;
-}
-
-.dot:hover {
-  fill-opacity: 1.0;
-  stroke: black;
-  stroke-width: 2.5px;
-}
-
-/***** pie chart styling *****/
-
-.allpies {
-  margin-top: 15px;
-  margin-bottom: 15px;
-}
-
-.pie {
-  min-width: 250px;
-  min-height: 250px;
-}
-
-.arc path {
-  stroke: #fff
-}
-
-.arc path:hover {
-  fill-opacity: 1.0;
-  stroke-width: 2.5px;
-  stroke: black;
-}
-
-.arc {
-  fill-opacity: 0.8;
-}
-
-.arc:hover {
-  stroke-width: 2px;
-}
-
 /***** line chart styling *****/
 .line {
   fill: none;
@@ -131,7 +75,7 @@ p.indent {
 }
 
 .axis text {
-  font-size: 14px;
+  font-size: 12px;
   fill: #FFF;
   font-family: 'Roboto', sans-serif;
 }
@@ -172,8 +116,6 @@ p.indent {
   left: 0;
 }
 
-
-
 /***** map styling *****/
 #mapView {
   width: 100%;
@@ -192,22 +134,34 @@ p.indent {
 #overlay-top {
   position: absolute;
   width: 100%;
-  height: 330px;
-  top: -330px;
+  height: 280px;
+  top: -280px;
   background-color: rgba(0,0,0,0.6);
   display: none;
 }
 
-#overlay-left {
+#overlay-top-left {
+  display: inline-block;
+  width: 80%;
+}
+
+#overlay-top-right {
+  display: inline-block;
+  width: 20%;
+}
+
+
+#overlay-right {
   position: absolute;
-  width: 33%;
-  top: 0;
+  width: 300px;
   height: 100vh;
+  top: 0;
+  right: 0;
   background-color: rgba(0,0,0,0.6);
 }
 
 .histTitle {
-  font-size: 18px;
+  font-size: 16px;
   font-family: 'Roboto', sans-serif;
   fill: white;
 }
@@ -235,4 +189,52 @@ svg text.label {
   font: 15px 'Roboto', sans-serif;
   font-weight: 400;
   text-anchor: middle;
+}
+
+#controller {
+  background-color: blue;
+  width: 20%;
+  display: inline-block;
+  /*position: relative;*/
+  /*left: 0;*/
+  /*float: left;*/
+}
+
+#histogram {
+
+}
+
+/* slider styles */
+.ticks {
+  font: 10px sans-serif;
+}
+
+.track,
+.track-inset,
+.track-overlay {
+  stroke-linecap: round;
+}
+
+.track {
+  stroke: #000;
+  stroke-opacity: 0.3;
+  stroke-width: 10px;
+}
+
+.track-inset {
+  stroke: #ddd;
+  stroke-width: 8px;
+}
+
+.track-overlay {
+  pointer-events: stroke;
+  stroke-width: 50px;
+  cursor: crosshair;
+}
+
+.handle {
+  fill: #fff;
+  stroke: #000;
+  stroke-opacity: 0.5;
+  stroke-width: 1.25px;
 }

@@ -4,10 +4,9 @@ function getPopularStationTimes(data) {
 }
 
 // initial histogram container setup
-
-var margin = {top: 10, right: 30, bottom: 60, left: 30},
-    width = 800 - margin.left - margin.right,
-    height = 260 - margin.top - margin.bottom;
+var margin = {top: 10, right: 30, bottom: 10, left: 30},
+    width = 700 - margin.left - margin.right,
+    height = 140 - margin.top - margin.bottom;
 
 var x = d3.scaleBand()
   .rangeRound([0, width])
@@ -18,13 +17,9 @@ var y = d3.scaleLinear()
 
 var xAxis = d3.axisBottom()
   .scale(x)
-  // .tickFormat(formatPercent);
 
 var yAxis = d3.axisLeft()
   .scale(y)
-
-var formatHours = d3.timeFormat("%I");
-// console.log(formatHours())
 
 function drawHistogram(filePath) {
   var histSVGContainer = d3.select("#histogram")
@@ -45,17 +40,17 @@ function drawHistogram(filePath) {
     // all data usage must occur in async d3.csv call
     d3.csv(filePath, function(error, data) {
       // use first station on initial load, user never sees this
-      var data = data.filter(function(d) { return (d.station == "2nd at Folsom" && d.hour > 5); })
+      var data = data.filter(function(d) { return (d.station == "2nd at Folsom" && d.hour > 5 && d.hour < 22); })
 
       data.forEach(function(d) {
-        console.log(formatHours(d.hour))
+        d.date = new Date(2017, 0, 0, d.hour, 0, 0)
         d.rides = +d.rides
         d.hour = +d.hour
         allRides = allRides + d.rides;
       });
 
       // map hours in data to x axis
-      x.domain(data.map(function(d) { return d.hour; }));
+      x.domain(data.map(function(d) { return d.date; }));
       // compute upper bound of y domain
       y.domain([0, d3.max(data, function(d) { return d.rides })]);
 
@@ -63,8 +58,9 @@ function drawHistogram(filePath) {
       histSVGContainer.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + height + ")")
-        .call(xAxis)
-          // .tickFormat;
+        .call(
+          xAxis.tickFormat(d3.timeFormat("%_I%p"))
+        );
 
       // create tooltip
       var tooltip = d3.tip()
@@ -95,7 +91,6 @@ function drawHistogram(filePath) {
             .style("fill", "#7BC8BD");
         })
 
-      // var formatPercent = d3.format(",.0%");
       var percentLabels = histSVGContainer.selectAll("text.label")
           .data(data)
         .enter().append("text")
@@ -113,9 +108,7 @@ function updateHistogram(filePath, currentStation) {
   // all data usage must occur in async d3.csv call
   d3.csv(filePath, function(error, data) {
     // filter data based on station
-    var data = data.filter(function(d) { return (d.station == currentStation && d.hour > 5); })
-    // var data = data.filter(function(d) { return d.hour > 5; })
-
+    var data = data.filter(function(d) { return (d.station == currentStation && d.hour > 5 && d.hour < 22); })
 
     data.forEach(function(d) {
       d.rides = +d.rides
@@ -152,12 +145,8 @@ function updateHistogram(filePath, currentStation) {
       .text(function(d) {
         percentRides = d.rides/allRides;
         if (percentRides > 0.015) {
-          return formatPercent(percentRides);
+          return formatPercent((Math.round(100 * percentRides)/100));
         }
       });
   }) // end d3.csv()
 } // end updateHistogram()
-
-// var times = getPopularStationTimes(data);
-// console.log(times)
-// console.table(getPopularStationTimes(data));

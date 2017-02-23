@@ -136,7 +136,6 @@ function updateMapMarkers(jsonFile, popularStations) {
   var mapSvg = d3.select("#mapView").select("svg")
   var g = d3.select("g")
 
-
   d3.json(jsonFile, function(error, mapData) {
     if (error) throw error;
 
@@ -151,7 +150,8 @@ function updateMapMarkers(jsonFile, popularStations) {
     var feature = g.selectAll(".marker")
       .data(mapData.features)
       .attr("pointer-events","visible")
-      .attr("r", 12)
+      // .attr("r", 12)
+      .transition().duration(500)
       .attr("r", function(d) { return d.properties.dockcount * 0.5 } )
       .attr("class", "marker")
       .style("fill", randomFill)
