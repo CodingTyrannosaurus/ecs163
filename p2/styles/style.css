@@ -160,6 +160,15 @@ p.indent {
   background-color: rgba(0,0,0,0.6);
 }
 
+#overlay-bottom {
+  position: fixed;
+  width: 100%;
+  height: 80px;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.6);
+}
+
 .histTitle {
   font-size: 16px;
   font-family: 'Roboto', sans-serif;

@@ -4,35 +4,41 @@ function getPopularStationTimes(data) {
 }
 
 // initial histogram container setup
-var margin = {top: 10, right: 30, bottom: 10, left: 30},
-    width = 700 - margin.left - margin.right,
-    height = 140 - margin.top - margin.bottom;
+var histMargin = {top: 10, right: 30, bottom: 50, left: 30},
+    histWidth = 700 - histMargin.left - histMargin.right,
+    histHeight = 220 - histMargin.top - histMargin.bottom;
 
-var x = d3.scaleBand()
-  .rangeRound([0, width])
+var histX = d3.scaleBand()
+  .rangeRound([0, histWidth])
   .padding(0.1);
 
-var y = d3.scaleLinear()
-  .range([height, 0]);
+var histY = d3.scaleLinear()
+  .range([histHeight, 0]);
 
 var xAxis = d3.axisBottom()
-  .scale(x)
+  .scale(histX)
 
 var yAxis = d3.axisLeft()
-  .scale(y)
+  .scale(histY)
 
 function drawHistogram(filePath) {
+
+  var x = histX;
+  var y = histY;
+
   var histSVGContainer = d3.select("#histogram")
     .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+    .attr("width", histWidth + histMargin.left + histMargin.right)
+    .attr("height", histHeight + histMargin.top + histMargin.bottom)
 
   var xAxisLabel = histSVGContainer.append("text")
     .text("Rides by Hour (% Total Rides)")
     .attr("class", "histTitle")
+    .attr("transform", "translate("+ (histWidth/2) +","+ histHeight +")")
+    // .attr("y", histMargin.bottom - 10)
     .style("text-anchor", "middle")
-    .attr("x", width/2)
-    .attr("y", 245);
+    // .attr("x", width/2)
+    .attr("y", histMargin.bottom);
 
     // count total # of rides for percentage calculation
     var allRides = 0;
@@ -57,7 +63,7 @@ function drawHistogram(filePath) {
       // add x axis
       histSVGContainer.append("g")
         .attr("class", "x axis")
-        .attr("transform", "translate(0," + height + ")")
+        .attr("transform", "translate(0," + histHeight + ")")
         .call(
           xAxis.tickFormat(d3.timeFormat("%_I%p"))
         );
@@ -100,6 +106,10 @@ function drawHistogram(filePath) {
 
 
 function updateHistogram(filePath, currentStation) {
+
+  var x = histX;
+  var y = histY;
+
   var histSVGContainer = d3.select("#histogram")
 
   // count total # of rides for percentage calculation
@@ -129,7 +139,7 @@ function updateHistogram(filePath, currentStation) {
       .attr("width", x.bandwidth())
       .attr("x", function(d) { return x(d.hour); })
       .attr("y", function(d) { return y(d.rides); })
-      .attr("height", function(d) { return height - y(d.rides); })
+      .attr("height", function(d) { return histHeight - y(d.rides); })
 
     var formatPercent = d3.format(",.0%");
     histSVGContainer.selectAll("text.label")
