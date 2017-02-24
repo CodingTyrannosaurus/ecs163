@@ -2,23 +2,22 @@ function drawSlider(fileName) {
   var parseDate = d3.timeParse("%m/%d/%y");
 
   var width = 960, height = 100;
-  var margin = {right: 30, left: 30};
+  var margin = {right: 30, left: 30, top: 10, bottom: 10};
 
   var svg = d3.select("#slider")
     .append("svg")
     .attr("width", width + margin.left + margin.right)
-    .attr("height", height)
+    .attr("height", height + margin.top + margin.bottom)
 
   var newWidth = width - margin.left - margin.right;
 
   var slider = svg.append("g")
     .attr("class", "slider")
-    .attr("transform", "translate(" + margin.left + "," + height / 2 + ")");
+    .attr("transform", "translate(" + margin.left + "," + height / 3 + ")");
 
   var xSlider = d3.scaleTime()
     .range([0, width])
     .clamp(true);
-
 
   d3.csv("data/factorsSF.csv", function(error, data) {
     if (error) throw error;
@@ -34,7 +33,8 @@ function drawSlider(fileName) {
 
     svg.append("g")
       .attr("class", "x axis")
-      .attr("transform", "translate(30," + 60 + ")")
+      .attr("id", "sliderAxis")
+      .attr("transform", "translate(30," + height / 2.3 + ")")
       .call(xAxis);
 
     slider.append("line")
@@ -48,7 +48,7 @@ function drawSlider(fileName) {
       .attr("class", "track-overlay")
       .call(d3.drag()
         .on("start.interrupt", function() { slider.interrupt(); })
-        .on("start drag", function(d) { moveSlider(xSlider.invert(d3.event.x), d); }));
+        .on("start drag", function(d) { moveSlider(xSlider.invert(d3.event.x)); }));
 
     // slider.insert("g", ".track-overlay")
     //     .attr("class", "ticks")
@@ -64,10 +64,32 @@ function drawSlider(fileName) {
       .attr("class", "handle")
       .attr("r", 9);
 
-    function moveSlider(xPos, d) {
-      console.log(d.temp)
-      console.log(d.customer)
-      handle.attr("cx", xSlider(xPos));
+    function moveSlider(date) {
+      var sliderDay = d3.timeDay.floor(date);
+      // console.log(sliderDay)
+      // console.log(data[0].date)
+      var dataForDay = data.filter(function(d) { console.log(); return (d.date.getTime() == sliderDay.getTime()); })[0];
+      $("#temperature").replaceWith("<div id=\"temperature\">" + dataForDay.temp + "°" + "</div>")
+      if (dataForDay.rain == 1) {
+        $("#rain").css('opacity', '1.0');
+      } else {
+        $("#rain").css('opacity', '0.2');
+      }
+
+      if (dataForDay.Giants == 1) {
+        $("#giants").css('opacity', '1.0');
+      } else {
+        $("#giants").css('opacity', '0.2');
+      }
+
+      if (dataForDay.holiday == 1) {
+        $("#holiday").css('opacity', '1.0');
+      } else {
+        $("#holiday").css('opacity', '0.2');
+      }
+
+      // console.log(d.customer)
+      handle.attr("cx", xSlider(date));
     }
   });
 }

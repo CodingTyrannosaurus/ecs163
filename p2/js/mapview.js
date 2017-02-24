@@ -15,9 +15,12 @@ map._initPathRoot();
 
 map.doubleClickZoom.disable();
 
+var mapSvg = d3.select("#mapView")
+  .select("svg")
+
 function drawMapMarkers(jsonFile) {
-  var mapSvg = d3.select("#mapView")
-    .select("svg")
+  // var mapSvg = d3.select("#mapView")
+  //   .select("svg")
 
   var g = mapSvg.append("g")
     .attr("class", "leaflet-zoom-hide");
@@ -93,6 +96,7 @@ function drawMapMarkers(jsonFile) {
         }
       })
 
+
     // marker.transition()
     //   .duration(1500)
     //   .delay(800)
@@ -114,11 +118,6 @@ function drawMapMarkers(jsonFile) {
           .transition()
           .style("display", "inline")
           .style("top", "0px");
-
-        d3.selectAll(".cityLabel")
-          .text(function(d) {
-            return selectedPoint.properties.name;
-          })
       } else {
         // slide pane onto screen
         d3.select("#overlay-top")
@@ -126,6 +125,14 @@ function drawMapMarkers(jsonFile) {
           .style("top", "-330px")
       }
     } // end toggleOverlay()
+
+    // lasso
+    // var lasso = setupLasso();
+    // console.log(lasso)
+    // init lasso on svg that contains markers
+    // g.call(lasso);
+
+    // lasso.items(d3.selectAll(".marker"));
 
     map.on("viewreset", updateMarkerPositions);
     updateMarkerPositions();
@@ -151,10 +158,10 @@ function updateMapMarkers(jsonFile, popularStations) {
       .data(mapData.features)
       .attr("pointer-events","visible")
       // .attr("r", 12)
-      .transition().duration(500)
-      .attr("r", function(d) { return d.properties.dockcount * 0.5 } )
-      .attr("class", "marker")
-      .style("fill", randomFill)
+      // .transition().duration(500)
+      // .attr("r", function(d) { return d.properties.dockcount * 0.5 } )
+      // .attr("class", "marker")
+      // .style("fill", randomFill)
   }) // end d3.json()
 } // end drawMapMarkers
 
@@ -162,3 +169,58 @@ function selectPopularStations(hour, station) {
   // second param is stations to highlight at hour
   updateMapMarkers("data/stationData.geojson", [])
 }
+
+// function setupLasso() {
+//   // Lasso functions to execute while lassoing
+//   var lasso_start = function() {
+//     lasso.items()
+//       .attr("r",3.5) // reset size
+//       .style("fill",null) // clear all of the fills
+//       .classed({"not_possible":true,"selected":false}); // style as not possible
+//   };
+//
+//   var lasso_draw = function() {
+//     // Style the possible dots
+//     lasso.items().filter(function(d) {return d.possible===true})
+//       .classed({"not_possible":false,"possible":true});
+//
+//     // Style the not possible dot
+//     lasso.items().filter(function(d) {return d.possible===false})
+//       .classed({"not_possible":true,"possible":false});
+//   };
+//
+//   var lasso_end = function() {
+//     // Reset the color of all dots
+//     lasso.items()
+//        .style("fill", function(d) { return color(d.species); });
+//
+//     // Style the selected dots
+//     lasso.items().filter(function(d) {return d.selected===true})
+//       .classed({"not_possible":false,"possible":false})
+//       .attr("r",7);
+//
+//     // Reset the style of the not selected dots
+//     lasso.items().filter(function(d) {return d.selected===false})
+//       .classed({"not_possible":false,"possible":false})
+//       .attr("r",3.5);
+//
+//   };
+//
+//   // Create the area where the lasso event can be triggered
+//   var lasso_area = mapSvg.append("rect")
+//                         .attr("width",1000)
+//                         .attr("height",1000)
+//                         .style("opacity",0);
+//
+//   // Define the lasso
+//   var lasso = d3.lasso()
+//         .closePathDistance(75) // max distance for the lasso loop to be closed
+//         .closePathSelect(true) // can items be selected by closing the path?
+//         .hoverSelect(true) // can items by selected by hovering over them?
+//         .area(lasso_area) // area where the lasso can be started
+//         .on("start",lasso_start) // lasso start function
+//         .on("draw",lasso_draw) // lasso draw function
+//         .on("end",lasso_end); // lasso end function
+//
+//   return lasso;
+// }

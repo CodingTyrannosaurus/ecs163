@@ -4,8 +4,8 @@ function getPopularStationTimes(data) {
 }
 
 // initial histogram container setup
-var histMargin = {top: 10, right: 30, bottom: 50, left: 30},
-    histWidth = 700 - histMargin.left - histMargin.right,
+var histMargin = {top: 10, right: 30, bottom: 30, left: 30},
+    histWidth = 800 - histMargin.left - histMargin.right,
     histHeight = 220 - histMargin.top - histMargin.bottom;
 
 var histX = d3.scaleBand()
