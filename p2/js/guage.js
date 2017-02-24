@@ -6,7 +6,7 @@ var barWidth, chart, chartInset, degToRad, repaintGauge,
     height, margin, numSections, padRad, percToDeg, percToRad,
     percent, radius, sectionIndx, svg, totalPercent, width;
 
-  percent = .65;
+  percent = .556;
   numSections = 1;
   sectionPerc = 1 / numSections / 2;
   padRad = 0.025;
@@ -15,7 +15,7 @@ var barWidth, chart, chartInset, degToRad, repaintGauge,
   // Orientation of gauge:
   totalPercent = .75;
 
-  el = d3.select('.chart-gauge');
+  el = d3.select('#chart-gauge');
 
   margin = {
     top: 20,

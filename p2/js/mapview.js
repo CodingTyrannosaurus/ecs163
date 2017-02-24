@@ -47,10 +47,15 @@ function drawMapMarkers(jsonFile) {
     var selectedStation = 0;
     var currentStationOverlayShown = 0;
 
-    // create circles for each feature
-    var marker = g.selectAll(".marker")
+    // container for circles with text
+    var markerContainer = g.selectAll("g")
       .data(mapData.features)
-      .enter().append("circle")
+      .enter().append("g");
+    // create circles for each feature
+    var marker = markerContainer.selectAll(".marker")
+      .data(mapData.features)
+      .enter()
+      .append("circle")
       .attr("pointer-events","visible")
       .attr("r", 12)
       .attr("class", "marker")
@@ -73,6 +78,7 @@ function drawMapMarkers(jsonFile) {
           // show overlay
           toggleOverlay(d, true);
           currentStationOverlayShown = 1;
+          updateHistogram("data/hourlyStations.csv", d.properties.name);
         }
         selectedStation = d.properties.station_id;
         g.selectAll(".marker")
@@ -90,7 +96,6 @@ function drawMapMarkers(jsonFile) {
             .style("cursor", "pointer")
             .style("fill", "#3BC566");
         }
-        updateHistogram("data/hourlyStations.csv", d.properties.name);
       })
       .on("mouseout", function(d) {
         tooltip.hide(d)
@@ -138,6 +143,24 @@ function drawMapMarkers(jsonFile) {
     // g.call(lasso);
 
     // lasso.items(d3.selectAll(".marker"));
+
+    $('#toggleArea :checkbox').change(function() {
+      if (this.checked) {
+        marker.transition()
+          .duration(500)
+          .attr("r", function(d) { return d.properties.dockcount * 0.75; });
+
+        markerContainer.append("text")
+          .attr("x", 0)
+          .attr("dy", ".35em")
+          .attr("text-anchor", "middle")
+          .text(function(d) { return d.properties.dockcount; });
+      } else {
+        marker.transition()
+          .duration(500)
+          .attr("r", 12)
+      }
+    });
 
     map.on("viewreset", updateMarkerPositions);
     updateMarkerPositions();

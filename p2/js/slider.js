@@ -99,6 +99,7 @@ function drawSlider(fileName) {
       // console.log(d.customer)
       handle.attr("cx", xSlider(date));
 
+
       // update guage to customers in that day
       custPercent = dataForDay.totalCust/maxCustomers;
       needle.moveTo(custPercent);
