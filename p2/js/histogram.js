@@ -4,7 +4,7 @@ function getPopularStationTimes(data) {
 }
 
 // initial histogram container setup
-var histMargin = {top: 10, right: 30, bottom: 30, left: 30},
+var histMargin = {top: 10, right: 30, bottom: 60, left: 30},
     histWidth = 800 - histMargin.left - histMargin.right,
     histHeight = 220 - histMargin.top - histMargin.bottom;
 

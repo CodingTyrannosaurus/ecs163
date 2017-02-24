@@ -56,6 +56,11 @@ function drawMapMarkers(jsonFile) {
       .attr("class", "marker")
       .style("fill", "#31a354")
       .on("click", function (d) {
+        d3.selectAll(".cityLabel")
+        .text(function() {
+          // console.log(d);
+          return d.properties.name;
+        })
         // hide overlay when clicking on selected station
         // console.log("term: " + d.properties.station_id + " selected: " + selectedStation)
         // if the station user selects is already selected AND overlay IS SHOWING
@@ -76,16 +81,16 @@ function drawMapMarkers(jsonFile) {
         d3.select(this)
           .style("fill", "#f03b20")
           .style("stroke-width", "2px");
-      })
+      }) // end onclick
       .on("mouseover", function(d) {
         tooltip.show(d)
-        updateHistogram("data/hourlyStations.csv", d.properties.name)
         // only change color when selecting other station
         if (d.properties.station_id != selectedStation) {
           d3.select(this)
             .style("cursor", "pointer")
             .style("fill", "#3BC566");
         }
+        updateHistogram("data/hourlyStations.csv", d.properties.name);
       })
       .on("mouseout", function(d) {
         tooltip.hide(d)

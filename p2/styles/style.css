@@ -284,4 +284,46 @@ svg text.label {
   font-size: 100px;
   color: white;
   text-align: center;
+  line-height: 1.2;
+}
+
+#date {
+  font-size: 22px;
+  color: white;
+  text-align: center;
+}
+
+/* Guage Styles */
+.chart-gauge {
+  /*margin-top: 500px;*/
+  width: 300px;
+  margin: 100px auto;
+  position: absolute;
+  top: 250px;
+}
+
+.chart-filled {
+  fill: #31a354;
+}
+
+.chart-empty {
+  /*fill: #dedede;*/
+  fill: #797979;
+}
+
+.needle, .needle-center {
+  /*fill: #464A4F;*/
+  fill: rgba(222, 216, 222, 1);
+}
+
+.guageTitle {
+  font-size: 18px;
+  font-family: 'Roboto', sans-serif;
+  fill: white;
+}
+
+.guageAxis {
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  fill: white;
 }

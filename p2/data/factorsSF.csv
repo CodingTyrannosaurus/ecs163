@@ -1,4 +1,4 @@
-date,total,subscriber,customer,totalAvg,subscriberAvg,customerAvg,temp,rain,weekend,weekday,BART,49ers,Giants,Sharks,AmericasCup,USGovShutdown,holiday,holidayName
+date,totalCust,subscriber,customer,totalAvg,subscriberAvg,customerAvg,temp,rain,weekend,weekday,BART,49ers,Giants,Sharks,AmericasCup,USGovShutdown,holiday,holidayName
 08/29/13,642,383,259,716,129,59,68,,0,5,0,,,,,,0,
 08/30/13,606,253,353,663,149,56,69,,0,6,0,,,,,,0,
 08/31/13,556,127,429,208,217,32,64,,1,7,0,,,,,,0,

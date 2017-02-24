@@ -2,7 +2,7 @@ function drawSlider(fileName) {
   var parseDate = d3.timeParse("%m/%d/%y");
 
   var width = 960, height = 100;
-  var margin = {right: 30, left: 30, top: 10, bottom: 10};
+  var margin = {right: 20, left: 60, top: 10, bottom: 10};
 
   var svg = d3.select("#slider")
     .append("svg")
@@ -19,11 +19,12 @@ function drawSlider(fileName) {
     .range([0, width])
     .clamp(true);
 
-  d3.csv("data/factorsSF.csv", function(error, data) {
+  d3.csv(fileName, function(error, data) {
     if (error) throw error;
 
     data.forEach(function(d) {
       d.date = parseDate(d.date);
+      d.totalCust = +d.totalCust;
     });
 
     xSlider.domain(d3.extent(data, function(d) { return d.date; }));
@@ -34,7 +35,7 @@ function drawSlider(fileName) {
     svg.append("g")
       .attr("class", "x axis")
       .attr("id", "sliderAxis")
-      .attr("transform", "translate(30," + height / 2.3 + ")")
+      .attr("transform", "translate(" + margin.left + "," + 40 + ")")
       .call(xAxis);
 
     slider.append("line")
@@ -66,10 +67,13 @@ function drawSlider(fileName) {
 
     function moveSlider(date) {
       var sliderDay = d3.timeDay.floor(date);
-      // console.log(sliderDay)
-      // console.log(data[0].date)
+      var maxCustomers = d3.max(data, function(d) { return d.totalCust });
+
       var dataForDay = data.filter(function(d) { console.log(); return (d.date.getTime() == sliderDay.getTime()); })[0];
-      $("#temperature").replaceWith("<div id=\"temperature\">" + dataForDay.temp + "°" + "</div>")
+
+      var dateFormat = d3.timeFormat('%A, %b %d %Y');
+      var prettyDate = dateFormat(dataForDay.date);
+
       if (dataForDay.rain == 1) {
         $("#rain").css('opacity', '1.0');
       } else {
@@ -88,8 +92,16 @@ function drawSlider(fileName) {
         $("#holiday").css('opacity', '0.2');
       }
 
+      $("#temperature").replaceWith("<div id=\"temperature\">" + dataForDay.temp + "°" + "</div>");
+      $("#date").replaceWith("<div id=\"date\">" + prettyDate + "</div>")
+
+
       // console.log(d.customer)
       handle.attr("cx", xSlider(date));
+
+      // update guage to customers in that day
+      custPercent = dataForDay.totalCust/maxCustomers;
+      needle.moveTo(custPercent);
     }
   });
 }
