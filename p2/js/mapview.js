@@ -2,10 +2,12 @@
 
 var map = L.map('mapView').setView([37.78975, -122.393452], 14);
 var mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
+// var maxBound = new L.LatLngBounds(new L.LatLng(37.79, -122.38), new L.LatLng(37.76, -122.40));
 
 L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; ' + mapLink + ' Contributors',
-  maxZoom: 18,
+  maxZoom: 16,
+  minZoom: 12
 }).addTo(map);
 
 map._initPathRoot();

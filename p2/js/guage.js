@@ -141,17 +141,17 @@ var barWidth, chart, chartInset, degToRad, repaintGauge,
       self = this;
 
       // Reset pointer position
-      this.el.transition().ease(d3.easeQuad).duration(1000).select('.needle').tween('reset-progress', function() {
-        var needle = d3.select(this);
-        return function(percentOfPercent) {
-          var progress = (1 - percentOfPercent) * oldValue;
+      // this.el.transition().ease(d3.easeQuad).duration(100).select('.needle').tween('reset-progress', function() {
+      //   var needle = d3.select(this);
+      //   return function(percentOfPercent) {
+      //     var progress = (1 - percentOfPercent) * oldValue;
+      //
+      //     repaintGauge(progress);
+      //     return needle.attr('d', recalcPointerPos.call(self, progress));
+      //   };
+      // });
 
-          repaintGauge(progress);
-          return needle.attr('d', recalcPointerPos.call(self, progress));
-        };
-      });
-
-      this.el.transition().ease(d3.easeBounce).duration(1000).select('.needle').tween('progress', function() {
+      this.el.transition().ease(d3.easeBounce).duration(600).select('.needle').tween('progress', function() {
         var needle = d3.select(this);
         return function(percentOfPercent) {
           var progress = percentOfPercent * perc;
