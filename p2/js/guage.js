@@ -54,11 +54,11 @@ var barWidth, chart, chartInset, degToRad, repaintGauge,
   chart.append('path').attr('class', "arc chart-empty");
 
   var guageLabel = svg.append("text")
-    .text("Total Customers")
+    .text("Total Customers (All Stations)")
     .attr("class", "guageTitle")
     .attr("transform", "translate("+ ((width + margin.left) / 2) +","+ ((height + margin.top) / 2) +")")
     .style("text-anchor", "middle")
-    .attr("y", margin.bottom + 10);
+    .attr("y", margin.bottom + 12);
 
   var guageMin = svg.append("text")
     .text("0")

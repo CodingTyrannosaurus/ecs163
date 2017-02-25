@@ -78,14 +78,12 @@ function drawHistogram(filePath) {
       histSVGContainer.call(tooltip)
 
       // I add all the visual calculations in update because first run isn't visible
-
       histSVGContainer.selectAll("rect")
         .data(data)
       .enter().append("rect")
         .attr("class", "bar")
         .on("mouseover", function(d) {
           tooltip.show(d)
-          selectPopularStations(d.hour, d.station)
           d3.select(this)
             .style("fill", "#43a2ca");
         })
@@ -115,8 +113,13 @@ function updateHistogram(filePath, currentStation) {
 
   // all data usage must occur in async d3.csv call
   d3.csv(filePath, function(error, data) {
-    // filter data based on station
-    var data = data.filter(function(d) { return (d.station == currentStation && d.hour > 5 && d.hour < 22); })
+
+    if (currentStation == "all") {
+      var data = data.filter(function(d) { return (d.hour > 5 && d.hour < 22); })
+    } else {
+      // filter data based on station
+      var data = data.filter(function(d) { return (d.station == currentStation && d.hour > 5 && d.hour < 22); })
+    }
 
     data.forEach(function(d) {
       d.rides = +d.rides

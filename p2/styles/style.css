@@ -223,6 +223,7 @@ svg text.label {
   font: 15px 'Roboto', sans-serif;
   font-weight: 400;
   text-anchor: middle;
+  pointer-events: none;
 }
 
 #controller {
@@ -332,7 +333,7 @@ svg text.label {
 }
 
 .guageTitle {
-  font-size: 18px;
+  font-size: 17px;
   font-family: 'Roboto', sans-serif;
   fill: white;
 }

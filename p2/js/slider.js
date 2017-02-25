@@ -1,3 +1,5 @@
+var firstSlide = true;
+
 function drawSlider(fileName) {
   var parseDate = d3.timeParse("%m/%d/%y");
 
@@ -56,6 +58,12 @@ function drawSlider(fileName) {
       .attr("r", 9);
 
     function moveSlider(date) {
+
+      if (firstSlide) {
+        showAllRides();
+        firstSlide = false;
+      }
+
       var sliderDay = d3.timeDay.floor(date);
       var maxCustomers = d3.max(data, function(d) { return d.totalCust });
 
@@ -90,6 +98,20 @@ function drawSlider(fileName) {
       // update guage to customers in that day
       custPercent = dataForDay.totalCust/maxCustomers;
       needle.moveTo(custPercent);
+    }
+
+    function showAllRides() {
+      // update histogram and label to all rides
+      d3.selectAll(".cityLabel")
+        .text(function() {
+          return "All Stations";
+        })
+
+      updateHistogram("data/hourlyRides.csv", "all");
+      // deselect red station
+      d3.selectAll(".marker")
+        .style("fill", "#31a354")
+        .style("stroke-width", "1px");
     }
   });
 }

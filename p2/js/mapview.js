@@ -54,6 +54,9 @@ function drawMapMarkers(jsonFile) {
       .attr("class", "marker")
       .style("fill", "#31a354")
       .on("click", function (d) {
+        // reset slider to re-show allrides next timeDay
+        firstSlide = true;
+
         d3.selectAll(".cityLabel")
         .text(function() {
           return d.properties.name;
