@@ -1,2 +1,3 @@
-Current Status:
-I have found, parsed, and extracted the necessary data for the project. I have implemented leaflet.js and created my first visualization on the map, in addition to an overlay pane with a histogram.
+Data Visualization of BABS: Bay Area Bike Share Data using d3.js and leaflet.js.
+
+Thanks to @thfield for filtered data and inspiration!
