@@ -24,8 +24,6 @@ var barWidth, chart, chartInset, degToRad, repaintGauge,
     left: 20
   };
 
-  // console.log(el[0][0].offsetWidth)
-
   width = 300 - margin.left - margin.right;
   height = width;
   radius = Math.min(width, height) / 2;

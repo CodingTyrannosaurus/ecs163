@@ -51,16 +51,6 @@ function drawSlider(fileName) {
         .on("start.interrupt", function() { slider.interrupt(); })
         .on("start drag", function(d) { moveSlider(xSlider.invert(d3.event.x)); }));
 
-    // slider.insert("g", ".track-overlay")
-    //     .attr("class", "ticks")
-    //     .attr("transform", "translate(0," + 18 + ")")
-    //   .selectAll("text")
-    //   .data(data)
-    //   .enter().append("text")
-    //     .attr("x", xSlider)
-    //     .attr("text-anchor", "middle")
-    //     .text(function(d) { return d.date; });
-
     var handle = slider.insert("circle", ".track-overlay")
       .attr("class", "handle")
       .attr("r", 9);
@@ -95,10 +85,7 @@ function drawSlider(fileName) {
       $("#temperature").replaceWith("<div id=\"temperature\">" + dataForDay.temp + "°" + "</div>");
       $("#date").replaceWith("<div id=\"date\">" + prettyDate + "</div>")
 
-
-      // console.log(d.customer)
       handle.attr("cx", xSlider(date));
-
 
       // update guage to customers in that day
       custPercent = dataForDay.totalCust/maxCustomers;

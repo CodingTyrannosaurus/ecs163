@@ -35,9 +35,7 @@ function drawHistogram(filePath) {
     .text("Rides by Hour (% Total Rides)")
     .attr("class", "histTitle")
     .attr("transform", "translate("+ (histWidth/2) +","+ histHeight +")")
-    // .attr("y", histMargin.bottom - 10)
     .style("text-anchor", "middle")
-    // .attr("x", width/2)
     .attr("y", histMargin.bottom);
 
     // count total # of rides for percentage calculation
