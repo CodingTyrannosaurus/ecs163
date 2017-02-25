@@ -138,13 +138,19 @@ label {
   /*fill: #31a354;*/
 }
 
+.markerLabel {
+  font-size: 12px;
+  font-family: 'Roboto', sans-serif;
+  pointer-events: none;
+}
+
 #overlay-top {
   position: absolute;
   width: 100%;
   height: 280px;
-  top: 0px;
-  /*top: -280px;*/
-  /*display: none;*/
+  /*top: 0px;*/
+  top: -280px;
+  display: none;
   background-color: rgba(0,0,0,0.6);
   z-index: 2;
 }
@@ -157,21 +163,23 @@ label {
 
 #overlay-top-right {
   display: inline-block;
-  width: 19%;
+  width: 280px;
   height: 280px;
   z-index: 3;
   position: absolute;
   top: 0;
+  right: 0;
   padding-top: 20px;
 }
 
 
 #overlay-right {
   position: absolute;
-  width: 20%;
+  width: 280px;
   height: 100vh;
   top: 0;
-  right: 0;
+  right: -280px;
+  display: none;
   background-color: rgba(0,0,0,0.6);
   z-index: 1;
 }
@@ -180,8 +188,9 @@ label {
   position: fixed;
   width: 100%;
   height: 80px;
-  bottom: 0;
+  bottom: -80px;
   right: 0;
+  display: none;
   background-color: rgba(0,0,0,0.6);
 }
 
@@ -336,6 +345,7 @@ svg text.label {
 
 #toggleArea {
   margin-left: 20px;
+  margin-top: 20px;
   width: 100%;
   height: 90px;
   /*background-color: red;*/

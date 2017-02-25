@@ -50,20 +50,22 @@ function drawMapMarkers(jsonFile) {
     // container for circles with text
     var markerContainer = g.selectAll("g")
       .data(mapData.features)
-      .enter().append("g");
+
+    var markerEnter = markerContainer.enter()
+      .append("g");
+
     // create circles for each feature
-    var marker = markerContainer.selectAll(".marker")
-      .data(mapData.features)
-      .enter()
-      .append("circle")
-      .attr("pointer-events","visible")
+    // var marker = markerEnter.selectAll(".marker")
+      // .data(mapData.features)
+      // .enter()
+    var marker = markerEnter.append("circle")
+      .attr("pointer-events", "visible")
       .attr("r", 12)
       .attr("class", "marker")
       .style("fill", "#31a354")
       .on("click", function (d) {
         d3.selectAll(".cityLabel")
         .text(function() {
-          // console.log(d);
           return d.properties.name;
         })
         // hide overlay when clicking on selected station
@@ -105,60 +107,80 @@ function drawMapMarkers(jsonFile) {
             .style("fill", "#31a354");
         }
       })
-
-
-    // marker.transition()
-    //   .duration(1500)
-    //   .delay(800)
-    //   .attr("r", function(d) { return d.properties.dockcount * 0.75 } )
+    // end marker attributes
 
     function updateMarkerPositions() {
-       marker.attr("transform",
+       markerEnter.attr("transform",
        function(d) {
          return "translate("+
           map.latLngToLayerPoint(d.LatLng).x +","+
           map.latLngToLayerPoint(d.LatLng).y +")";
-        }
-    )}
+        });
+      }
 
     function toggleOverlay(selectedPoint, show) {
       if (show) {
-        // slide pane onto screen
+        // slide panes onto screen
         d3.select("#overlay-top")
-          .transition()
+          .transition().duration(500)
           .style("display", "inline")
           .style("top", "0px");
+        d3.select("#overlay-right")
+          .transition().duration(600)
+          .style("display", "inline")
+          .style("right", "0px");
+        d3.select("#overlay-bottom")
+          .transition().duration(700)
+          .style("display", "inline")
+          .style("bottom", "0px");
       } else {
         // slide pane onto screen
         d3.select("#overlay-top")
-          .transition()
+          .transition().duration(500)
           .style("top", "-330px")
+        d3.select("#overlay-right")
+          .transition().duration(600)
+          .style("display", "inline")
+          .style("right", "-280px");
+        d3.select("#overlay-bottom")
+          .transition().duration(700)
+          .style("display", "inline")
+          .style("bottom", "-80px");
       }
     } // end toggleOverlay()
 
-    // lasso
-    // var lasso = setupLasso();
-    // console.log(lasso)
-    // init lasso on svg that contains markers
-    // g.call(lasso);
-
-    // lasso.items(d3.selectAll(".marker"));
+    var markerLabel = markerEnter.append("text")
+      .transition().duration(200)
+      .attr("dy", function(d) { return 4; })
+      .attr("text-anchor", "middle")
+      .attr("class", "markerLabel")
+      .attr("opacity", 0)
+      .text(function(d) { return d.properties.dockcount; });
 
     $('#toggleArea :checkbox').change(function() {
       if (this.checked) {
+
+        // markerLabel.attr("text-anchor", "left");
         marker.transition()
-          .duration(500)
+          .duration(700)
           .attr("r", function(d) { return d.properties.dockcount * 0.75; });
 
-        markerContainer.append("text")
-          .attr("x", 0)
-          .attr("dy", ".35em")
+        var markerLabel = markerEnter.append("text")
+          // .transition().duration(200).delay(800)
+          .attr("dy", function(d) { return 4; })
           .attr("text-anchor", "middle")
+          .attr("class", "markerLabel")
+          // .attr("fill-opacity", 0)
           .text(function(d) { return d.properties.dockcount; });
+
       } else {
         marker.transition()
           .duration(500)
           .attr("r", 12)
+
+        markerEnter.selectAll(".markerLabel").remove()
+
+        // markerLabel.remove()
       }
     });
 
@@ -197,58 +219,3 @@ function selectPopularStations(hour, station) {
   // second param is stations to highlight at hour
   updateMapMarkers("data/stationData.geojson", [])
 }
-
-// function setupLasso() {
-//   // Lasso functions to execute while lassoing
-//   var lasso_start = function() {
-//     lasso.items()
-//       .attr("r",3.5) // reset size
-//       .style("fill",null) // clear all of the fills
-//       .classed({"not_possible":true,"selected":false}); // style as not possible
-//   };
-//
-//   var lasso_draw = function() {
-//     // Style the possible dots
-//     lasso.items().filter(function(d) {return d.possible===true})
-//       .classed({"not_possible":false,"possible":true});
-//
-//     // Style the not possible dot
-//     lasso.items().filter(function(d) {return d.possible===false})
-//       .classed({"not_possible":true,"possible":false});
-//   };
-//
-//   var lasso_end = function() {
-//     // Reset the color of all dots
-//     lasso.items()
-//        .style("fill", function(d) { return color(d.species); });
-//
-//     // Style the selected dots
-//     lasso.items().filter(function(d) {return d.selected===true})
-//       .classed({"not_possible":false,"possible":false})
-//       .attr("r",7);
-//
-//     // Reset the style of the not selected dots
-//     lasso.items().filter(function(d) {return d.selected===false})
-//       .classed({"not_possible":false,"possible":false})
-//       .attr("r",3.5);
-//
-//   };
-//
-//   // Create the area where the lasso event can be triggered
-//   var lasso_area = mapSvg.append("rect")
-//                         .attr("width",1000)
-//                         .attr("height",1000)
-//                         .style("opacity",0);
-//
-//   // Define the lasso
-//   var lasso = d3.lasso()
-//         .closePathDistance(75) // max distance for the lasso loop to be closed
-//         .closePathSelect(true) // can items be selected by closing the path?
-//         .hoverSelect(true) // can items by selected by hovering over them?
-//         .area(lasso_area) // area where the lasso can be started
-//         .on("start",lasso_start) // lasso start function
-//         .on("draw",lasso_draw) // lasso draw function
-//         .on("end",lasso_end); // lasso end function
-//
-//   return lasso;
-// }
