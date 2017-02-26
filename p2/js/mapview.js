@@ -84,7 +84,7 @@ function drawMapMarkers(jsonFile) {
           .style("stroke-width", "2px");
       }) // end onclick
       .on("mouseover", function(d) {
-        tooltip.show(d)
+        tooltip.show(d);
         // only change color when selecting other station
         if (d.properties.station_id != selectedStation) {
           d3.select(this)
@@ -93,7 +93,7 @@ function drawMapMarkers(jsonFile) {
         }
       })
       .on("mouseout", function(d) {
-        tooltip.hide(d)
+        tooltip.hide(d);
         // only change color when selecting other station
         if (d.properties.station_id != selectedStation) {
           d3.select(this)

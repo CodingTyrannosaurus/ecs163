@@ -353,3 +353,9 @@ svg text.label {
   position: absolute;
   bottom: 0px;
 }
+
+#attribution {
+  font-size: 12px;
+  font-family: 'Roboto', sans-serif;
+  color: white;
+}

@@ -3,10 +3,9 @@
   <head>
     <meta charset="utf-8">
 
-    <!--  Responsive Viewport -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>ECS 163 Project 2 - Matt Gabor</title>
     <link href="styles/roboto.css" rel="stylesheet" type="text/css">
+    <link href="img/favicon.ico" rel="icon" type="image/x-icon" />
 
     <!-- Stylesheets -->
     <link rel="stylesheet" type="text/css" href="lib/bootstrap.min.css">
@@ -15,16 +14,6 @@
   </head>
 
   <body>
-    <!-- Header -->
-
-    <!-- <div class="intro"> -->
-      <!-- <h2 style>Bike Share Data</h1> -->
-  		<!-- <h3>Matt Gabor</h3> -->
-      <!-- <hr> -->
-    <!-- </div> -->
-
-    <!-- Chart 1 Overview Detail -->
-
     <div id="mapView"></div>
     <div id="overlay-top">
       <div id="overlay-top-left">
@@ -32,12 +21,11 @@
         <div id="histogram" align="center"></div>
       </div>
       <div id="overlay-top-right">
-        <!-- insert calendar/date stuff -->
         <img src="img/giants-logo.png" id="giants">
         <img src="img/rain.png" id="rain">
         <img src="img/celebrate.png" id="holiday">
-          <div id="temperature">68°</div>
-          <div id="date">Wednesday, Aug 28 2013</div>
+        <div id="temperature">68°</div>
+        <div id="date">Wednesday, Aug 28 2013</div>
       </div>
     </div>
     <div id="overlay-right">
@@ -46,40 +34,12 @@
         <div class="checkbox">
           <label><input type="checkbox" value=""> Show # of docks per station</label>
         </div>
-        <!-- <div class="checkbox">
-          <label><input type="checkbox" value=""> Option 2</label>
-        </div> -->
+        <div id="attribution">Data from Bay Area Bike Share <a href="http://www.bayareabikeshare.com/open-data">http://www.bayareabikeshare.com/open-data</a></div>
       </div>
     </div>
-
     <div id="overlay-bottom">
-      <!-- <svg width="960" height="500" id=></svg> -->
       <div id="slider"></div>
     </div>
-
-    <!-- <svg width="960" height="500"></svg> -->
-    <!-- <div class="caption">
-      Plot 1
-    </div> -->
-
-    <!-- <hr> -->
-
-    <!-- Chart 2 - Other chart -->
-
-    <!-- Footer -->
-    <!-- <hr> -->
-    <!-- <h4><b>Conclusion</b></h4>
-
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Through this exploration, I learned some interesting information about the UC campuses. Firstly, on the whole, the UC schools foster high quality education and produce some of the highest earning graduates in the US. While they all share the same prefix, the 9 campuses differ drastically in their major offerings, class size, acceptance rates, student debt, and more. Although limited, these visualizations highlight some of these differences and `show` how unique each campus really is.
-    <br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Examining and charting the college scorecard data was both frustrating and inspiring. Due to my limited experience in data manipulation and web development, I struggled to find meaning in the data, and more importantly figure out how to show that meaning in an effective way. However, I found it helpful to narrow in on a subset of the data and perform my analysis in a concentrated space. As a side note, readers may notice that some colleges are missing from the dataset, including one of the UC campuses. This is due to privacy restrictions on university data at certain campuses, and more information can be found on the college scorecard's website linked below. -->
-
-    <!-- <br>
-    <br>
-    Source: <a href="http://www.bayareabikeshare.com/open-data">http://www.bayareabikeshare.com/open-data</a>
-    <br>
-    <br>
-    <br> -->
 
     <!-- External Libraries -->
     <script src="lib/d3.v4.min.js"></script>
@@ -87,8 +47,6 @@
     <script src="lib/d3-tip.js"></script>
     <script src="lib/leaflet0.7.7.js"></script>
     <script src="lib/lasso.js"></script>
-
-    </script>
 
     <!-- My Code -->
     <script src="js/guage.js"></script>
