@@ -1,8 +1,3 @@
-// TODO: Write function to choose each station's most popular timeslot
-function getPopularStationTimes(data) {
-  return data.filter(function(d) { return d.rides > 50; })
-}
-
 // initial histogram container setup
 var histMargin = {top: 10, right: 30, bottom: 60, left: 30},
     histWidth = 800 - histMargin.left - histMargin.right,

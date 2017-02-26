@@ -1,8 +1,7 @@
-/* general page styling */
+/**** general page styling ****/
 body {
   font: 15px;
   font-family: 'Roboto', sans-serif;
-  /*margin-left: 7.5%;*/
   width: 100%;
   height: 100%;
 }
@@ -42,33 +41,10 @@ label {
   color: white;
 }
 
-.question {
-  margin-bottom: 20px;
-}
-
-.description {
-  margin-top: 20px;
-}
-
-.intro {
-  margin-top: 20px;
-}
-
-.caption {
-  font-style: italic;
-  font-size: 18px;
-}
-
-/***** line chart styling *****/
-.line {
-  fill: none;
-  stroke-width: 1.5px;
-}
-
-.legend {
-    font-size: 20px;
-    font-weight: bold;
-    text-anchor: middle;
+#attribution {
+  font-size: 12px;
+  font-family: 'Roboto', sans-serif;
+  color: white;
 }
 
 /***** axes styling *****/
@@ -131,11 +107,9 @@ label {
   position: relative;
 }
 
-
 .marker {
   stroke: black;
   stroke-width: 1px;
-  /*fill: #31a354;*/
 }
 
 .markerLabel {
@@ -144,11 +118,11 @@ label {
   pointer-events: none;
 }
 
+/**** overlay styling ****/
 #overlay-top {
   position: absolute;
   width: 100%;
   height: 280px;
-  /*top: 0px;*/
   top: -280px;
   display: none;
   background-color: rgba(0,0,0,0.6);
@@ -172,7 +146,6 @@ label {
   padding-top: 20px;
 }
 
-
 #overlay-right {
   position: absolute;
   width: 280px;
@@ -194,21 +167,24 @@ label {
   background-color: rgba(0,0,0,0.6);
 }
 
-.histTitle {
-  font-size: 16px;
-  font-family: 'Roboto', sans-serif;
-  fill: white;
+#bottomRight {
+  margin-left: 20px;
+  margin-top: 40px;
+  width: 100%;
+  height: 90px;
+  position: absolute;
+  bottom: 0px;
 }
 
-.cityLabel {
-  font-size: 20px;
-  font-family: 'Roboto', sans-serif;
-  color: white;
-  text-align: center;
-  margin: 10px 0 10px 0;
+#toggleArea {
+  width: 300px;
+  margin-top: 20px;
+  margin-left: 20px;
+  position: absolute;
+  top: 265px;
 }
 
-/**** histogram styles ****/
+/**** histogram styling ****/
 .bar {
   fill: #7BC8BD;
 }
@@ -226,20 +202,21 @@ svg text.label {
   pointer-events: none;
 }
 
-#controller {
-  background-color: blue;
-  width: 20%;
-  display: inline-block;
-  /*position: relative;*/
-  /*left: 0;*/
-  /*float: left;*/
+.histTitle {
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  fill: white;
 }
 
-#histogram {
-
+.cityLabel {
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+  color: white;
+  text-align: center;
+  margin: 10px 0 10px 0;
 }
 
-/* slider styles */
+/***** slider styling *****/
 .ticks {
   font: 12px 'Roboto', sans-serif;
   fill:	white;
@@ -280,13 +257,11 @@ svg text.label {
 }
 
 #giants {
-  /*margin-top: 20px;*/
   height: 80px;
   opacity: 0.2;
 }
 
 #rain {
-  /*margin-top: 20px;*/
   height: 80px;
   opacity: 0.2;
 }
@@ -309,9 +284,8 @@ svg text.label {
   text-align: center;
 }
 
-/* Guage Styles */
+/***** gauge styling *****/
 #chart-gauge {
-  /*margin-top: 500px;*/
   width: 300px;
   margin: 100px auto;
   position: absolute;
@@ -323,12 +297,10 @@ svg text.label {
 }
 
 .chart-empty {
-  /*fill: #dedede;*/
   fill: #797979;
 }
 
 .needle, .needle-center {
-  /*fill: #464A4F;*/
   fill: rgba(222, 216, 222, 1);
 }
 
@@ -342,20 +314,4 @@ svg text.label {
   font-size: 16px;
   font-family: 'Roboto', sans-serif;
   fill: white;
-}
-
-#toggleArea {
-  margin-left: 20px;
-  margin-top: 20px;
-  width: 100%;
-  height: 90px;
-  /*background-color: red;*/
-  position: absolute;
-  bottom: 0px;
-}
-
-#attribution {
-  font-size: 12px;
-  font-family: 'Roboto', sans-serif;
-  color: white;
 }
