@@ -155,7 +155,7 @@ function updateHistogram(filePath, currentStation) {
       })
       .text(function(d) {
         percentRides = d.rides/allRides;
-        if (percentRides > 0.015) {
+        if (percentRides > 0.025) {
           return formatPercent((Math.round(100 * percentRides)/100));
         }
       });
